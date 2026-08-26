@@ -46,6 +46,13 @@ _js_dist.extend(
     ]
 )
 
+_js_dist.append(dict(
+    dev_package_path="proptypes.js",
+    dev_only=True,
+    namespace="dash_sortable_items"
+))
+
+
 _css_dist = []
 
 

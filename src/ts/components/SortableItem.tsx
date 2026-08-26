@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { CSSProperties, ReactElement, useEffect } from "react";
 import { useSortable } from "@dnd-kit/react/sortable";
 
 import { 
@@ -12,7 +12,7 @@ import { HandleWrapper }     from "./HandleWrapper";
 /**A sortable item used in a SortableGroup component.*/
 export default function SortableItem( { 
         children, 
-        id, 
+        id = '', 
         index,
         styles,
         handle,
@@ -40,12 +40,12 @@ export default function SortableItem( {
 
     // Style used to update the handle style dynamically
     let dynamic_styles = {
-        'handle' : {cursor : lock ? 'default' : 'grab'},
-        'div'    : {cursor : !lock && handle === undefined ? 'grab' : 'default'}
-    };
+        handle : {cursor : lock ? 'default' : 'grab'},
+        div    : {cursor : !lock && handle === undefined ? 'grab' : 'default'}
+    } as Record<string, CSSProperties>;
 
     // Handle item defined by the user but wrapped with a forward ref to assign the handleRef
-    let new_handle;
+    let new_handle: ReactElement<typeof HandleWrapper> | null;
     if (handle !== undefined) {
 
         new_handle = <HandleWrapper 
@@ -54,14 +54,12 @@ export default function SortableItem( {
             child = {handle} 
         />
 
-        console.log(id, new_handle.props.style);
-
     } else {
         new_handle = null
     };
 
     return <div 
-        id    = {id.toString()}
+        id    = {id}
         ref   = {ref} 
         style = {{...default_styles.div, ...dynamic_styles.div, ...styles?.div}}
     >

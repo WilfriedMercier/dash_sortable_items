@@ -1,4 +1,3 @@
-import { UniqueIdentifier }         from "@dnd-kit/core";
 import { CSSProperties, ReactElement, ReactNode } from "react";
 
 /**Default properties for Dash components.*/
@@ -29,10 +28,7 @@ export interface SortableGroupProps extends Omit<DefaultComponentProps, 'childre
     children ?: ReactElementWithKey[];
 };
 
-export interface SortableItemProps extends Omit<DefaultComponentProps, 'id' | 'style'> {
-
-    /**Unique ID for the item.*/
-    id         : UniqueIdentifier;
+export interface SortableItemProps extends Omit<DefaultComponentProps, 'style'> {
 
     /**Initial position of the item in the sortable list.*/
     index      : number;
@@ -49,6 +45,7 @@ export interface SortableItemProps extends Omit<DefaultComponentProps, 'id' | 's
     */
     handle    ?: ReactNode;
 
+    /**Whether to lock the item (i.e. make it not moveable) or not.*/
     lock      ?: boolean;
 
     /**Position of the handle either at the start or at the end of the row.*/

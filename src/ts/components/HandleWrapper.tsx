@@ -6,12 +6,9 @@ import { HandleWrapperProps } from "types";
 export const HandleWrapper = forwardRef<HTMLDivElement, HandleWrapperProps >(
     ({child, className, style}, ref) => {
 
-        console.log(style);
-
         // React trick to force the re-rendering which happens when the style changes
         const styleKey = `${Date.now()}`;
 
-        console.log('ref', style);
         return <div 
             ref       = {ref} 
             className = {className} 

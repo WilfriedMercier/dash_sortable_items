@@ -1,2 +1,4 @@
 .venv
 node_modules
+dash_sortable_items
+!dash_sortable_items/__init__.py

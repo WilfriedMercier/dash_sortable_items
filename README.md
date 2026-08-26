@@ -8,16 +8,28 @@ To install manually the package, first clone this repository, then setup a virtu
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
 ```
 
-To build the package, we will use [just](https://just.systems/man/en/) which you can install with
+To build the package, we use [just](https://just.systems/man/en/) which can be installed with
 
 ```
 apt install just
 ```
 
-Clean old build files if necessary with 
+To build the package, we need to install [Node.js](https://nodejs.org/en) and npm which can be installed with [nvm](https://github.com/nvm-sh/nvm) using the commands
+
+```bash
+nvm install
+nvm use
+```
+
+Now, we need to install the python and Node dependencies using
+
+```bash
+just install
+```
+
+and, if necessary, clean old build files with 
 
 ```bash
 just clean

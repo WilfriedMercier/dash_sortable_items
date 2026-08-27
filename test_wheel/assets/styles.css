@@ -1,0 +1,14 @@
+.row {
+    display: flex;
+    align-items: center;
+    gap : 30px ;
+    border : 2px solid black !important;
+    background-color : cornsilk !important;
+    justify-content: space-between;
+    transition: none !important;
+    box-shadow: 2px 2px 8px black;
+}
+
+.row:hover {
+    border : 2px solid blue !important;
+}

@@ -1,6 +1,6 @@
 {
   "name": "dash_sortable_items",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A set of Dash components built with React that provide an interface to generate sortable items within a group.",
   "main": "index.ts",
   "repository": {

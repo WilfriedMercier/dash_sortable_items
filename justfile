@@ -1,7 +1,7 @@
 set dotenv-load := false
 
 # Generate components and build the bundle
-build:
+build: 
     npm run build
 
 # Build the webpack bundle

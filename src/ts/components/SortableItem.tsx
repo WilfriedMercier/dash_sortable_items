@@ -13,6 +13,7 @@ import { HandleWrapper }     from "./HandleWrapper";
 export default function SortableItem( { 
         children, 
         id, 
+        className,
         index,
         styles,
         handle,
@@ -59,9 +60,10 @@ export default function SortableItem( {
     };
 
     return <div 
-        id    = {id}
-        ref   = {ref} 
-        style = {{...default_styles.div, ...dynamic_styles.div, ...styles?.div}}
+        id        = {id}
+        className = {className}
+        ref       = {ref} 
+        style     = {{...default_styles.div, ...dynamic_styles.div, ...styles?.div}}
     >
         {handlePos === 'start' ? new_handle : null}
         {children}

@@ -8,6 +8,7 @@ import { SortableGroupProps } from "types";
 export default function SortableGroup( { 
         children = [],
         id,
+        className,
         style    = {},
         setProps
     } : SortableGroupProps) {
@@ -43,7 +44,11 @@ export default function SortableGroup( {
     );
 
     return <DragDropProvider onDragOver={handeDragOver}>
-        <div id = {id} style = {{...default_styles.div, ...style}}>
+        <div 
+            id        = {id} 
+            className = {className}
+            style     = {{...default_styles.div, ...style}}
+        >
             {sortedChildren}
         </div>
     </DragDropProvider>

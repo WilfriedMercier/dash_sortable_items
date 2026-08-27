@@ -37,5 +37,22 @@ and, if necessary, clean old build files with
 just clean
 ```
 
+If you just want to build the files, use
+
+```bash
+just build
+```
+
+If you rather want to generate the python wheel to install the library in your working environment run
+
+```bash
+just package
+```
+
 ### Installing the python module
 
+You can install manually this python library in your current environment by executing the following command in this directory 
+
+```bash
+pip install -e ./
+```

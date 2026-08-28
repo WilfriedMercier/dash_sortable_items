@@ -6,3 +6,4 @@ build
 dash_sortable_items.egg-info
 dash_sortable_items
 !dash_sortable_items/__init__.py
+__pycache__

@@ -83,6 +83,41 @@ def app_with_two_items() -> dash.Dash:
     return app
 
 @pytest.fixture
+def app_with_two_handle_positions() -> dash.Dash:
+    '''Fixture that creates a Dash app with one item with a handle on the left-hand side and another one on the right-hand side.'''
+
+    app = dash.Dash(__name__)
+
+    item1 = SortableItem(
+        id        = 'component-left', 
+        index     = 0,
+        children  = [dash.html.Label('First row')],
+        handle    = dash.html.Label('☰'),
+        handlePos = 'start',
+        lock      = True,
+        className = 'row'
+    )
+    
+    item2 = SortableItem(
+        id        = 'component-right', 
+        index     = 1,
+        children  = [dash.html.Label('Second row')],
+        handle    = dash.html.Label('☰'),
+        handlePos = 'end',
+        className = 'row',
+    )
+
+    group = SortableGroup(
+        id        = 'group',
+        className = 'group',
+        children  = [item1, item2]
+    )
+
+    app.layout = group
+
+    return app
+
+@pytest.fixture
 def app_with_locked_items() -> dash.Dash:
     '''Fixture that creates a Dash app with a single group containing two free and one locked item.'''
 

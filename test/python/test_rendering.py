@@ -4,9 +4,12 @@ import dash
 from   dash.testing.composite                import DashComposite
 from   selenium.webdriver.common.by          import By
 
-from   .fixtures import app_with_four_items
+from   .fixtures import (
+    app_with_four_items,
+    app_with_two_handle_positions
+)
 
-def test_group_and_items_global_rendering(dash_duo: DashComposite, app_with_four_items: dash.Dash):
+def test_group_and_items_global_rendering(dash_duo: DashComposite, app_with_four_items: dash.Dash) -> None:
     r'''Checks that a single group element and its item children are all rendered correctly.'''
 
     dash_duo.start_server(app_with_four_items)
@@ -19,7 +22,9 @@ def test_group_and_items_global_rendering(dash_duo: DashComposite, app_with_four
     rows = element.find_elements(By.CLASS_NAME, 'row')
     assert len(rows) == 4, 'Wrong number of items'
 
-def test_order_of_items(dash_duo: DashComposite, app_with_four_items: dash.Dash):
+    return
+
+def test_order_of_items(dash_duo: DashComposite, app_with_four_items: dash.Dash) -> None:
     r'''Checks that items are rendered at startup correctly based on their index value.'''
 
     dash_duo.start_server(app_with_four_items)
@@ -32,7 +37,9 @@ def test_order_of_items(dash_duo: DashComposite, app_with_four_items: dash.Dash)
     for pos, row in enumerate(rows):
         assert row.get_attribute('id') == ids_in_order[pos], f'Row {pos} does not have the right ID.'
 
-def test_component1_children_rendering(dash_duo: DashComposite, app_with_four_items: dash.Dash):
+    return
+
+def test_component1_children_rendering(dash_duo: DashComposite, app_with_four_items: dash.Dash) -> None:
     '''Check that the children of the first component are rendered correctly.'''
 
     dash_duo.start_server(app_with_four_items)
@@ -58,7 +65,9 @@ def test_component1_children_rendering(dash_duo: DashComposite, app_with_four_it
     assert len(children_of_div) == 1, 'Wrong number of children found for the handle.'
     assert children_of_div[0].tag_name == 'label', 'Child of the div handle is not a label.'
 
-def test_component2_children_rendering(dash_duo: DashComposite, app_with_four_items: dash.Dash):
+    return
+
+def test_component2_children_rendering(dash_duo: DashComposite, app_with_four_items: dash.Dash) -> None:
     '''Check that the children of the second component are rendered correctly.'''
 
     dash_duo.start_server(app_with_four_items)
@@ -78,7 +87,9 @@ def test_component2_children_rendering(dash_duo: DashComposite, app_with_four_it
     for tag, child in zip(tags, children):
         assert child.tag_name == tag
 
-def test_component3_children_rendering(dash_duo: DashComposite, app_with_four_items: dash.Dash):
+    return
+
+def test_component3_children_rendering(dash_duo: DashComposite, app_with_four_items: dash.Dash) -> None:
     '''Check that the children of the third component are rendered correctly.'''
 
     dash_duo.start_server(app_with_four_items)
@@ -101,3 +112,24 @@ def test_component3_children_rendering(dash_duo: DashComposite, app_with_four_it
     children_of_div = children[0].find_elements(By.XPATH, "./child::*")
     assert len(children_of_div) == 1, 'Wrong number of children found for the first child of component3.'
     assert children_of_div[0].tag_name == 'input', 'Child of the div handle is not an input.'
+
+    return
+
+def test_handle_position(dash_duo: DashComposite, app_with_two_handle_positions: dash.Dash) -> None:
+    '''Check that the handle is positioned correctly based on the handlePos props.'''
+
+    dash_duo.start_server(app_with_two_handle_positions)
+
+    # Check that handle is on the left-hand side
+    element  = dash_duo.find_element('component-left', attribute='ID')
+    children = element.find_elements(By.XPATH, "./child::*")
+    assert len(children) == 2, 'Wrong number of children in component-left'
+    assert children[0].get_attribute('role') == 'button', 'Handle not correctly placed in component-left'
+
+    # Check that handle is on the right-hand side
+    element  = dash_duo.find_element('component-right', attribute='ID')
+    children = element.find_elements(By.XPATH, "./child::*")
+    assert len(children) == 2, 'Wrong number of children in component-right'
+    assert children[1].get_attribute('role') == 'button', 'Handle not correctly placed in component-right'
+
+    return

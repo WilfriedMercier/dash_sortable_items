@@ -15,7 +15,7 @@ export default function SortableGroup( {
 
     // At first render, we sort the children based on their index props
     // On later render, we do not sort because the sorting is handled by the itemsIDs array
-    let initial_children = children
+    let initial_children = children;
 
     initial_children = useMemo(() => [...children].sort((a, b) => {
         const indexA = (a as ReactElement).props._passedComponent.props.index ?? 0;

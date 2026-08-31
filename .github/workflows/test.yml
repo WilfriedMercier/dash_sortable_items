@@ -1,0 +1,83 @@
+name: Test Suite
+
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      # Clone the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Set up Python virtual environment
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'  # Adjust to your project's Python version
+
+      - name: Create Python venv
+        run: |
+          python -m venv .venv
+
+      - name: Activate Python venv
+        run: |
+          source .venv/bin/activate
+          echo "PATH=$PWD/.venv/bin:$PATH" >> $GITHUB_ENV
+
+      # Install 'just' (command runner)
+      - name: Install just
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl
+          sudo apt install just
+          just --version
+
+      # Set up Node.js via nvm
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'  # Reads from .nvmrc if it exists
+          cache: 'npm'
+
+      # Run 'just package'
+      - name: Build package
+        run: |
+          just package
+
+      # Install Python package in editable mode
+      - name: Install Python dependencies
+        run: |
+          pip install -e ./
+
+      # Set up test environment
+      - name: Create test venv
+        run: |
+          cd test/python
+          python -m venv .venv
+
+      - name: Activate test venv and install test deps
+        run: |
+          source .venv/bin/activate
+          pip install pytest dash[testing]
+
+      # Run pytest
+      - name: Run tests
+        working-directory: test/python
+        run: |
+          source .venv/bin/activate
+          pytest
+
+      - name: Upload test results (optional, for artifacts)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: test/python/
+          retention-days: 30

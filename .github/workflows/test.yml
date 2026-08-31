@@ -36,10 +36,10 @@ jobs:
 
       # Set up Node.js via nvm
       - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'  # Reads from .nvmrc if it exists
-          cache: 'npm'
+        run: | 
+          wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.7/install.sh | bash
+          nvm install 
+          nvm use
 
       # Run 'just package'
       - name: Build package

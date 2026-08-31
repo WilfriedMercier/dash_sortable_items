@@ -34,13 +34,6 @@ jobs:
           sudo apt install just
           just --version
 
-      # Set up Node.js via nvm
-      - name: Set up Node.js
-        run: | 
-          wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.7/install.sh | bash
-          nvm install 
-          nvm use
-
       # Run 'just package'
       - name: Build package
         run: |

@@ -23,8 +23,7 @@ jobs:
           python-version: '3.14'  # Adjust to your project's Python version
 
       - name: Create Python venv
-        run: |
-          python -m venv .venv
+        run: python -m venv .venv
 
       # Install 'just' (command runner)
       - name: Install just
@@ -33,16 +32,24 @@ jobs:
           sudo apt-get install -y curl
           sudo apt install just
           just --version
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      # Install dependencies
+      - name: Install npm dependencies
+        run: just install
 
       # Run 'just package'
       - name: Build package
-        run: |
-          just package
+        run: just package
 
       # Install Python package in editable mode
       - name: Install Python dependencies
-        run: |
-          .venv/bin/pip install -e ./
+        run: .venv/bin/pip install -e ./
 
       # Set up test environment
       - name: Create test venv
@@ -51,14 +58,12 @@ jobs:
           python -m venv .venv
 
       - name: Activate test venv and install test deps
-        run: |
-          ./venv/bin/pip install pytest dash[testing]
+        run: ./venv/bin/pip install pytest dash[testing]
 
       # Run pytest
       - name: Run tests
         working-directory: test/python
-        run: |
-          .venv/bin/pytest
+        run: .venv/bin/pytest
 
       - name: Upload test results (optional, for artifacts)
         uses: actions/upload-artifact@v4

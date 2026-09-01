@@ -45,20 +45,16 @@ jobs:
 
       # Run 'just package'
       - name: Build package
-        run: just package
-
-      # Install Python package in editable mode
-      - name: Install Python dependencies
-        run: .venv/bin/pip install -e ./
+        run: |
+          just package
+          .venv/bin/pip install -e ./
 
       # Set up test environment
       - name: Create test venv
         run: |
           cd test/python
           python -m venv .venv
-
-      - name: Activate test venv and install test deps
-        run: ./venv/bin/pip install pytest dash[testing]
+          ./venv/bin/pip install pytest dash[testing]
 
       # Run pytest
       - name: Run tests

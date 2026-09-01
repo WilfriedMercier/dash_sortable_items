@@ -45,15 +45,14 @@ jobs:
 
       # Run 'just package'
       - name: Build package
-        run: |
-          just package
-          .venv/bin/pip install -e ./
+        run: just package
 
       # Set up test environment
       - name: Create test venv
         run: |
           cd test/python
           python -m venv .venv
+          .venv/bin/pip install -e ../..
           .venv/bin/pip install pytest dash[testing]
 
       # Run pytest

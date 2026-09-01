@@ -54,6 +54,7 @@ jobs:
           python -m venv .venv
           .venv/bin/pip install -e ../..
           .venv/bin/pip install pytest dash[testing]
+          sudo apt install chromium-chromedriver
 
       # Run pytest
       - name: Run tests

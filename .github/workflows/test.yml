@@ -47,10 +47,11 @@ jobs:
       - name: Build package
         run: just package
 
-      - name: Setup Chromium
-        uses: browser-actions/setup-chromium@v1
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v2
         with:
-          chromium-version: latest
+          chrome-version: latest
+          install-chromedriver: true
 
       # Set up test environment
       - name: Create test venv

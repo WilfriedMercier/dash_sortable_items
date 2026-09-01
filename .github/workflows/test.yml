@@ -54,7 +54,7 @@ jobs:
         run: |
           cd test/python
           python -m venv .venv
-          ./venv/bin/pip install pytest dash[testing]
+          .venv/bin/pip install pytest dash[testing]
 
       # Run pytest
       - name: Run tests

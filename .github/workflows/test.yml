@@ -48,10 +48,14 @@ jobs:
         run: just package
 
       - name: Setup Chrome
+        id: chrome
         uses: browser-actions/setup-chrome@v2
         with:
           chrome-version: latest
           install-chromedriver: true
+
+      - name: Point tests at the downloaded Chrome
+        run: echo "CHROME_BIN=${{ steps.chrome.outputs.chrome-path }}" >> "$GITHUB_ENV"
 
       # Set up test environment
       - name: Create test venv

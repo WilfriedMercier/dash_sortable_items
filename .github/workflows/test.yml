@@ -47,6 +47,11 @@ jobs:
       - name: Build package
         run: just package
 
+      - name: Setup Chromium
+        uses: browser-actions/setup-chromium@v1
+        with:
+          chromium-version: latest
+
       # Set up test environment
       - name: Create test venv
         run: |
@@ -54,7 +59,6 @@ jobs:
           python -m venv .venv
           .venv/bin/pip install -e ../..
           .venv/bin/pip install pytest dash[testing]
-          sudo apt install chromium-chromedriver
 
       # Run pytest
       - name: Run tests

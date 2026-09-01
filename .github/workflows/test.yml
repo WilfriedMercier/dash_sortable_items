@@ -1,0 +1,79 @@
+name: Test Suite
+
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      # Clone the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Set up Python virtual environment
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'  # Adjust to your project's Python version
+
+      - name: Create Python venv
+        run: python -m venv .venv
+
+      # Install 'just' (command runner)
+      - name: Install just
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl
+          sudo apt install just
+          just --version
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # Install dependencies
+      - name: Install npm dependencies
+        run: just install
+
+      # Run 'just package'
+      - name: Build package
+        run: just package
+
+      - name: Remove stale system Chrome
+        run: sudo rm -rf /opt/google/chrome
+
+      - name: Setup Chrome
+        id: chrome
+        uses: browser-actions/setup-chrome@v2
+        with:
+          chrome-version: latest
+          install-chromedriver: true
+
+      # Set up test environment
+      - name: Create test venv
+        run: |
+          cd test/python
+          python -m venv .venv
+          .venv/bin/pip install -e ../..
+          .venv/bin/pip install pytest dash[testing]
+
+      # Run pytest
+      - name: Run tests
+        working-directory: test/python
+        run: .venv/bin/pytest --headless
+
+      - name: Upload test results (optional, for artifacts)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: test/python/
+          retention-days: 30

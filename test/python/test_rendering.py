@@ -1,8 +1,8 @@
 '''Integration tests that check that rendering of the SortableGroup and SortableItem components works as expected.'''
 
 import dash
-from   dash.testing.composite                import DashComposite
-from   selenium.webdriver.common.by          import By
+from   dash.testing.composite       import DashComposite
+from   selenium.webdriver.common.by import By
 
 from   .fixtures import (
     app_with_four_items,

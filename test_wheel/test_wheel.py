@@ -42,8 +42,21 @@ group = dash_sortable_items.SortableGroup(
     children = [item1, item2, item3, item4]
 )
 
-app.layout = group
+button = dash.dcc.Button('click me', id='button')
 
+app.layout = dash.html.Div([group, button])
+
+@app.callback(
+    dash.Output('group', 'style'),
+    dash.Input('button', 'n_clicks'),
+    prevent_initial_callback = True
+)
+def update_style(_) -> dict[str, str]:
+
+    if _ is None: raise dash.exceptions.PreventUpdate
+
+    print('Clicking !')
+    return {'display' : 'flex', 'flexDirection' : 'row', 'backgroundColor' : 'blue'}
 
 if __name__ == '__main__':
     app.run(debug=True)

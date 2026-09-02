@@ -3,7 +3,7 @@ from   dash.testing.composite                  import DashComposite
 from   selenium.webdriver.common.action_chains import ActionChains
 from   selenium.webdriver.common.by            import By
 
-from   .fixtures import (
+from   .fixtures.general import (
     app_with_two_items,
     app_with_locked_items
 )

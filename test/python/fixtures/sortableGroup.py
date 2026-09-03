@@ -36,18 +36,6 @@ def app_button__group() -> dash.Dash:
 
     app.layout = dash.html.Div([group, button], style={'display' : 'flex'})
 
-    @app.callback(
-        dash.Output('group', 'style'),
-        dash.Input('button', 'n_clicks'),
-        dash.State('group', 'style'),
-        prevent_initial_callback = True
-    )
-    def update_style(_, old_style: dict[str, str]) -> dict[str, str]:
-
-        if _ is None: raise dash.exceptions.PreventUpdate
-
-        return old_style | {'flexDirection' : 'row', 'backgroundColor' : 'blue'}
-
     return app
 
 @pytest.fixture
@@ -79,16 +67,5 @@ def app_label__group() -> dash.Dash:
     label  = dash.html.Label('', id='label')
 
     app.layout = dash.html.Div([group, label], style={'display' : 'flex'})
-
-    @app.callback(
-        dash.Output('label', 'children'),
-        dash.Input('group', 'sortedIds'),
-        prevent_initial_callback = True
-    )
-    def update_style(ids: list) -> str:
-
-        if ids is None: raise dash.exceptions.PreventUpdate
-
-        return '/'.join(ids)
 
     return app

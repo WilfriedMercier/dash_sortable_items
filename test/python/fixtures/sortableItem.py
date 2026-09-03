@@ -38,23 +38,9 @@ def app_button__item() -> dash.Dash:
 
     button = dash.dcc.Button('Click me !', id = 'button')
 
-    app.layout = dash.html.Div([group, button], style={'display' : 'flex'})
+    # Store the order the IDs of the items in the group.
+    sortedIDs = dash.dcc.Store('sortedIDs', data = None)
 
-    @app.callback(
-        dash.Output('item1', 'styles'),
-        dash.Input('button', 'n_clicks'),
-        dash.State('item1', 'styles'),
-        prevent_initial_callback = True
-    )
-    def update_styles(_, old_styles: dict[str, dict[str, str]]) -> dict[str, dict[str, str]]:
-
-        if _ is None: raise dash.exceptions.PreventUpdate
-
-        new_styles = {
-            'div'    : old_styles['div']    | {'backgroundColor' : 'magenta', 'padding' : '100px'},
-            'handle' : old_styles['handle'] | {'backgroundColor' : 'blue'}
-        }
-
-        return new_styles
+    app.layout = dash.html.Div([group, button, sortedIDs], style={'display' : 'flex'})
 
     return app

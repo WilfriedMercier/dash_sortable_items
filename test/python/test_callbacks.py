@@ -8,10 +8,14 @@ from   selenium.webdriver.common.action_chains import ActionChains
 
 from   .fixtures.sortableGroup import (
     app_button__group,
-    app_label__group
+    app_label__group,
+    app_label_with_restrictions__group
 )
 
-from  .fixtures.sortableItem import app_button__item
+from  .fixtures.sortableItem import (
+    app_button__item,
+    app_button_no_handle__item
+)
 
 class Test_SortableGroup:
     r'''Gather all the callback tests relative to the SortableGroup component.'''
@@ -47,10 +51,7 @@ class Test_SortableGroup:
         assert style['background-color'] == 'red' and style['flex-direction'] == 'column', 'Wrong initial style for the SortableGroup item.'
 
         # Check that the style after the callback is ok
-        actions.pause(0.5)
-        actions.click(button)
-        actions.pause(0.5)
-        actions.release().perform()
+        actions.click(button).pause(0.5).perform()
 
         style = {
             k.strip(): v.strip()
@@ -83,13 +84,44 @@ class Test_SortableGroup:
         item2 = dash_duo.find_element('item2', attribute='ID')
         label = dash_duo.find_element('label', attribute='ID')
 
-        actions.click_and_hold(item1)
-        actions.pause(0.5)
-        actions.move_to_element(item2)
-        actions.pause(0.5)
-        actions.release().perform()
+        actions.click_and_hold(item1).pause(0.5).move_to_element(item2).pause(0.5).release().perform()
 
-        assert label.text == 'item2/item1', 'Wrong item order at init.'
+        assert label.text == 'item2/item1', 'Wrong item order.'
+
+        return
+
+    def test_sorted_ids_with_restrict(self, dash_duo: DashComposite, app_label_with_restrictions__group: dash.Dash) -> None:
+
+        pause = 0.5
+
+        @app_label_with_restrictions__group.callback(
+            dash.Output('label', 'children'),
+            dash.Input('group', 'sortedIds'),
+            prevent_initial_callback = True
+        )
+        def update_style(ids: list) -> str:
+    
+            if ids is None: raise dash.exceptions.PreventUpdate
+    
+            return '/'.join(ids)
+
+        dash_duo.start_server(app_label_with_restrictions__group)
+        actions = ActionChains(dash_duo.driver)
+
+        item1 = dash_duo.find_element('item1', attribute='ID')
+        item2 = dash_duo.find_element('item2', attribute='ID')
+        label = dash_duo.find_element('label', attribute='ID')
+
+        # Check that label is empty at first
+        assert label.text == '', 'Label not empty at startup.'
+
+        # Check that item1 cannot change position with item2 because of its horizontal movement restriction
+        actions.click_and_hold(item1).pause(pause).move_to_element(item2).release().perform()
+        assert label.text == 'item1/item2', 'Items should not have swapped order because of movement restriction on item1.'
+
+        # Check that item2 can change position with item1 because it has no constraints on movement
+        actions.click_and_hold(item2).pause(pause).move_to_element(item1).release().perform()
+        assert label.text == 'item2/item1', 'Items\' order should have changed when moving item2 to item1\' position.'
 
         return
 
@@ -150,7 +182,7 @@ class Test_SortableItem:
     def test_lock(self, dash_duo: DashComposite, app_button__item: dash.Dash) -> None:
         r'''Test that the lock props can be updated via a callback.'''
 
-        pause = 2
+        pause = 0.5
 
         @app_button__item.callback(
             dash.Output('item1', 'lock'),
@@ -194,8 +226,7 @@ class Test_SortableItem:
         button = dash_duo.find_element('button', attribute='ID')
 
         # This should trigger the on_order_change callback
-        actions.click_and_hold(item1)
-        actions.move_to_element(item2)
+        actions.click_and_hold(item1).move_to_element(item2)
         actions.pause(pause).release().perform()
 
         # After first click, order should be item2, item1 and item1 should be locked
@@ -301,10 +332,63 @@ class Test_SortableItem:
         item1_children = dash_duo.find_element('item1', attribute='ID').find_elements(By.XPATH, "./child::*")
 
         assert (
-            (item1_children[0].tag_name == 'div') &
-            (item1_children[0].get_attribute('role') == 'button') & 
-            (item1_children[1].tag_name == 'label')
+            item1_children[0].tag_name == 'div' and
+            item1_children[0].get_attribute('role') == 'button' and
+            item1_children[1].tag_name == 'label'
         ), 'Wrong final position for the handle.'
 
         return
 
+    def test_restrict(self, dash_duo: DashComposite, app_button_no_handle__item: dash.Dash) -> None:
+        r'''Test that the restrict props can be updated via callback when the layout is vertical.'''
+
+        pause = 0.5
+
+        @app_button_no_handle__item.callback(
+            dash.Output('item1', 'restrict'),
+            dash.Input('button', 'n_clicks'),
+            prevent_initial_call = True
+        )
+        def _(n_clicks: int | None) -> typing.Literal['horizontal', 'vertical']:
+
+            if n_clicks is None: raise dash.exceptions.PreventUpdate
+
+            return 'horizontal' if n_clicks % 2 == 0 else 'vertical'
+
+        dash_duo.start_server(app_button_no_handle__item)
+        actions = ActionChains(dash_duo.driver)
+
+        button  = dash_duo.find_element('button', attribute='ID')
+
+        # Check that item1 can move horizontally and vertically at first
+        item1   = dash_duo.find_element('item1', attribute='ID')
+        
+        actions.click_and_hold(item1).pause(pause).perform()
+        init_pos = item1.location
+        actions.move_by_offset(20, 20).pause(pause).perform()
+
+        assert (
+            item1.location['x'] > init_pos['x'] and
+            item1.location['y'] > init_pos['y']
+        ), 'item1 should be able to move both horizontally and vertically at first.'
+
+        # Check that, vertical movement is restricted after first click
+        actions.release().pause(pause).click(button).pause(pause).perform()
+        actions.click_and_hold(item1).pause(pause).perform()
+        init_pos = item1.location
+        actions.move_by_offset(20, 20).perform()
+
+        assert item1.location['x'] == init_pos['x'], 'item1 should not be able to move horizontally after first click.'
+        assert item1.location['y'] > init_pos['y'], 'item1 should be able to move vertically after first click.'
+
+        # Check that, vertical movement is restricted after second click
+        actions.release().pause(pause).click(button).pause(pause).perform()
+        actions.click_and_hold(item1).pause(pause).perform()
+        init_pos = item1.location
+        actions.move_by_offset(20, 20).perform()
+
+
+        assert item1.location['x'] > init_pos['x'], 'item1 should be able to move horizontally after second click.'
+        assert item1.location['y'] == init_pos['y'], 'item1 should not be able to move vertically after second click.'
+
+        return

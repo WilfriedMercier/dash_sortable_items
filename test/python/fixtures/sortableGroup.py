@@ -40,7 +40,7 @@ def app_button__group() -> dash.Dash:
 
 @pytest.fixture
 def app_label__group() -> dash.Dash:
-    '''Fixture that creates a Dash app with a single group and a button.'''
+    '''Fixture that creates a Dash app with a single group and a label.'''
 
     app = dash.Dash(__name__)
 
@@ -56,6 +56,40 @@ def app_label__group() -> dash.Dash:
         index     = 1,
         children  = [dash.html.Label('Second row')],
         className = 'row',
+    )
+
+    group = SortableGroup(
+        id        = 'group',
+        className = 'group',
+        children  = [item1, item2],
+    )
+
+    label  = dash.html.Label('', id='label')
+
+    app.layout = dash.html.Div([group, label], style={'display' : 'flex'})
+
+    return app
+
+@pytest.fixture
+def app_label_with_restrictions__group() -> dash.Dash:
+    '''Fixture that creates a Dash app with a single group (with movement restrictions) and a label.'''
+
+    app = dash.Dash(__name__)
+
+    item1 = SortableItem(
+        id        = 'item1', 
+        index     = 0,
+        restrict  = 'horizontal',
+        children  = [dash.html.Label('First row')],
+        className = 'row'
+    )
+
+    item2 = SortableItem(
+        id        = 'item2', 
+        index     = 1,
+        restrict  = None,
+        children  = [dash.html.Label('Second row')],
+        className = 'row'
     )
 
     group = SortableGroup(

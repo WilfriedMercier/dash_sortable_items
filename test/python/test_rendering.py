@@ -4,7 +4,7 @@ import dash
 from   dash.testing.composite       import DashComposite
 from   selenium.webdriver.common.by import By
 
-from   .fixtures import (
+from   .fixtures.general import (
     app_with_four_items,
     app_with_two_handle_positions
 )

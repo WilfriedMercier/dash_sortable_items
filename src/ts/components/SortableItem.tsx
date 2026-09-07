@@ -1,5 +1,7 @@
 import React, { CSSProperties, ReactElement, useEffect } from "react";
-import { useSortable } from "@dnd-kit/react/sortable";
+
+import { useSortable }       from "@dnd-kit/react/sortable";
+import { shapeIntersection } from '@dnd-kit/collision';
 
 import { 
     RestrictToVerticalAxis,
@@ -31,8 +33,9 @@ export default function SortableItem( {
     const { ref, handleRef, isDragging } = useSortable({
         id, 
         index, 
-        modifiers : restrict_modifier,
-        disabled  : lock
+        modifiers         : restrict_modifier,
+        disabled          : lock,
+        collisionDetector : shapeIntersection
     });
 
     useEffect( () => {

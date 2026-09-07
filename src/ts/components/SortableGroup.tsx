@@ -1,5 +1,5 @@
 import React, { CSSProperties, useMemo, useState, ReactElement }  from "react";
-import { DragDropProvider, DragOverEvent } from "@dnd-kit/react";
+import { DragDropProvider, DragOverEvent, DragEndEvent, DragStartEvent } from "@dnd-kit/react";
 import { move }                            from "@dnd-kit/helpers";
 
 import { SortableGroupProps } from "types";
@@ -28,14 +28,39 @@ export default function SortableGroup( {
         initial_children.map(child => child.key)
     );
 
+    // Ids used when to revert to original state when the Esc key is pressed during dragging
+    const [originalIds, setOriginalIds] = useState<string[]>(itemIds);
+
     // Reorder children IDs when dragging
-    const handeDragOver = (event: DragOverEvent) => {
+    const handleDragOver = (event: DragOverEvent) => {
+
+        const { source, target } = event.operation;
+        if (!source || !target || source.id === target.id) return;
         
-        setItemIds( (items) => move(items, event) );
+        setItemIds( items => {
+            const next = move(items, event);
+            setProps({ sortedIds : next });
+            return next;
+        });
+    };
 
-        // Set sorted item IDs as a Dash props
-        setProps({'sortedIds' : itemIds});
+    // Commit or rollback when the drag finishes
+    const handleDragEnd = (event: DragEndEvent) => {
+        
+        const { source, target } = event.operation;
 
+        // Released with no droppable underneath (e.g. mouse drifted away
+        // vertically), or drag was aborted (Esc) -> restore original order
+        if (event.canceled || !target) {
+            setItemIds(originalIds);
+            return;
+        }
+
+        setItemIds(items => {
+            const next = move(items, event);
+            setProps({ sortedIds: next });   // always send the NEW array
+            return next;
+        });
     };
 
     // Sort children based on the ordered keys
@@ -43,7 +68,11 @@ export default function SortableGroup( {
         initial_children.find(child => child.key === id)
     );
 
-    return <DragDropProvider onDragOver={handeDragOver}>
+    return <DragDropProvider 
+            onDragStart = {(_: DragStartEvent) => setOriginalIds(itemIds)}
+            onDragOver  = {handleDragOver}
+            onDragEnd   = {handleDragEnd}
+        >
         <div 
             id        = {id} 
             className = {className}

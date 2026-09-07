@@ -1,6 +1,7 @@
 '''Integration tests that check that the callbacks for the SortableGroup and SortableItem components work as expected.'''
 
 import dash
+import typing
 from   dash.testing.composite                  import DashComposite
 from   selenium.webdriver.common.by            import By
 from   selenium.webdriver.common.action_chains import ActionChains
@@ -122,9 +123,7 @@ class Test_SortableItem:
         item1  = dash_duo.find_element('item1', attribute='ID')
         button = dash_duo.find_element('button', attribute='ID')
 
-        actions.click(button)
-        actions.pause(0.5)
-        actions.release().perform()
+        actions.click(button).pause(0.5).perform()
 
         style_div = {
             k.strip(): v.strip()
@@ -197,35 +196,26 @@ class Test_SortableItem:
         # This should trigger the on_order_change callback
         actions.click_and_hold(item1)
         actions.move_to_element(item2)
-        actions.pause(pause)
-        actions.release().perform()
+        actions.pause(pause).release().perform()
 
         # After first click, order should be item2, item1 and item1 should be locked
-        actions.click(button)
-        actions.pause(pause)
-        actions.release().perform()
+        actions.click(button).pause(pause).perform()
 
         # Item 1 should not move now and order should not change
         actions.click_and_hold(item1)
         actions.move_to_element(item2)
-        actions.pause(pause)
-        actions.release().perform()
+        actions.pause(pause).release().perform()
 
         # After first click, order should still be item2, item1 and item1 should be unlocked
-        actions.click(button)
-        actions.pause(pause)
-        actions.release().perform()
+        actions.click(button).pause(pause).perform()
 
         # Item 1 should move again and order should change
         actions.click_and_hold(item1)
         actions.move_to_element(item2)
-        actions.pause(pause)
-        actions.release().perform()
+        actions.pause(pause).release().perform()
 
         # After third click, order should be item1, item2
-        actions.click(button)
-        actions.pause(pause)
-        actions.release().perform()
+        actions.click(button).pause(pause).perform()
 
         return
 
@@ -256,9 +246,7 @@ class Test_SortableItem:
 
         assert handle.text == '☃', 'Wrong initial handle.'
 
-        actions.click(button)
-        actions.pause(0.5)
-        actions.release().perform()
+        actions.click(button).pause(0.5).perform()
 
         handle = (
             dash_duo.find_element('item1', attribute='ID')
@@ -270,4 +258,53 @@ class Test_SortableItem:
 
         return
 
+    def test_handle_pos(self, dash_duo: DashComposite, app_button__item: dash.Dash) -> None:
+        r'''Test that the handlePos props can be updated via callback.'''
+
+        @app_button__item.callback(
+            dash.Output('item1', 'handlePos'),
+            dash.Input('button', 'n_clicks'),
+            prevent_initial_call = True
+        )
+        def _(n_clicks: int | None) -> typing.Literal['start', 'end']:
+
+            if n_clicks is None: raise dash.exceptions.PreventUpdate
+
+            return 'start' if n_clicks % 2 == 0 else 'end'
+
+        dash_duo.start_server(app_button__item)
+        actions = ActionChains(dash_duo.driver)
+
+        button         = dash_duo.find_element('button', attribute='ID')
+
+        # Check that children are in the right order at first
+        item1_children = dash_duo.find_element('item1', attribute='ID').find_elements(By.XPATH, "./child::*")
+
+        assert (
+            (item1_children[0].tag_name == 'div') &
+            (item1_children[0].get_attribute('role') == 'button') & 
+            (item1_children[1].tag_name == 'label')
+        ), 'Wrong initial position for the handle.'
+
+        # Check that children are in the right order after first click
+        actions.click(button).pause(0.5).perform()
+        item1_children = dash_duo.find_element('item1', attribute='ID').find_elements(By.XPATH, "./child::*")
+
+        assert (
+            (item1_children[0].tag_name == 'label') &
+            (item1_children[1].get_attribute('role') == 'button') & 
+            (item1_children[1].tag_name == 'div')
+        ), 'Wrong final position for the handle.'
+
+        # Check that children are in the right order after second click
+        actions.click(button).pause(0.5).perform()
+        item1_children = dash_duo.find_element('item1', attribute='ID').find_elements(By.XPATH, "./child::*")
+
+        assert (
+            (item1_children[0].tag_name == 'div') &
+            (item1_children[0].get_attribute('role') == 'button') & 
+            (item1_children[1].tag_name == 'label')
+        ), 'Wrong final position for the handle.'
+
+        return
 

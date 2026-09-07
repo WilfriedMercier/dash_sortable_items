@@ -1,6 +1,12 @@
 import React, { CSSProperties, useMemo, useState, ReactElement }  from "react";
-import { DragDropProvider, DragOverEvent, DragEndEvent, DragStartEvent } from "@dnd-kit/react";
-import { move }                            from "@dnd-kit/helpers";
+
+import { move } from "@dnd-kit/helpers";
+import { 
+    DragDropProvider, 
+    DragOverEvent, 
+    DragEndEvent, 
+    DragStartEvent 
+} from "@dnd-kit/react";
 
 import { SortableGroupProps } from "types";
 
@@ -47,7 +53,7 @@ export default function SortableGroup( {
     // Commit or rollback when the drag finishes
     const handleDragEnd = (event: DragEndEvent) => {
         
-        const { source, target } = event.operation;
+        const { target } = event.operation;
 
         // Released with no droppable underneath (e.g. mouse drifted away
         // vertically), or drag was aborted (Esc) -> restore original order

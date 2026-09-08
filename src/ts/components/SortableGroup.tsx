@@ -91,10 +91,13 @@ export default function SortableGroup( {
 
 const default_styles : Record<string, CSSProperties> = {
     div : {
-        flex         : 1,
-        minHeight    : '200px',
-        padding      : '16px',
-        borderRadius : '8px',
-        transition   : 'background-c    olor 0.2s'
+        display       : 'flex',
+        flexDirection : 'column',
+        flex          : 1,
+        minHeight     : '200px',
+        padding       : '16px',
+        borderRadius  : '8px',
+        transition    : 'background-color 0.2s',
+        gap           : '16px'
     }
 };

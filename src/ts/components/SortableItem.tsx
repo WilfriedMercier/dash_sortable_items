@@ -83,5 +83,7 @@ const default_styles: Record<string, React.CSSProperties> = {
         padding         : '12px',
         margin          : '8px 0',
         borderRadius    : '4px',
+        display         : 'flex',
+        flex            : 1
     }
 };

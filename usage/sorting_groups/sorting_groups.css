@@ -1,0 +1,42 @@
+.container {
+    display          : flex;
+    flex-direction   : column;
+    background-color : #f4eeff;
+    border           : 1px solid black;
+    padding          : 10px;
+    gap              : 20px;
+}
+
+.group {
+    padding          : 30px !important;
+    background-color : #dcd6f7;
+    border           : 1px solid black;
+    box-sizing       : border-box;
+    width            : 100%;
+}
+
+.item {
+    background-color : #a6b1e1 !important;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.item:hover {
+    background-color : #7e8cc5 !important;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    scale: 1.01;
+    transition: all 0.2s ease-in-out;
+}
+
+.sortable-group {
+    flex-direction: column;
+    background-color : #e4f1fe !important;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.sortable-group:hover {
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    scale: 1.01;
+    transition: all 0.2s ease-in-out;
+}

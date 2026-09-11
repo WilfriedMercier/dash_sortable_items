@@ -15,4 +15,13 @@
 
 .item {
     background-color : #a6b1e1 !important;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.item:hover {
+    background-color : #7e8cc5 !important;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    scale: 1.01;
+    transition: all 0.2s ease-in-out;
 }

@@ -65,8 +65,8 @@ export interface SortableItemProps extends Omit<DefaultComponentProps, 'style' |
      * This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
     */
     styles    ?: {
-        div    ?: Record<string, string>;
-        handle ?: Record<string, string>;
+        div    ?: any;
+        handle ?: any;
     };
 };
 

@@ -84,6 +84,8 @@ const default_styles: Record<string, React.CSSProperties> = {
         margin          : '8px 0',
         borderRadius    : '4px',
         display         : 'flex',
-        flex            : 1
+        flex            : 1,
+        alignItems      : 'center',
+        gap             : '20px'
     }
 };

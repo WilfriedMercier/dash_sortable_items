@@ -1,0 +1,53 @@
+.container {
+    display          : flex;
+    flex-direction   : column;
+    background-color : #f4eeff;
+    border           : 1px solid black;
+    padding          : 10px;
+    gap              : 20px;
+}
+
+.group-container {
+    width: 100%;
+}
+
+.group {
+    padding          : 30px !important;
+    background-color : #dcd6f7;
+    border           : 1px solid black;
+}
+
+.item {
+    background-color : #a6b1e1 !important;
+    box-shadow       : rgb(38, 57, 77) 0px 20px 30px -10px;
+    transition       : all 0.2s ease-in-out;
+    justify-content  : space-between;
+}
+
+.item:hover {
+    background-color : #7e8cc5 !important;
+    box-shadow       : rgb(38, 57, 77) 0px 20px 30px -10px;
+    scale            : 1.01;
+    transition       : all 0.2s ease-in-out;
+}
+
+.button {
+    background-color: #f67280;
+    color: white;
+    transition       : all 0.2s ease-in-out;
+}
+
+.button:hover {
+    background-color: #f67280;
+    box-shadow       : #c06c84 0px 20px 30px -10px;
+    color            : white;
+    scale            : 1.01;
+    transition       : all 0.2s ease-in-out;
+}
+
+.button:active {
+    background-color: #f67280;
+    color            : white;
+    scale            : 0.99;
+    transition       : all 0.2s ease-in-out;
+}

@@ -34,7 +34,7 @@ export default function SortableGroup( {
         initial_children.map(child => child.key)
     );
 
-    // Ids used when to revert to original state when the Esc key is pressed during dragging
+    // Ids used when reverting to original state when the Esc key is pressed during dragging
     const [originalIds, setOriginalIds] = useState<string[]>(itemIds);
 
     // Reorder children IDs when dragging
@@ -80,7 +80,7 @@ export default function SortableGroup( {
             onDragEnd   = {handleDragEnd}
         >
         <div 
-            id        = {id} 
+            id        = {id}
             className = {className}
             style     = {{...default_styles.div, ...style}}
         >

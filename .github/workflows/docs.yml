@@ -3,8 +3,7 @@ name: Deploy docs
 on:
   push:
     branches:
-      - main
-      - dev
+      - gh-pages
     paths:
       - 'docs/**'
       - 'mkdocs.yml'

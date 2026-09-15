@@ -3,6 +3,8 @@ repo_url: https://github.com/WilfriedMercier/dash_sortable_items
 site_author: Wilfried Mercier
 site_description: Documentation for the Dash sortable items third party python library.
 docs_dir: src
+site_dir: ../docs
+use_directory_urls: false
 nav:
   - Getting started: index.md
   - Examples:

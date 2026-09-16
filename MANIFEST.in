@@ -1,2 +1,0 @@
-recursive-include dash_sortable_items/** *.js *.css *.json *.html
-prune tests

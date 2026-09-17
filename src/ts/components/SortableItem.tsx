@@ -53,9 +53,10 @@ export default function SortableItem( {
     if (handle !== undefined) {
 
         new_handle = <HandleWrapper 
-            ref   = {handleRef} 
-            style = {{...dynamic_styles.handle, ...styles?.handle}}
-            child = {handle} 
+            ref       = {handleRef} 
+            className = 'sortable-item-handle'
+            style     = {{...dynamic_styles.handle, ...styles?.handle}}
+            child     = {handle} 
         />
 
     } else {
@@ -64,7 +65,7 @@ export default function SortableItem( {
 
     return <div 
         id        = {id}
-        className = {className}
+        className = {`sortable-item ${className || ''}`}
         ref       = {ref} 
         style     = {{...default_styles.div, ...dynamic_styles.div, ...styles?.div}}
     >

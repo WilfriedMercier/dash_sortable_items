@@ -81,7 +81,7 @@ export default function SortableGroup( {
         >
         <div 
             id        = {id}
-            className = {className}
+            className = {`sortable-group ${className || ''}`}
             style     = {{...default_styles.div, ...style}}
         >
             {sortedChildren}

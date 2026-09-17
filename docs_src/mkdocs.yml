@@ -5,6 +5,7 @@ site_description: Documentation for the Dash sortable items third party python l
 docs_dir: src
 site_dir: ../docs
 use_directory_urls: false
+copyright: Copyright &copy; 2026 Mercier Wilfried
 nav:
   - Getting started: index.md
   - Examples:
@@ -15,10 +16,15 @@ nav:
     - Providing a handle: examples/example_drag_handle.md
     - Sorting sortable lists: examples/example_sorting_groups.md
     - Callback re-ordering: examples/example_callbacks.md
+  - API:
+    - SortableGroup: API/sortable_group.md
+    - SortableItem: API/sortable_item.md
 theme: 
   name: material
   logo: img/icon.png
   favicon: img/favicon.png
+  icon:
+    repo: fontawesome/brands/github 
   palette:
 
     # Palette toggle for automatic mode
@@ -45,6 +51,7 @@ theme:
   features:
     - navigation.instant
     - navigation.instant.progress
+    - navigation.footer
     - navigation.path
     - navigation.expand
     - toc.follow
@@ -58,6 +65,7 @@ theme:
     - search.highlight
     - search.share
 markdown_extensions:
+  - tables
   - admonition
   - attr_list
   - pymdownx.inlinehilite

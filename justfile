@@ -41,8 +41,12 @@ clean:
 
 # Automatically build the docs
 build-docs:
-    cd docs_src && source .venv/bin/activate && pwd && mkdocs build
+    cd docs_src && source .venv/bin/activate && mkdocs build
 
 # Automatically serve the docs
 serve-docs:
-    cd docs_src && source .venv/bin/activate && pwd && mkdocs serve
+    cd docs_src && source .venv/bin/activate && mkdocs serve
+
+# Automatically deploy docs
+deploy-docs:
+    cd docs_src && source .venv/bin/activate && mkdocs gh-deploy --force

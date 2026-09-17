@@ -2,7 +2,7 @@
 
 | Name | Description | Type |
 | ---- | ----------- | ---- |
-| id   | Unique identifier for the component in callbacks | `#!py3 str` or a dictionary with structure `#!py3 {"type" : ..., "index" : ...}` |
+| id   | Unique identifier for the component in callbacks | `#!py3 str` or a dictionary with structure `#!py3 {'type' : ..., 'index' : ...}` |
 | style   | CSS style to apply to this component | `#!py3 dict` |
 | className | CSS class name used to style the component via CSS stylesheets | `#!py3 str` |
 

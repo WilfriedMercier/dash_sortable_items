@@ -1,4 +1,5 @@
 set dotenv-load := false
+set shell := ["bash", "-c"]
 
 # Generate components and build the bundle
 build: 
@@ -33,3 +34,15 @@ publish: package
 clean:
     rm -rf dist
     rm -rf build
+
+####################################################
+#          Documentation related commands          #
+####################################################
+
+# Automatically build the docs
+build-docs:
+    cd docs_src && source .venv/bin/activate && pwd && mkdocs build
+
+# Automatically serve the docs
+serve-docs:
+    cd docs_src && source .venv/bin/activate && pwd && mkdocs serve

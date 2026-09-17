@@ -19,6 +19,9 @@ nav:
   - API:
     - SortableGroup: API/sortable_group.md
     - SortableItem: API/sortable_item.md
+  - For developers:
+    - Publishing the docs: for_developers/publishing.md
+    - Building manually: for_developers/building.md
 theme: 
   name: material
   logo: img/icon.png

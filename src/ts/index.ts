@@ -1,7 +1,7 @@
-import SortableItem  from './components/SortableItem';
-import SortableGroup from './components/SortableGroup';
+import _SortableItem  from './components/_SortableItem';
+import _SortableGroup from './components/_SortableGroup';
 
 export {
-    SortableItem,
-    SortableGroup
+    _SortableItem,
+    _SortableGroup
 }

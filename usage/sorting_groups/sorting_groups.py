@@ -10,8 +10,7 @@ def generate_items(group_name: str) -> list[SortableItem]:
 
         out.append(
             SortableItem(
-                id        = f'{group_name}-item{i}', 
-                index     = i,
+                id        = f'{group_name}-item{i}',
                 children  = [dash.html.Label(f'Row #{i} in group {group_name}')],
                 className = 'item'
             )
@@ -20,33 +19,31 @@ def generate_items(group_name: str) -> list[SortableItem]:
     return out
 
 group1 = SortableItem(
-    [
+    children  = [
         dash.html.H3('First sortable group'),
         SortableGroup(
             id        = 'group1',
-            children  = generate_items('First group'),
+            items     = generate_items('First group'),
             className = 'group'
         )
     ],
-    className = 'sortable-group',
+    className = 'inner-group',
     id        = 'group1-item',
-    index     = 1
 )
 
 group2 = SortableItem(
-    [
+    children = [
         dash.html.H3('Second sortable group'),
         SortableGroup(
             id        = 'group2',
-            children  = generate_items('Second group'),
+            items     = generate_items('Second group'),
             className = 'group'
         )
     ],
-    className = 'sortable-group',
-    id        = 'group2-item',
-    index     = 0
+    className = 'inner-group',
+    id        = 'group2-item'
 )
 
-app.layout = SortableGroup([group1, group2])
+app.layout = SortableGroup(items = [group1, group2], id='')
 
 app.run(debug=True)

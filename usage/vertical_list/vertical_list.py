@@ -4,29 +4,26 @@ from   dash_sortable_items import SortableGroup, SortableItem
 app = dash.Dash(__name__, assets_folder='./')
 
 item1 = SortableItem(
-    id        = 'item1', 
-    index     = 1,
+    id        = 'item1',
     children  = [dash.html.Label('Row #1')],
     className = 'item'
 )
 
-item3 = SortableItem(
-    id        = 'item3', 
-    index     = 3,
-    children  = [dash.html.Label('Row #3')],
-    className = 'item'
-)
-
 item2 = SortableItem(
-    id        = 'item2', 
-    index     = 2,
+    id        = 'item2',
     children  = [dash.html.Label('Row #2')],
     className = 'item'
 )
 
+item3 = SortableItem(
+    id        = 'item3',
+    children  = [dash.html.Label('Row #3')],
+    className = 'item'
+)
+
 group = SortableGroup(
+    [item1, item2, item3],
     id        = 'group',
-    children  = [item1, item3, item2],
     className = 'group'
 )
 

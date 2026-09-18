@@ -1,35 +1,33 @@
 import dash
-from   dash_iconify        import DashIconify
-from   dash_sortable_items import SortableGroup, SortableItem
+from   dash_iconify                       import DashIconify
+from   dash_sortable_items                import SortableGroup, SortableItem
+from   dash_sortable_items._SortableGroup import _SortableGroup
 
 app = dash.Dash(__name__, assets_folder='./')
 
-def draw_items():
+def draw_items() -> _SortableGroup:
 
     item1 = SortableItem(
-        id        = 'ducky', 
-        index     = 1,
+        id        = 'ducky',
         children  = [DashIconify(icon='noto:duck', width=50, height=50)]*10,
         className = 'item'
     )
 
     item2 = SortableItem(
-        id        = 'doggo', 
-        index     = 2,
+        id        = 'doggo',
         children  = [DashIconify(icon='noto-v1:dog', width=50, height=50)]*10,
         className = 'item'
     )
 
     item3 = SortableItem(
-        id        = 'rosie', 
-        index     = 3,
+        id        = 'rosie',
         children  = [DashIconify(icon='noto-v1:rose', width=50, height=50)]*10,
         className = 'item'
     )
 
     group = SortableGroup(
         id        = 'group',
-        children  = [item1, item2, item3],
+        items     = [item1, item2, item3],
         className = 'group'
     )
 
@@ -74,7 +72,7 @@ def _(sortedIds: list[str] | None) -> str:
     dash.Output('group', 'sortedIds'),
     dash.Input('button', 'n_clicks')
 )
-def re_order(_) -> tuple[SortableGroup, list[str]]:
+def re_order(_) -> tuple[_SortableGroup, list[str]]:
 
     if _ is None: raise dash.exceptions.PreventUpdate
 

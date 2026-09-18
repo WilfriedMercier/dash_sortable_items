@@ -41,6 +41,12 @@ clean:
     rm -rf dist
     rm -rf build
 
+# Integration testing
+test:
+    cd test/python && \
+    source .venv/bin/activate && \
+    pytest --headless
+
 ####################################################
 #          Documentation related commands          #
 ####################################################

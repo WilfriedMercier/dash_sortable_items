@@ -28,14 +28,14 @@
     transition: all 0.2s ease-in-out;
 }
 
-.sortable-group {
+.inner-group {
     flex-direction: column;
     background-color : #e4f1fe !important;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     transition: all 0.2s ease-in-out;
 }
 
-.sortable-group:hover {
+.inner-group:hover {
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     scale: 1.01;
     transition: all 0.2s ease-in-out;

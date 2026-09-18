@@ -11,7 +11,7 @@ import {
 import { SortableGroupProps } from "types";
 
 /**A sortable group that allows its children to be sorted.*/
-export default function SortableGroup( { 
+export default function _SortableGroup( { 
         children = [],
         id,
         className,

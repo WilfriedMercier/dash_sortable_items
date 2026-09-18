@@ -22,7 +22,7 @@ just install
 just clean
 ```
 
-## Building the python library for testing
+## Building the python library
 
 To build the package, that is launch the process that transforms the React/Typescript files into a runnable python library that is compatible with Dash, use
 
@@ -32,7 +32,7 @@ just build
 
 ## Building the python library to install locally
 
-Alternatively, one can generate a python wheel that can be installed in any virtual environment with
+One can also generate a python wheel that can be installed in any virtual environment with
 
 ```bash
 just package

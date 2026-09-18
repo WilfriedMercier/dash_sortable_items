@@ -2,8 +2,14 @@ set dotenv-load := false
 set shell := ["bash", "-c"]
 
 # Generate components and build the bundle
-build: 
+build:
+    rm -r dash_sortable_items
     npm run build
+    cp src/python/__init__.py dash_sortable_items
+    cp src/python/_imports_.py dash_sortable_items
+    cp src/python/SortableItem.py dash_sortable_items
+    cp src/python/SortableGroup.py dash_sortable_items
+    cp src/python/types.py dash_sortable_items
 
 # Build the webpack bundle
 build-js:

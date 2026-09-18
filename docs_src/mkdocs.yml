@@ -57,7 +57,6 @@ theme:
     - navigation.instant.progress
     - navigation.footer
     - navigation.path
-    - navigation.expand
     - toc.follow
     - toc.integrate
     - navigation.top

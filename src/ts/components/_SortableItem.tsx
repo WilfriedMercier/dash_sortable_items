@@ -12,7 +12,7 @@ import { SortableItemProps } from "types";
 import { HandleWrapper }     from "./HandleWrapper";
    
 /**A sortable item used in a SortableGroup component.*/
-export default function SortableItem( { 
+export default function _SortableItem( { 
         children, 
         id, 
         className,

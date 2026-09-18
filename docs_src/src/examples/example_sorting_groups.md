@@ -17,8 +17,7 @@ The example below shows how this works:
 
             out.append(
                 SortableItem(
-                    id        = f'{group_name}-item{i}', 
-                    index     = i,
+                    id        = f'{group_name}-item{i}',
                     children  = [dash.html.Label(f'Row #{i} in group {group_name}')],
                     className = 'item'
                 )
@@ -31,13 +30,12 @@ The example below shows how this works:
             dash.html.H3('First sortable group'),
             SortableGroup(
                 id        = 'group1',
-                children  = generate_items('First group'),
+                items     = generate_items('First group'),
                 className = 'group'
             )
         ],
-        className = 'sortable-group',
+        className = 'inner-group',
         id        = 'group1-item',
-        index     = 1
     )
 
     group2 = SortableItem(
@@ -45,13 +43,12 @@ The example below shows how this works:
             dash.html.H3('Second sortable group'),
             SortableGroup(
                 id        = 'group2',
-                children  = generate_items('Second group'),
+                items     = generate_items('Second group'),
                 className = 'group'
             )
         ],
-        className = 'sortable-group',
+        className = 'inner-group',
         id        = 'group2-item',
-        index     = 0
     )
 
     app.layout = SortableGroup([group1, group2])
@@ -92,14 +89,14 @@ The example below shows how this works:
         transition       : all 0.2s ease-in-out;
     }
 
-    .sortable-group {
+    .inner-group {
         flex-direction   : column;
         background-color : #e4f1fe !important;
         box-shadow       : rgb(38, 57, 77) 0px 20px 30px -10px;
         transition       : all 0.2s ease-in-out;
     }
 
-    .sortable-group:hover {
+    .inner-group:hover {
         box-shadow : rgb(38, 57, 77) 0px 20px 30px -10px;
         scale      : 1.01;
         transition : all 0.2s ease-in-out;
@@ -113,4 +110,4 @@ The example below shows how this works:
 In the example above, we use `#!py3 generate_items()` to generate a list of sortable items with unique IDs and then create two groups `group1` and `group2`. For styling purposes, the groups are wrapped with a h3 HTML element to better identify the rows inside a `SortableItem`. Then, each `SortableItem` is placed inside a `SortableGroup`. This creates three `SortableGroup` components, one sitting at the top and acting as a group of groups and two inner groups that can be sorted. Each inner group also contains items that can be sorted within their parent group.
 
 !!! important "Note:"
-    As illustrated in the "Example" tab, at the moment items cannot be moved from one group to another.
+    As illustrated in the "Example" tab, items cannot be moved from one group to another at the moment.

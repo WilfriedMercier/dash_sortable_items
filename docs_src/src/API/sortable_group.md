@@ -1,3 +1,10 @@
+!!! note "Note:"
+    `SortableGroup` is technically a placeholder for `_SortableGroup`. For type checkers, one may therefore use as type hint
+
+    ```python
+    from dash_sortable_items._SortableGroup import _SortableGroup
+    ```
+
 ## Keyword arguments
 
 | Name | Description | Type |

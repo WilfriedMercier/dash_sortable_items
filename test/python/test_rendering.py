@@ -32,7 +32,7 @@ def test_order_of_items(dash_duo: DashComposite, app_with_four_items: dash.Dash)
     element = dash_duo.find_element('group', attribute='ID')
     rows    = element.find_elements(By.CLASS_NAME, 'row')
 
-    ids_in_order = [f'component{i}' for i in (2, 1, 3, 4)]
+    ids_in_order = [f'component{i}' for i in (1, 2, 3, 4)]
 
     for pos, row in enumerate(rows):
         assert row.get_attribute('id') == ids_in_order[pos], f'Row {pos} does not have the right ID.'

@@ -9,16 +9,14 @@ def app_with_four_items() -> dash.Dash:
     app = dash.Dash(__name__)
     
     item1 = SortableItem(
-        id        = 'component1', 
-        index     = 1,
+        id        = 'component1',
         children  = [dash.html.Label('First row')],
         className = 'row',
         handle    = dash.html.Label('🟢')
     )
 
     item2 = SortableItem(
-        id        = 'component2', 
-        index     = 0,
+        id        = 'component2',
         children  = [dash.html.Label('🔒 Second item is locked 🔒'), dash.html.Button('Click me !')],
         className = 'row',
         lock      = True,
@@ -26,15 +24,13 @@ def app_with_four_items() -> dash.Dash:
     )
 
     item3 = SortableItem(
-        id        = 'component3', 
-        index     = 2,
+        id        = 'component3',
         children  = [dash.dcc.Input('Insert text here', style={'width' : '10%'}), dash.html.Label('Blablabla')],
         className = 'row'
     )
 
     item4 = SortableItem(
-        id        = 'component4', 
-        index     = 3,
+        id        = 'component4',
         children  = [dash.html.Label('Such a nice handle 🠦')],
         className = 'row',
         handle    = dash.html.Label('🥀'),
@@ -44,7 +40,7 @@ def app_with_four_items() -> dash.Dash:
     group = SortableGroup(
         id        = 'group',
         className = 'group',
-        children  = [item1, item2, item3, item4]
+        items     = [item1, item2, item3, item4]
     )
 
     app.layout = group
@@ -58,16 +54,14 @@ def app_with_two_items() -> dash.Dash:
     app = dash.Dash(__name__)
     
     item1 = SortableItem(
-        id        = 'component1', 
-        index     = 0,
+        id        = 'component1',
         children  = [dash.html.Label('First row')],
         className = 'row',
         handle    = dash.html.Label('🟢')
     )
 
     item2 = SortableItem(
-        id        = 'component2', 
-        index     = 1,
+        id        = 'component2',
         children  = [dash.html.Label('Second row')],
         className = 'row'
     )
@@ -75,7 +69,7 @@ def app_with_two_items() -> dash.Dash:
     group = SortableGroup(
         id        = 'group',
         className = 'group',
-        children  = [item1, item2]
+        items     = [item1, item2]
     )
 
     app.layout = group
@@ -89,8 +83,7 @@ def app_with_two_handle_positions() -> dash.Dash:
     app = dash.Dash(__name__)
 
     item1 = SortableItem(
-        id        = 'component-left', 
-        index     = 0,
+        id        = 'component-left',
         children  = [dash.html.Label('First row')],
         handle    = dash.html.Label('☰'),
         handlePos = 'start',
@@ -99,8 +92,7 @@ def app_with_two_handle_positions() -> dash.Dash:
     )
     
     item2 = SortableItem(
-        id        = 'component-right', 
-        index     = 1,
+        id        = 'component-right',
         children  = [dash.html.Label('Second row')],
         handle    = dash.html.Label('☰'),
         handlePos = 'end',
@@ -110,7 +102,7 @@ def app_with_two_handle_positions() -> dash.Dash:
     group = SortableGroup(
         id        = 'group',
         className = 'group',
-        children  = [item1, item2]
+        items     = [item1, item2]
     )
 
     app.layout = group
@@ -124,23 +116,20 @@ def app_with_locked_items() -> dash.Dash:
     app = dash.Dash(__name__)
 
     item1 = SortableItem(
-        id        = 'component-locked1', 
-        index     = 0,
+        id        = 'component-locked1',
         children  = [dash.html.Label('First row')],
         lock      = True,
         className = 'row'
     )
     
     item2 = SortableItem(
-        id        = 'component-free', 
-        index     = 1,
+        id        = 'component-free',
         children  = [dash.html.Label('Second row')],
         className = 'row',
     )
 
     item3 = SortableItem(
-        id        = 'component-locked2', 
-        index     = 2,
+        id        = 'component-locked2',
         children  = [dash.html.Label('Third row')],
         lock      = True,
         className = 'row',
@@ -150,7 +139,7 @@ def app_with_locked_items() -> dash.Dash:
     group = SortableGroup(
         id        = 'group',
         className = 'group',
-        children  = [item1, item2, item3]
+        items     = [item1, item2, item3]
     )
 
     app.layout = group

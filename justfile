@@ -3,7 +3,7 @@ set shell := ["bash", "-c"]
 
 # Generate components and build the bundle
 build:
-    rm -r dash_sortable_items
+    rm -rf dash_sortable_items
     npm run build
     cp src/python/__init__.py dash_sortable_items
     cp src/python/_imports_.py dash_sortable_items

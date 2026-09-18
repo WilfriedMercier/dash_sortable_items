@@ -16,6 +16,8 @@
         <link rel="prev" href="publishing.html">
       
       
+        <link rel="next" href="testing.html">
+      
       
         
       
@@ -25,7 +27,7 @@
     
     
       
-        <title>Building manually - Documentation for Dash sortable items</title>
+        <title>Building manually the package - Documentation for Dash sortable items</title>
       
     
     
@@ -111,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Building manually
+              Building manually the package
             
           </span>
         </div>
@@ -303,9 +305,7 @@
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -555,9 +555,7 @@
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -750,7 +748,7 @@
   <span class="md-ellipsis">
     
   
-    Building manually
+    Building manually the package
   
 
     
@@ -768,7 +766,7 @@
   <span class="md-ellipsis">
     
   
-    Building manually
+    Building manually the package
   
 
     
@@ -803,10 +801,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#building-the-python-library-for-testing" class="md-nav__link">
+  <a href="#building-the-python-library" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Building the python library for testing
+        Building the python library
       
     </span>
   </a>
@@ -828,6 +826,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing the package
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -908,7 +934,7 @@
   
 
 
-  <h1>Building manually</h1>
+  <h1>Building manually the package</h1>
 
 <h2 id="setting-up-the-enviroment">Setting up the enviroment</h2>
 <p>To manually install the python library, first clone this repository, then setup a virtual environment, activate it, and install <a href="https://just.systems/man/en/">just</a> with</p>
@@ -924,12 +950,12 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>just<span class="w"> </span>install
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>just<span class="w"> </span>clean
 </span></code></pre></div>
-<h2 id="building-the-python-library-for-testing">Building the python library for testing</h2>
+<h2 id="building-the-python-library">Building the python library</h2>
 <p>To build the package, that is launch the process that transforms the React/Typescript files into a runnable python library that is compatible with Dash, use</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>just<span class="w"> </span>build
 </span></code></pre></div>
 <h2 id="building-the-python-library-to-install-locally">Building the python library to install locally</h2>
-<p>Alternatively, one can generate a python wheel that can be installed in any virtual environment with</p>
+<p>One can also generate a python wheel that can be installed in any virtual environment with</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>just<span class="w"> </span>package
 </span></code></pre></div>
 <p>Afterwards, the library can be installed from the root directory with</p>
@@ -986,6 +1012,22 @@
           </a>
         
         
+          
+          <a href="testing.html" class="md-footer__link md-footer__link--next" aria-label="Next: Testing the package">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Testing the package
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
       </nav>
     
   
@@ -1020,7 +1062,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.footer", "navigation.path", "navigation.expand", "toc.follow", "toc.integrate", "navigation.top", "content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.footer", "navigation.path", "toc.follow", "toc.integrate", "navigation.top", "content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>

@@ -305,9 +305,7 @@
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -745,9 +743,7 @@
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -821,7 +817,35 @@
   <span class="md-ellipsis">
     
   
-    Building manually
+    Building manually the package
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../for_developers/testing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing the package
   
 
     
@@ -912,6 +936,12 @@
 
   <h1>SortableItem</h1>
 
+<div class="admonition note">
+<p class="admonition-title">Note:</p>
+<p><code>SortableItem</code> is technically a placeholder for <code>_SortableItem</code>. For type checkers, one may therefore use as type hint</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dash_sortable_items._SortableItem</span><span class="w"> </span><span class="kn">import</span> <span class="n">_SortableItem</span>
+</span></code></pre></div>
+</div>
 <h2 id="mandatory-arguments">Mandatory arguments</h2>
 <p>The following arguments must always be provided when creating a new <code>SortableItem</code> component:</p>
 <table>
@@ -927,11 +957,6 @@
 <td>id</td>
 <td>Unique identifier for the component in callbacks and to identify uniquely the component within the <code>SortableGroup</code> list</td>
 <td><code class="language-py3 highlight"><span class="nb">str</span></code> or a dictionary with structure <code class="language-py3 highlight"><span class="p">{</span><span class="s1">'type'</span> <span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s1">'index'</span> <span class="p">:</span> <span class="o">...</span><span class="p">}</span></code></td>
-</tr>
-<tr>
-<td>index</td>
-<td>Initial position of the component in the list</td>
-<td><code class="language-py3 highlight"><span class="nb">int</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -1098,7 +1123,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.footer", "navigation.path", "navigation.expand", "toc.follow", "toc.integrate", "navigation.top", "content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.footer", "navigation.path", "toc.follow", "toc.integrate", "navigation.top", "content.code.copy", "content.code.select"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>

@@ -379,9 +379,7 @@
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -631,9 +629,7 @@
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -743,9 +739,7 @@
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -819,7 +813,35 @@
   <span class="md-ellipsis">
     
   
-    Building manually
+    Building manually the package
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="for_developers/testing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testing the package
   
 
     
@@ -874,50 +896,47 @@
 <h2 id="installation">Installation</h2>
 <p>XXX</p>
 <h2 id="basic-usage">Basic usage</h2>
-<p>This extension provides two new Dash components: <code>SortableGroup</code> and <code>SortableItem</code>. A <code>SortableGroup</code> must only contain <code>SortableItem</code> components as children and exposes in callbacks the <code>sortedIDs</code> property which can be used to retrievce the order of the children or re-order them programmatically. Each <code>SortableItem</code> is a component that can be sorted within its parent group. A typical example would be</p>
+<p>This python package provides two new Dash components: <code>SortableGroup</code> and <code>SortableItem</code>. A <code>SortableGroup</code> must only contain <code>SortableItem</code> components and exposes in callbacks the <code>sortedIDs</code> property which can be used to retrieve the order of the children. Each <code>SortableItem</code> is a Dash component that can be dragged and sorted within its parent group. See below for a typical example.</p>
+<div class="admonition info">
+<p class="admonition-title">Note:</p>
+<p>Drag and drop can be cancelled at any moment by pressing <span class="keys"><kbd class="key-escape">Esc</kbd></span></p>
+</div>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">dash</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w">   </span><span class="nn">dash_sortable_items</span><span class="w"> </span><span class="kn">import</span> <span class="n">SortableGroup</span><span class="p">,</span> <span class="n">SortableItem</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">app</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">item1</span> <span class="o">=</span> <span class="n">SortableItem</span><span class="p">(</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="nb">id</span>        <span class="o">=</span> <span class="s1">'item1'</span><span class="p">,</span> 
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">index</span>     <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">children</span>  <span class="o">=</span> <span class="p">[</span><span class="n">dash</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">'Row #1'</span><span class="p">)],</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">)</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">item3</span> <span class="o">=</span> <span class="n">SortableItem</span><span class="p">(</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="nb">id</span>        <span class="o">=</span> <span class="s1">'item3'</span><span class="p">,</span> 
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">index</span>     <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">children</span>  <span class="o">=</span> <span class="p">[</span><span class="n">dash</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">'Row #3'</span><span class="p">)],</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">)</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">item2</span> <span class="o">=</span> <span class="n">SortableItem</span><span class="p">(</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="nb">id</span>        <span class="o">=</span> <span class="s1">'item2'</span><span class="p">,</span> 
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">index</span>     <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">children</span>  <span class="o">=</span> <span class="p">[</span><span class="n">dash</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">'Row #2'</span><span class="p">)],</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="p">)</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="n">group</span> <span class="o">=</span> <span class="n">SortableGroup</span><span class="p">(</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="nb">id</span>        <span class="o">=</span> <span class="s1">'group'</span><span class="p">,</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">children</span>  <span class="o">=</span> <span class="p">[</span><span class="n">item1</span><span class="p">,</span> <span class="n">item3</span><span class="p">,</span> <span class="n">item2</span><span class="p">],</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="p">)</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">group</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="nb">id</span>       <span class="o">=</span> <span class="s1">'item1'</span><span class="p">,</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">children</span> <span class="o">=</span> <span class="p">[</span><span class="n">dash</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">'Row #1'</span><span class="p">)],</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">)</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">item2</span> <span class="o">=</span> <span class="n">SortableItem</span><span class="p">(</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="nb">id</span>       <span class="o">=</span> <span class="s1">'item2'</span><span class="p">,</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="n">children</span> <span class="o">=</span> <span class="p">[</span><span class="n">dash</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">'Row #2'</span><span class="p">)],</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">)</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">item3</span> <span class="o">=</span> <span class="n">SortableItem</span><span class="p">(</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="nb">id</span>       <span class="o">=</span> <span class="s1">'item3'</span><span class="p">,</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">children</span> <span class="o">=</span> <span class="p">[</span><span class="n">dash</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">'Row #3'</span><span class="p">)],</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">)</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="n">group</span> <span class="o">=</span> <span class="n">SortableGroup</span><span class="p">(</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="nb">id</span>    <span class="o">=</span> <span class="s1">'group'</span><span class="p">,</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="n">item1</span><span class="p">,</span> <span class="n">item2</span><span class="p">,</span> <span class="n">item3</span><span class="p">],</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="p">)</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">group</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span></code></pre></div>
 <div class="admonition important">
 <p class="admonition-title">Important:</p>
-<p>All <code>SortableItem</code> component must have <code>id</code> and <code>index</code> provided. The <code>id</code> argument uniquely identifies the component, while <code>index</code> provides the initial position of the item in the sorted list.</p>
+<p>All <code>SortableItem</code> component must have <code>id</code> provided as it uniquely identifies the component in its parent group.</p>
 </div>
-<p>Note that, even though children of the <code>SortableGroup</code> are provided in the following order <code>item1, item3, item2</code>, they are rendered as <code>item1, item2, item3</code>. This behaviour is due to the fact that the initial order of the items is set by the <code>index</code> argument. Since <code>item2</code> has an index of 2 and <code>item3</code> an index of 3, <code>item2</code> is rendered before <code>item3</code>.</p>
-<div class="admonition info">
-<p class="admonition-title">Note:</p>
-<p>Drag and drop can be cancelled at any moment by pressing <span class="keys"><kbd class="key-escape">Esc</kbd></span></p>
-</div>
+<p>The order in which <code>SortableItem</code> components appear in the <code>items</code> argument of <code>SortableGroup</code> will define the order in which they appear every time the application loads.</p>
 <h2 id="callbacks">Callbacks</h2>
-<p>The order of the <code>SortableItem</code> children can be recovered via a callback as follows</p>
+<p>The order of the <code>SortableItem</code> components can be recovered via a callback as follows</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="o">...</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">dash</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="s1">'group'</span><span class="p">,</span> <span class="s1">'sortedIds'</span><span class="p">)</span>
@@ -928,11 +947,7 @@
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">return</span> <span class="n">sortedIds</span>
 </span></code></pre></div>
-<div class="admonition info">
-<p class="admonition-title">Note:</p>
-<p>The output of sortedIds is a sorted list of the IDs of the <code>SortableItem</code> children.</p>
-</div>
-<p>For more details on <code>SortableGroup</code> and <code>SortableItem</code> see their respective API pages and check the provided <a href="examples/index.html">examples</a></p>
+<p>For more details on <code>SortableGroup</code> and <code>SortableItem</code> see their respective API pages and check the provided examples.</p>
 
 
 
@@ -1018,7 +1033,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.instant.progress", "navigation.footer", "navigation.path", "navigation.expand", "toc.follow", "toc.integrate", "navigation.top", "content.code.copy", "content.code.select"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.instant.progress", "navigation.footer", "navigation.path", "toc.follow", "toc.integrate", "navigation.top", "content.code.copy", "content.code.select"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="assets/javascripts/bundle.d7400e89.min.js"></script>

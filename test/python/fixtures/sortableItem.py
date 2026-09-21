@@ -11,8 +11,7 @@ def app_button__item() -> dash.Dash:
     app = dash.Dash(__name__)
 
     item1 = SortableItem(
-        id        = 'item1', 
-        index     = 0,
+        id        = 'item1',
         children  = [dash.html.Label('First row')],
         handle    = dash.html.Label('☃'),
         handlePos = 'start',
@@ -24,8 +23,7 @@ def app_button__item() -> dash.Dash:
     )
     
     item2 = SortableItem(
-        id        = 'item2', 
-        index     = 1,
+        id        = 'item2',
         children  = [dash.html.Label('Second row')],
         className = 'row',
     )
@@ -33,7 +31,7 @@ def app_button__item() -> dash.Dash:
     group = SortableGroup(
         id        = 'group',
         className = 'group',
-        children  = [item1, item2]
+        items     = [item1, item2]
     )
 
     button = dash.dcc.Button('Click me !', id = 'button')
@@ -49,16 +47,14 @@ def app_button_no_handle__item() -> dash.Dash:
     app = dash.Dash(__name__)
 
     item1 = SortableItem(
-        id        = 'item1', 
-        index     = 0,
+        id        = 'item1',
         restrict  = None,
         children  = [dash.html.Label('First row')],
         className = 'row'
     )
     
     item2 = SortableItem(
-        id        = 'item2', 
-        index     = 1,
+        id        = 'item2',
         children  = [dash.html.Label('Second row')],
         className = 'row',
     )
@@ -66,7 +62,7 @@ def app_button_no_handle__item() -> dash.Dash:
     group = SortableGroup(
         id        = 'group',
         className = 'group',
-        children  = [item1, item2]
+        items     = [item1, item2]
     )
 
     button = dash.dcc.Button('Click me !', id = 'button')

@@ -5,12 +5,12 @@
   "main": "index.ts",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Wilfried Mercier/dash-sortable-items.git"
+    "url": "git://github.com/WilfriedMercier/dash_sortable_items.git"
   },
   "bugs": {
-    "url": "https://github.com/Wilfried Mercier/dash-sortable-items/issues"
+    "url": "https://github.com/WilfriedMercier/dash_sortable_items/issues"
   },
-  "homepage": "https://github.com/Wilfried Mercier/dash-sortable-items",
+  "homepage": "https://wilfriedmercier.github.io/dash_sortable_items/index.html",
   "scripts": {
     "build:js::dev": "webpack --mode development",
     "build:js": "webpack",

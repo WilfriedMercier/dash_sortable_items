@@ -19,27 +19,30 @@ class SortableItem:
     :param lock: Whether to lock the item (i.e. make it not moveable) or not. Default is False.
     :param restrict: Whether to restrict items to vertical or horizontal motions only. None means there is no restriction. Default is None.
     :param styles: CSS styles to apply. This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties. Default is {}.
+    :param styles_drag: CSS styles to apply when the item is being draggeds. This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties. Default is {}.
     """
 
     def __init__(
         self,
-        id        : DashId,
-        children  : typing.Any    = None,
-        className : str           = '',
-        handle    : typing.Any    = None,
-        handlePos : handlePosType = 'start',
-        lock      : bool          = False,
-        restrict  : restrictType  = None,
-        styles    : stylesType    = {}
+        id          : DashId,
+        children    : typing.Any    = None,
+        className   : str           = '',
+        handle      : typing.Any    = None,
+        handlePos   : handlePosType = 'start',
+        lock        : bool          = False,
+        restrict    : restrictType  = None,
+        styles      : stylesType    = {},
+        styles_drag : stylesType    = {}
     ): 
 
-        self.id        = id
-        self.children  = children
-        self.className = className
-        self.handle    = handle
-        self.handlePos = handlePos
-        self.lock      = lock
-        self.restrict  = restrict
-        self.styles    = styles
+        self.id          = id
+        self.children    = children
+        self.className   = className
+        self.handle      = handle
+        self.handlePos   = handlePos
+        self.lock        = lock
+        self.restrict    = restrict
+        self.styles      = styles
+        self.styles_drag = styles_drag
 
         return

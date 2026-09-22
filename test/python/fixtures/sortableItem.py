@@ -89,7 +89,7 @@ def app_drag_style__item() -> dash.Dash:
         styles_drag = {
             'handle' : {'backgroundColor' : 'green'},
             'div'    : {'backgroundColor' : 'blue', 'rotate' : '180deg'}
-        }, # type: ignore
+        },
         className = 'row'
     )
     

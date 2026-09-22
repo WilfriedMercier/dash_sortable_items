@@ -18,6 +18,7 @@ export default function _SortableItem( {
         className,
         index,
         styles,
+        styles_drag,
         handle,
         restrict,
         lock      = false,
@@ -42,20 +43,27 @@ export default function _SortableItem( {
         setProps({isDragging : isDragging})
     }, [isDragging]);
 
-    // Style used to update the handle style dynamically
-    let dynamic_styles = {
+    // Style used when the item is locked
+    let lock_styles = {
         handle : {cursor : lock ? 'default' : 'grab'},
         div    : {cursor : !lock && handle === undefined ? 'grab' : 'default'}
     } as Record<string, CSSProperties>;
 
     // Handle item defined by the user but wrapped with a forward ref to assign the handleRef
     let new_handle: ReactElement<typeof HandleWrapper> | null;
+
     if (handle !== undefined) {
+
+        const handle_style = (
+            isDragging ?
+            {...lock_styles.handle, ...styles_drag?.handle} :
+            {...lock_styles.handle, ...styles?.handle}
+        )
 
         new_handle = <HandleWrapper 
             ref       = {handleRef} 
             className = 'sortable-item-handle'
-            style     = {{...dynamic_styles.handle, ...styles?.handle}}
+            style     = {handle_style}
             child     = {handle} 
         />
 
@@ -63,18 +71,26 @@ export default function _SortableItem( {
         new_handle = null
     };
 
+    // Final div style applied to the div
+    const div_style = (
+        isDragging ? 
+        {...default_styles.div, ...default_drag_styles.div, ...lock_styles.div, ...styles_drag?.div} : 
+        {...default_styles.div, ...lock_styles.div, ...styles?.div}
+    );
+
     return <div 
-        id        = {id}
-        className = {`sortable-item ${className || ''}`}
-        ref       = {ref} 
-        style     = {{...default_styles.div, ...dynamic_styles.div, ...styles?.div}}
-    >
+            id        = {id}
+            className = {`sortable-item ${className || ''}`}
+            ref       = {ref} 
+            style     = {div_style}
+        >
         {handlePos === 'start' ? new_handle : null}
         {children}
         {handlePos === 'end'   ? new_handle : null}
     </div>
 };
 
+// Default style applied to the element
 const default_styles: Record<string, React.CSSProperties> = {
     div : {
         backgroundColor : 'light-dark(\
@@ -87,6 +103,13 @@ const default_styles: Record<string, React.CSSProperties> = {
         display         : 'flex',
         flex            : 1,
         alignItems      : 'center',
-        gap             : '20px'
+        gap             : '20px',
+    }
+};
+
+// Default style applied on top of the default styles when the item is dragged
+const default_drag_styles: Record<string, React.CSSProperties> = {
+    div : {
+        opacity : 0.5,
     }
 };

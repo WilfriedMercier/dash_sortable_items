@@ -31,6 +31,14 @@ export interface SortableGroupProps extends Omit<DefaultComponentProps, 'childre
     
     /**Children passed as props. These should be SortableItem components.*/
     children ?: ReactElementWithKey[];
+
+    /**Whether a clone should be shown in the list when dragging the element or not.*/
+    showClone ?: boolean;
+
+    dropAnimation ?: null | {
+        duration : number,
+        easing   : string
+    };
 };
 
 /**Props for the SortableItem component.*/
@@ -68,6 +76,11 @@ export interface SortableItemProps extends Omit<DefaultComponentProps, 'style' |
         div    ?: any;
         handle ?: any;
     };
+
+    styles_drag ?: {
+        div    ?: any;
+        handle ?: any;
+    }
 };
 
 /**Props for the HandleWrapper component.*/

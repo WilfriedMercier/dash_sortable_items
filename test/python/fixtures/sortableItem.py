@@ -2,7 +2,7 @@
 
 import dash
 import pytest
-from   dash_sortable_items    import SortableGroup, SortableItem
+from   dash_sortable_items import SortableGroup, SortableItem
 
 @pytest.fixture
 def app_button__item() -> dash.Dash:
@@ -85,7 +85,7 @@ def app_drag_style__item() -> dash.Dash:
         styles    = {
             'handle' : {'backgroundColor' : 'red'},
             'div'    : {'backgroundColor' : 'yellow'}
-        }, # type: ignore
+        },
         styles_drag = {
             'handle' : {'backgroundColor' : 'green'},
             'div'    : {'backgroundColor' : 'blue', 'rotate' : '180deg'}

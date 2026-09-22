@@ -11,7 +11,7 @@ For instance, in the example below, the div parent element is styled with `#!py3
 
 === "Dash layout"
 
-    ```python hl_lines="17 18 26 27 30 31 32"
+    ```python hl_lines="15 16 26 27 19 20 21"
     import dash
     from   dash_sortable_items import SortableGroup, SortableItem
     from   dash_iconify        import DashIconify
@@ -19,24 +19,13 @@ For instance, in the example below, the div parent element is styled with `#!py3
     app = dash.Dash(__name__, assets_folder='./')
 
     item1 = SortableItem(
-        id        = 'item1', 
-        index     = 1,
+        id        = 'item1',
         children  = [dash.html.Label('Row #1')],
         className = 'item'
     )
 
-    item3 = SortableItem(
-        id        = 'item3', 
-        index     = 3,
-        handle    = DashIconify(icon='mdi:drag-horizontal', width=40, height=40),
-        handlePos = 'start',
-        children  = [dash.html.Label('Row #3')],
-        className = 'item'
-    )
-
     item2 = SortableItem(
-        id        = 'item2', 
-        index     = 2,
+        id        = 'item2',
         handle    = DashIconify(icon='emojione:rocket', width=40, height=40),
         handlePos = 'end',
         children  = [dash.html.Label('Row #2')],
@@ -46,9 +35,17 @@ For instance, in the example below, the div parent element is styled with `#!py3
         }
     )
 
+    item3 = SortableItem(
+        id        = 'item3',
+        handle    = DashIconify(icon='mdi:drag-horizontal', width=40, height=40),
+        handlePos = 'start',
+        children  = [dash.html.Label('Row #3')],
+        className = 'item'
+    )
+
     group = SortableGroup(
         id        = 'group',
-        children  = [item1, item3, item2],
+        items     = [item1, item2, item3],
         className = 'group'
     )
 

@@ -21,7 +21,8 @@ nav:
     - SortableItem: API/sortable_item.md
   - For developers:
     - Publishing the docs: for_developers/publishing.md
-    - Building manually: for_developers/building.md
+    - Building manually the package: for_developers/building.md
+    - Testing the package: for_developers/testing.md
 theme: 
   name: material
   logo: img/icon.png
@@ -56,7 +57,6 @@ theme:
     - navigation.instant.progress
     - navigation.footer
     - navigation.path
-    - navigation.expand
     - toc.follow
     - toc.integrate
     - navigation.top

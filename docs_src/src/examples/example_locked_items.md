@@ -4,37 +4,34 @@ See the example below for a layout with the first item locked.
 
 === "Dash layout"
 
-    ```python hl_lines="9"
+    ```python hl_lines="8"
     import dash
     from   dash_sortable_items import SortableGroup, SortableItem
 
     app = dash.Dash(__name__, assets_folder='./')
 
     item1 = SortableItem(
-        id        = 'item1', 
-        index     = 1,
+        id        = 'item1',
         lock      = True,
         children  = [dash.html.Label('Row #1')],
         className = 'item'
     )
 
-    item3 = SortableItem(
-        id        = 'item3', 
-        index     = 3,
-        children  = [dash.html.Label('Row #3')],
+    item2 = SortableItem(
+        id        = 'item2',
+        children  = [dash.html.Label('Row #2')],
         className = 'item'
     )
 
-    item2 = SortableItem(
-        id        = 'item2', 
-        index     = 2,
-        children  = [dash.html.Label('Row #2')],
+    item3 = SortableItem(
+        id        = 'item3',
+        children  = [dash.html.Label('Row #3')],
         className = 'item'
     )
 
     group = SortableGroup(
         id        = 'group',
-        children  = [item1, item3, item2],
+        items     = [item1, item2, item3],
         className = 'group'
     )
 

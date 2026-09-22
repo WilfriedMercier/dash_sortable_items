@@ -1,3 +1,10 @@
+!!! note "Note:"
+    `SortableItem` is technically a placeholder for `_SortableItem`. For type checkers, one may therefore use as type hint
+
+    ```python
+    from dash_sortable_items._SortableItem import _SortableItem
+    ```
+
 ## Mandatory arguments
 
 The following arguments must always be provided when creating a new `SortableItem` component:
@@ -5,7 +12,6 @@ The following arguments must always be provided when creating a new `SortableIte
 | Name | Description | Type |
 | ---- | ----------- | ---- |
 | id   | Unique identifier for the component in callbacks and to identify uniquely the component within the `SortableGroup` list | `#!py3 str` or a dictionary with structure `#!py3 {'type' : ..., 'index' : ...}` |
-| index   | Initial position of the component in the list | `#!py3 int` |
 
 
 ## Keyword arguments

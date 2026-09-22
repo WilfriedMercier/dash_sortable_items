@@ -7,7 +7,7 @@ The trick to re-order items programmatically is to wrap the `SortableGroup` with
 
 === "Dash layout"
 
-    ```python hl_lines="73 74 75 76 77 78 79 80 81 82"
+    ```python hl_lines="70 71 72 73 74 75 76 77 78 79"
     import dash
     from   dash_iconify        import DashIconify
     from   dash_sortable_items import SortableGroup, SortableItem
@@ -17,29 +17,26 @@ The trick to re-order items programmatically is to wrap the `SortableGroup` with
     def draw_items():
 
         item1 = SortableItem(
-            id        = 'ducky', 
-            index     = 1,
+            id        = 'ducky',
             children  = [DashIconify(icon='noto:duck', width=50, height=50)]*10,
             className = 'item'
         )
 
         item2 = SortableItem(
-            id        = 'doggo', 
-            index     = 2,
+            id        = 'doggo',
             children  = [DashIconify(icon='noto-v1:dog', width=50, height=50)]*10,
             className = 'item'
         )
 
         item3 = SortableItem(
-            id        = 'rosie', 
-            index     = 3,
+            id        = 'rosie',
             children  = [DashIconify(icon='noto-v1:rose', width=50, height=50)]*10,
             className = 'item'
         )
 
         group = SortableGroup(
             id        = 'group',
-            children  = [item1, item2, item3],
+            items     = [item1, item2, item3],
             className = 'group'
         )
 

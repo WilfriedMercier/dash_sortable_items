@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="example_horizontal_list.html">
+        <link rel="prev" href="example_callbacks.html">
       
       
-        <link rel="next" href="example_locked_items.html">
+        <link rel="next" href="../API/sortable_group.html">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Grid layout - Documentation for Dash sortable items</title>
+        <title>Styling options - Documentation for Dash sortable items</title>
       
     
     
@@ -77,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#showing-a-clone-in-the-sortable-list" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -108,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Grid layout
+              Styling options
             
           </span>
         </div>
@@ -394,17 +399,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="example_grid.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="example_grid.html" class="md-nav__link">
         
   
   
@@ -420,7 +418,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -542,10 +539,35 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="example_styling.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Styling options
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="example_styling.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -561,6 +583,57 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#showing-a-clone-in-the-sortable-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Showing a clone in the sortable list
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customizing-the-drop-animation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customizing the drop animation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-styling-when-dragging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom styling when dragging
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -889,98 +962,38 @@
   
 
 
-  <h1>Grid layout</h1>
+  <h1>Styling options</h1>
 
-<p>An alternative layout is a grid which can be achieved by providing <code class="language-py3 highlight"><span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'style'</span> <span class="p">:</span> <span class="s1">'grid'</span><span class="p">}</span></code> to <code>SortableGroup</code>.</p>
-<p>See the example below for a grid layout.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Dash layout</label><label for="__tabbed_1_2">CSS stylesheet</label><label for="__tabbed_1_3">Example</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">dash</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w">   </span><span class="nn">dash_sortable_items</span><span class="w"> </span><span class="kn">import</span> <span class="n">SortableGroup</span><span class="p">,</span> <span class="n">SortableItem</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">app</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">assets_folder</span><span class="o">=</span><span class="s1">'./'</span><span class="p">)</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">item1</span> <span class="o">=</span> <span class="n">SortableItem</span><span class="p">(</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="nb">id</span>        <span class="o">=</span> <span class="s1">'item1'</span><span class="p">,</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">children</span>  <span class="o">=</span> <span class="p">[</span><span class="n">dash</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">'Row #1'</span><span class="p">)],</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">className</span> <span class="o">=</span> <span class="s1">'item'</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">)</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">item2</span> <span class="o">=</span> <span class="n">SortableItem</span><span class="p">(</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="nb">id</span>        <span class="o">=</span> <span class="s1">'item2'</span><span class="p">,</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">children</span>  <span class="o">=</span> <span class="p">[</span><span class="n">dash</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">'Row #2'</span><span class="p">)],</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">className</span> <span class="o">=</span> <span class="s1">'item'</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">)</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">item3</span> <span class="o">=</span> <span class="n">SortableItem</span><span class="p">(</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="nb">id</span>        <span class="o">=</span> <span class="s1">'item3'</span><span class="p">,</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">children</span>  <span class="o">=</span> <span class="p">[</span><span class="n">dash</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">'Row #3'</span><span class="p">)],</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">className</span> <span class="o">=</span> <span class="s1">'item'</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="p">)</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="n">group</span> <span class="o">=</span> <span class="n">SortableGroup</span><span class="p">(</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    <span class="nb">id</span>        <span class="o">=</span> <span class="s1">'group'</span><span class="p">,</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="n">items</span>  <span class="o">=</span> <span class="p">[</span><span class="n">item1</span><span class="p">,</span> <span class="n">item2</span><span class="p">,</span> <span class="n">item3</span><span class="p">],</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="n">className</span> <span class="o">=</span> <span class="s1">'group'</span><span class="p">,</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="hll">    <span class="n">style</span>     <span class="o">=</span> <span class="p">{</span>
-</span></span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="hll">        <span class="s1">'display'</span>               <span class="p">:</span> <span class="s1">'grid'</span><span class="p">,</span>
-</span></span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="hll">        <span class="s1">'grid-template-columns'</span> <span class="p">:</span> <span class="s1">'repeat(2, 1fr)'</span><span class="p">,</span>
-</span></span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="hll">        <span class="s1">'grid-gap'</span>              <span class="p">:</span> <span class="s1">'50px'</span>
-</span></span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="hll">    <span class="p">}</span>
-</span></span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="p">)</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="n">label</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">'Order:'</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">'label'</span><span class="p">)</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span><span class="n">group</span><span class="p">,</span> <span class="n">label</span><span class="p">],</span> <span class="n">className</span><span class="o">=</span><span class="s1">'container'</span><span class="p">)</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>    <span class="n">dash</span><span class="o">.</span><span class="n">Output</span><span class="p">(</span><span class="s1">'label'</span><span class="p">,</span> <span class="s1">'children'</span><span class="p">),</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>    <span class="n">dash</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="s1">'group'</span><span class="p">,</span> <span class="s1">'sortedIds'</span><span class="p">)</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="p">)</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="k">def</span><span class="w"> </span><span class="nf">_</span><span class="p">(</span><span class="n">sortedIDs</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>    <span class="k">if</span> <span class="n">sortedIDs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">raise</span> <span class="n">dash</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">PreventUpdate</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    <span class="k">return</span> <span class="sa">f</span><span class="s1">'Order: </span><span class="si">{</span><span class="n">sortedIDs</span><span class="si">}</span><span class="s1">'</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<h2 id="showing-a-clone-in-the-sortable-list">Showing a clone in the sortable list</h2>
+<p>It is possible to show a clone of the dragged component inside the list by providing <code class="language-py3 highlight"><span class="n">showClone</span> <span class="o">=</span> <span class="kc">True</span></code> to <a href="../API/sortable_group.html"><code>SortableGroup</code></a>. The clone cannot be styled directly but it is possible to override its default style using CSS stylesheets since it holds the <code class="language-css highlight"><span class="nt">data-dnd-placeholder</span><span class="o">=</span><span class="s2">"clone"</span></code> attribute. For instance, in the example below the background of all the clones of <a href="../API/sortable_item.html"><code>SortableItem</code></a> components with the <code>item</code> class name is set to green, and the background of the specific component with ID <code>mycustomitem</code> is set to red:</p>
+<div class="language-css highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">.</span><span class="nc">item</span><span class="o">[</span><span class="nt">data-dnd-placeholder</span><span class="o">=</span><span class="s2">"clone"</span><span class="o">]</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">background-color</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">green</span><span class="w"> </span><span class="cp">!important</span><span class="p">;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">}</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">#</span><span class="nn">mycustomitem</span><span class="o">[</span><span class="nt">data-dnd-placeholder</span><span class="o">=</span><span class="s2">"clone"</span><span class="o">]</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="k">background-color</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">red</span><span class="w"> </span><span class="cp">!important</span><span class="p">;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">}</span>
 </span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-css highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">.</span><span class="nc">container</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">display</span><span class="w">          </span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">flex-direction</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="kc">column</span><span class="p">;</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">background-color</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mh">#f4eeff</span><span class="p">;</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="k">border</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">black</span><span class="p">;</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="k">padding</span><span class="w">          </span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="k">gap</span><span class="w">              </span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">}</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">.</span><span class="nc">group</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="k">padding</span><span class="w">          </span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="w"> </span><span class="cp">!important</span><span class="p">;</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="k">background-color</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mh">#dcd6f7</span><span class="p">;</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="k">border</span><span class="w">           </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">black</span><span class="p">;</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="p">}</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">.</span><span class="nc">item</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="k">background-color</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mh">#a6b1e1</span><span class="w"> </span><span class="cp">!important</span><span class="p">;</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="k">box-shadow</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">38</span><span class="p">,</span><span class="w"> </span><span class="mi">57</span><span class="p">,</span><span class="w"> </span><span class="mi">77</span><span class="p">)</span><span class="w"> </span><span class="mi">0</span><span class="kt">px</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="w"> </span><span class="mi">-10</span><span class="kt">px</span><span class="p">;</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="k">transition</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="kc">all</span><span class="w"> </span><span class="mf">0.2</span><span class="kt">s</span><span class="w"> </span><span class="kc">ease-in-out</span><span class="p">;</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="p">}</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="p">.</span><span class="nc">item</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">    </span><span class="k">background-color</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mh">#7e8cc5</span><span class="w"> </span><span class="cp">!important</span><span class="p">;</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">    </span><span class="k">box-shadow</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">38</span><span class="p">,</span><span class="w"> </span><span class="mi">57</span><span class="p">,</span><span class="w"> </span><span class="mi">77</span><span class="p">)</span><span class="w"> </span><span class="mi">0</span><span class="kt">px</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="w"> </span><span class="mi">-10</span><span class="kt">px</span><span class="p">;</span>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">    </span><span class="k">scale</span><span class="w">            </span><span class="p">:</span><span class="w"> </span><span class="mf">1.01</span><span class="p">;</span>
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">    </span><span class="k">transition</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="kc">all</span><span class="w"> </span><span class="mf">0.2</span><span class="kt">s</span><span class="w"> </span><span class="kc">ease-in-out</span><span class="p">;</span>
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="p">}</span>
+<h2 id="customizing-the-drop-animation">Customizing the drop animation</h2>
+<p>When a dragged item is released, it is brought to its final position. By default, no animation is shown but it is possible to define one by providing a couple properties in <a href="../API/sortable_group.html"><code>SortableGroup</code></a> as follows</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">SortableGroup</span><span class="p">(</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="o">...</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">dropAnimation</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        <span class="s1">'duration'</span> <span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="s1">'easing'</span>   <span class="p">:</span> <span class="s1">'ease-in-out'</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="p">}</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="o">...</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">)</span>
 </span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<p><img alt="A gif showing a sortable grid." loading="lazy" src="../img/grid_layout.gif" /></p>
-</div>
-</div>
-</div>
+<p>where <code class="language-py3 highlight"><span class="s1">'duration'</span></code> is the length of the animation in millisecond and <code class="language-py3 highlight"><span class="s1">'easing'</span></code> is a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Easing_functions">CSS easing function</a>.</p>
+<h2 id="custom-styling-when-dragging">Custom styling when dragging</h2>
+<p>For each <a href="../API/sortable_item.html"><code>SortableItem</code></a>, one can provide <code>styles_drag</code> as an argument which is used specifically to style the component when it is being dragged</p>
+<p>It is a dictionary with the following structure <code class="language-py3 highlight"><span class="p">{</span><span class="s1">'div'</span> <span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s1">'handle'</span> <span class="p">:</span> <span class="o">...</span><span class="p">}</span></code> where <code class="language-py3 highlight"><span class="s1">'div'</span></code> styles the parent Div HTML element and <code class="language-py3 highlight"><span class="s1">'handle'</span></code> styles the handle, if provided.</p>
+<p>Alternatively, it is also possible to style the dragged component via CSS stylesheets as follows</p>
+<div class="language-css highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">.</span><span class="nc">item</span><span class="o">[</span><span class="nt">data-dnd-dragging</span><span class="o">=</span><span class="s2">"true"</span><span class="o">]</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="err">...</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">}</span>
+</span></code></pre></div>
 
 
 
@@ -1016,7 +1029,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="example_horizontal_list.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Horizontal list">
+          <a href="example_callbacks.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Callback re-ordering">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1026,20 +1039,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Horizontal list
+                Callback re-ordering
               </div>
             </div>
           </a>
         
         
           
-          <a href="example_locked_items.html" class="md-footer__link md-footer__link--next" aria-label="Next: Locking items">
+          <a href="../API/sortable_group.html" class="md-footer__link md-footer__link--next" aria-label="Next: SortableGroup">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Locking items
+                SortableGroup
               </div>
             </div>
             <div class="md-footer__button md-icon">

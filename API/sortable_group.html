@@ -13,7 +13,7 @@
       
       
       
-        <link rel="prev" href="../examples/example_callbacks.html">
+        <link rel="prev" href="../examples/example_styling.html">
       
       
         <link rel="next" href="sortable_item.html">
@@ -315,7 +315,7 @@
   <span class="md-ellipsis">
     
   
-    Examples
+    Usage
   
 
     
@@ -331,7 +331,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Examples
+    Usage
   
 
           </label>
@@ -520,6 +520,34 @@
     
   
     Callback re-ordering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/example_styling.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Styling options
   
 
     
@@ -947,14 +975,24 @@
 <td><code class="language-py3 highlight"><span class="nb">str</span></code> or a dictionary with structure <code class="language-py3 highlight"><span class="p">{</span><span class="s1">'type'</span> <span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s1">'index'</span> <span class="p">:</span> <span class="o">...</span><span class="p">}</span></code></td>
 </tr>
 <tr>
-<td>style</td>
-<td>CSS style to apply to this component</td>
-<td><code class="language-py3 highlight"><span class="nb">dict</span></code></td>
-</tr>
-<tr>
 <td>className</td>
 <td>CSS class name used to style the component via CSS stylesheets</td>
 <td><code class="language-py3 highlight"><span class="nb">str</span></code></td>
+</tr>
+<tr>
+<td>dropAnimation</td>
+<td>Dictionary with keys <code class="language-py3 highlight"><span class="n">duration</span></code> and <code class="language-py3 highlight"><span class="n">easing</span></code> where <code class="language-py3 highlight"><span class="n">duration</span></code> is the length of the animation in millisecond and <code class="language-py3 highlight"><span class="n">easing</span></code> is a CSS easing function. This is applied by default to all <a href="sortable_item.html"><code>SortableItem</code></a> children.</td>
+<td><code class="language-py3 highlight"><span class="p">{</span><span class="s1">'duration'</span> <span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s1">'easing'</span> <span class="p">:</span> <span class="o">...</span><span class="p">}</span></code></td>
+</tr>
+<tr>
+<td>showClone</td>
+<td>Whether a clone should be shown in the list when dragging the component or not. This is applied by default to all <a href="sortable_item.html"><code>SortableItem</code></a> children.</td>
+<td><code class="language-py3 highlight"><span class="nb">bool</span></code></td>
+</tr>
+<tr>
+<td>style</td>
+<td>CSS style to apply to this component</td>
+<td><code class="language-py3 highlight"><span class="nb">dict</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -970,7 +1008,7 @@
 <tbody>
 <tr>
 <td>sortable-group</td>
-<td>Div HTML element containing the <code>SortableItem</code> child components</td>
+<td>Div HTML element containing the <a href="sortable_item.html"><code>SortableItem</code></a> children</td>
 </tr>
 </tbody>
 </table>
@@ -1009,7 +1047,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../examples/example_callbacks.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Callback re-ordering">
+          <a href="../examples/example_styling.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Styling options">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1019,7 +1057,7 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Callback re-ordering
+                Styling options
               </div>
             </div>
           </a>

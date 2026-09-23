@@ -5,11 +5,11 @@ from   dash.testing.composite                  import DashComposite
 from   selenium.webdriver.common.by            import By
 from   selenium.webdriver.common.action_chains import ActionChains
 
-from   .fixtures.sortableItem  import app_drag_style__item
+from   .fixtures.sortableItem  import app_drag_style__item, app_drop_style__item
 from   .fixtures.sortableGroup import app_with_clones__group
 
 def test_drag_style(dash_duo: DashComposite, app_drag_style__item: dash.Dash) -> None:
-    r'''Checks that the custom styling applied to item1 works as expected.'''
+    r'''Checks that the custom styling applied to item1 when dragged works as expected.'''
 
     dash_duo.start_server(app_drag_style__item)
     actions = ActionChains(dash_duo.driver)
@@ -77,5 +77,59 @@ def test_clones_and_styling(dash_duo: DashComposite, app_with_clones__group: das
         sources[idx_placeholder].get_attribute('data-dnd-dragging') is None and
         sources[not idx_placeholder].get_attribute('data-dnd-dragging') == 'true'
     ), 'Missing the dragged component.'
+
+    return
+
+def test_drop_style(dash_duo: DashComposite, app_drop_style__item: dash.Dash) -> None:
+    r'''Checks that the custom styling applied to item1 when dropped works as expected.'''
+
+    dash_duo.start_server(app_drop_style__item)
+    actions = ActionChains(dash_duo.driver)
+
+    source = dash_duo.find_element('item1', attribute='ID')
+    handle = source.find_element(By.TAG_NAME, "div").find_element(By.TAG_NAME, 'label')
+    target = dash_duo.find_element('item2', attribute='ID')
+
+    # Click and move but do not release
+    actions.click_and_hold(handle).pause(0.5)
+    actions.move_to_element(target).pause(0.5).release().perform()
+
+    style_div = {
+        k.strip(): v.strip()
+        for k, _, v in (item.partition(":") for item in source.get_attribute('style').split(";"))
+        if v or k.strip()
+    }
+
+    assert style_div['background-color'] == 'blue', 'Wrong background color while dropping item1'
+    assert style_div['rotate'] == '180deg', 'Wrong rotation angle while dropping item1'
+
+    handle = source.find_element(By.TAG_NAME, "div").find_element(By.TAG_NAME, 'label')
+    style_handle = {
+            k.strip(): v.strip()
+            for k, _, v in (item.partition(":") for item in handle.get_attribute('style').split(";"))
+            if v or k.strip()
+        }
+    
+    assert style_handle['background-color'] == 'green', 'Wrong background color for the handle while dropping item1'
+
+    actions.pause(3.5).perform()
+
+    style_div = {
+        k.strip(): v.strip()
+        for k, _, v in (item.partition(":") for item in source.get_attribute('style').split(";"))
+        if v or k.strip()
+    }
+    
+    assert style_div['background-color'] != 'blue', 'Wrong background color after dropping item1'
+    assert 'rotate' not in style_div, 'Wrong rotation angle after dropping item1'
+
+    handle = source.find_element(By.TAG_NAME, "div").find_element(By.TAG_NAME, 'label')
+    style_handle = {
+        k.strip(): v.strip()
+        for k, _, v in (item.partition(":") for item in handle.get_attribute('style').split(";"))
+        if v or k.strip()
+    }
+    
+    assert style_handle['background-color'] != 'green', 'Wrong background color for the handle after dropping item1'
 
     return

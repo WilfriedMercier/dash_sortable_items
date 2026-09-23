@@ -19,6 +19,7 @@ export default function _SortableItem( {
         index,
         styles,
         styles_drag,
+        styles_drop,
         handle,
         restrict,
         lock                = false,
@@ -32,7 +33,7 @@ export default function _SortableItem( {
         (restrict === 'horizontal' ? [RestrictToHorizontalAxis] : undefined)
     );
 
-    const { ref, handleRef, isDragging } = useSortable({
+    const { ref, handleRef, isDragging, isDropping } = useSortable({
         id, 
         index, 
         modifiers         : restrict_modifier,
@@ -46,8 +47,16 @@ export default function _SortableItem( {
     });
 
     useEffect( () => {
-        setProps({isDragging : isDragging})
+        setProps({
+            isDragging : isDragging
+        })
     }, [isDragging]);
+
+    useEffect( () => {
+        setProps({
+            isDropping : isDropping
+        })
+    }, [isDropping]);
 
     // Style used when the item is locked
     let lock_styles = {
@@ -62,8 +71,11 @@ export default function _SortableItem( {
 
         const handle_style = (
             isDragging ?
-            {...lock_styles.handle, ...styles_drag?.handle} :
-            {...lock_styles.handle, ...styles?.handle}
+            {...lock_styles.handle, ...styles_drag?.handle} : (
+                isDropping ?
+                {...lock_styles.handle, ...styles_drop?.handle} :
+                {...lock_styles.handle, ...styles?.handle}
+            )
         )
 
         new_handle = <HandleWrapper 
@@ -79,9 +91,12 @@ export default function _SortableItem( {
 
     // Final div style applied to the div
     const div_style = (
-        isDragging ? 
-        {...default_styles.div, ...default_drag_styles.div, ...lock_styles.div, ...styles_drag?.div} : 
-        {...default_styles.div, ...lock_styles.div, ...styles?.div}
+        isDragging ?
+        {...default_styles.div, ...default_drag_styles.div, ...lock_styles.div, ...styles_drag?.div} : (
+            isDropping ?
+            {...default_styles.div, ...default_drop_styles.div, ...lock_styles.div, ...styles_drop?.div} :
+            {...default_styles.div, ...lock_styles.div, ...styles?.div}
+        )
     );
 
     return <div 
@@ -115,6 +130,13 @@ const default_styles: Record<string, React.CSSProperties> = {
 
 // Default style applied on top of the default styles when the item is dragged
 const default_drag_styles: Record<string, React.CSSProperties> = {
+    div : {
+        opacity : 0.5,
+    }
+};
+
+// Default style applied on top of the default styles when the item is dropped
+const default_drop_styles: Record<string, React.CSSProperties> = {
     div : {
         opacity : 0.5,
     }

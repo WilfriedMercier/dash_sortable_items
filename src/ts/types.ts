@@ -84,7 +84,20 @@ export interface SortableItemProps extends Omit<DefaultComponentProps, 'style' |
         handle ?: any;
     };
 
+    /**
+     * CSS styles to apply when the item is dragged. 
+     * This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
+    */
     styles_drag ?: {
+        div    ?: any;
+        handle ?: any;
+    }
+
+    /**
+     * CSS styles to apply when the item is dropped. 
+     * This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
+    */
+    styles_drop ?: {
         div    ?: any;
         handle ?: any;
     }

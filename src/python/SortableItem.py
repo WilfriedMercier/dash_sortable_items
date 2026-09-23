@@ -26,6 +26,7 @@ class SortableItem:
     :param restrict: Whether to restrict items to vertical or horizontal motions only. None means there is no restriction.
     :param styles: CSS styles to apply. This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
     :param styles_drag: CSS styles to apply when the item is being draggeds. This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
+    :param styles_drop: CSS styles to apply when the item is being dropped. This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
     :param transitionAnimation: Dictionary with properties to style the animation when an item moves from one position to another. None disables the animation.
     """
 
@@ -40,8 +41,9 @@ class SortableItem:
         restrict            : restrictType            = None,
         styles              : stylesType              = {},
         styles_drag         : stylesType              = {},
+        styles_drop         : stylesType              = {},
         transitionAnimation : AnimationOptions | None = {'duration' : 250, 'easing' : 'ease'},
-    ): 
+    ):
 
         self.id                  = id
         self.children            = children
@@ -52,6 +54,7 @@ class SortableItem:
         self.restrict            = restrict
         self.styles              = styles
         self.styles_drag         = styles_drag
+        self.styles_drop         = styles_drop
         self.transitionAnimation = transitionAnimation
 
         return

@@ -51,6 +51,7 @@ class SortableGroup:
                 restrict            = item.restrict,
                 styles              = item.styles,
                 styles_drag         = item.styles_drag,
+                styles_drop         = item.styles_drop,
                 transitionAnimation = item.transitionAnimation,
                 **handle_trick, **id_trick
             )

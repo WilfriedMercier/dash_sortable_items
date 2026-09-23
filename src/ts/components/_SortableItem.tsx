@@ -21,8 +21,9 @@ export default function _SortableItem( {
         styles_drag,
         handle,
         restrict,
-        lock      = false,
-        handlePos = 'start',
+        lock                = false,
+        handlePos           = 'start',
+        transitionAnimation = {duration : 250, easing: 'ease', idle: true},
         setProps,
     } : SortableItemProps ) {
 
@@ -36,7 +37,12 @@ export default function _SortableItem( {
         index, 
         modifiers         : restrict_modifier,
         disabled          : lock,
-        collisionDetector : shapeIntersection
+        collisionDetector : shapeIntersection,
+        transition        : (
+            transitionAnimation === null ? 
+            {duration : 0, idle: true} :
+            transitionAnimation
+        )
     });
 
     useEffect( () => {

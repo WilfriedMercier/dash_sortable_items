@@ -7,28 +7,28 @@ This returns a _SortableGroup object which is the Python structure that creates 
 from ._SortableGroup import _SortableGroup
 from ._SortableItem  import _SortableItem
 from .SortableItem   import SortableItem
-from .types          import DashId, CSSDict, DropAnimationOptions
+from .types          import DashId, CSSDict, AnimationOptions
 
 class SortableGroup:
     r'''
     A sortable group containing SortableItem children.
 
     :param items: List of SortableItem components that can be sorted within this group
-    :param id: Unique ID of the component. Default is None.
-    :param className: Class name of the component. Default is ''.
-    :param style: Style to apply to the div element containing the children. Default is {}.
-    :param showClone: Whether a clone should be shown in the list when one of the elements is dragged or not. Default is False.
-    :param dropAnimation: Specify the duration and easing of the drop animation. If None, the dragged item instantly reaches its destination. Default is None.
+    :param id: Unique ID of the component.
+    :param className: Class name of the component.
+    :param style: Style to apply to the div element containing the children.
+    :param showClone: Whether a clone should be shown in the list when one of the elements is dragged or not.
+    :param dropAnimation: Specify the duration and easing of the drop animation. If None, the dragged item instantly reaches its destination.
     '''
 
     def __new__(
         cls,
         items         : list[SortableItem],
-        id            : DashId                      = None,
-        className     : str                         = '',
-        style         : CSSDict                     = {},
-        showClone     : bool                        = False,
-        dropAnimation : DropAnimationOptions | None = None
+        id            : DashId                  = None,
+        className     : str                     = '',
+        style         : CSSDict                 = {},
+        showClone     : bool                    = False,
+        dropAnimation : AnimationOptions | None = None
     ) -> _SortableGroup:
         
 
@@ -43,14 +43,15 @@ class SortableGroup:
             # Create the real SortableItem component by giving it its position in the list
             # as its index
             new_item = _SortableItem(
-                index       = pos,
-                children    = item.children,
-                className   = item.className,
-                handlePos   = item.handlePos,
-                lock        = item.lock,
-                restrict    = item.restrict,
-                styles      = item.styles,
-                styles_drag = item.styles_drag,
+                index               = pos,
+                children            = item.children,
+                className           = item.className,
+                handlePos           = item.handlePos,
+                lock                = item.lock,
+                restrict            = item.restrict,
+                styles              = item.styles,
+                styles_drag         = item.styles_drag,
+                transitionAnimation = item.transitionAnimation,
                 **handle_trick, **id_trick
             )
 

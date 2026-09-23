@@ -4,7 +4,7 @@ class DashComplexId(typing.TypedDict):
     type  : str
     index : str | int
 
-class DropAnimationOptions(typing.TypedDict):
+class AnimationOptions(typing.TypedDict):
     duration : int
     easing   : str
 

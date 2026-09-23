@@ -34,10 +34,6 @@ export default function _SortableGroup( {
     useEffect( () => {originalIdsRef.current = itemIds}, [itemIds]);
 
     const handleDragStart = (_: DragStartEvent) => {
-        console.log(
-            'itemIds:', itemIds, '\n',
-            ', originalIds ref:', originalIdsRef.current
-        );
         originalIdsRef.current = itemIds;
     };
 

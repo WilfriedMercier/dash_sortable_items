@@ -59,7 +59,6 @@ export default function _SortableGroup( {
         // vertically), or drag was aborted (Esc) -> restore original order
         if (event.canceled || !target) {
             originalIdsRef.current !== null ? setItemIds(originalIdsRef.current) : null;
-            console.log('esc', originalIdsRef.current);
             setProps( {sortedIds : originalIdsRef.current} );
             return;
         }

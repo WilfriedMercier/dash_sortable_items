@@ -10,8 +10,10 @@
 | Name | Description | Type |
 | ---- | ----------- | ---- |
 | id   | Unique identifier for the component in callbacks | `#!py3 str` or a dictionary with structure `#!py3 {'type' : ..., 'index' : ...}` |
-| style   | CSS style to apply to this component | `#!py3 dict` |
 | className | CSS class name used to style the component via CSS stylesheets | `#!py3 str` |
+| dropAnimation | Dictionary with keys `#!py3 duration` and `#!py3 easing` where `#!py3 duration` is the length of the animation in millisecond and `#!py3 easing` is a CSS easing function. This is applied by default to all [`SortableItem`](./sortable_item.md) children. | `#!py3 {'duration' : ..., 'easing' : ...}` |
+| showClone | Whether a clone should be shown in the list when dragging the component or not. This is applied by default to all [`SortableItem`](./sortable_item.md) children. | `#!py3 bool` |
+| style   | CSS style to apply to this component | `#!py3 dict` |
 
 ## Styles
 
@@ -19,4 +21,4 @@ The following classes are avaible to style the component in a CSS stylesheet:
 
 | CSS selector | Description |
 | ----         | ----------- |
-| sortable-group | Div HTML element containing the `SortableItem` child components |
+| sortable-group | Div HTML element containing the [`SortableItem`](./sortable_item.md) children |

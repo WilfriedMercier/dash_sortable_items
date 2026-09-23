@@ -8,7 +8,7 @@ use_directory_urls: false
 copyright: Copyright &copy; 2026 Mercier Wilfried
 nav:
   - Getting started: index.md
-  - Examples:
+  - Usage:
     - Vertical list: examples/example_vertical_list.md
     - Horizontal list: examples/example_horizontal_list.md
     - Grid layout: examples/example_grid.md
@@ -16,6 +16,7 @@ nav:
     - Providing a handle: examples/example_drag_handle.md
     - Sorting sortable lists: examples/example_sorting_groups.md
     - Callback re-ordering: examples/example_callbacks.md
+    - Styling options: examples/example_styling.md
   - API:
     - SortableGroup: API/sortable_group.md
     - SortableItem: API/sortable_item.md

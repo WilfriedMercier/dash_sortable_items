@@ -30,14 +30,10 @@ export default function _SortableGroup( {
     // Store keys to order children
     const [itemIds, setItemIds] = useState<string[]>(children.map(child => child.key));
 
-    const originalIdsRef = useRef<string[]>(itemIds);
-    useEffect( () => {originalIdsRef.current = itemIds}, [itemIds]);
+    const originalIdsRef = useRef<string[] | null>(null);
+    //useEffect( () => {originalIdsRef.current = itemIds}, [itemIds]);
 
     const handleDragStart = (_: DragStartEvent) => {
-        console.log(
-            'itemIds:', itemIds, '\n',
-            ', originalIds ref:', originalIdsRef.current
-        );
         originalIdsRef.current = itemIds;
     };
 
@@ -62,7 +58,7 @@ export default function _SortableGroup( {
         // Released with no droppable underneath (e.g. mouse drifted away
         // vertically), or drag was aborted (Esc) -> restore original order
         if (event.canceled || !target) {
-            setItemIds(originalIdsRef.current);
+            originalIdsRef.current !== null ? setItemIds(originalIdsRef.current) : null;
             setProps( {sortedIds : originalIdsRef.current} );
             return;
         }

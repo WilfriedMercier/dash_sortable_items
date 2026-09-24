@@ -89,6 +89,8 @@ export default function _SortableItem( {
         new_handle = null
     };
 
+    console.log(id, styles, {...default_styles.div, ...lock_styles.div, ...styles?.div});
+
     // Final div style applied to the div
     const div_style = (
         isDragging ?

@@ -691,6 +691,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#values-accessible-via-callbacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Values accessible via callbacks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#styles" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -970,29 +981,67 @@
 </thead>
 <tbody>
 <tr>
-<td>id</td>
+<td><code>id</code></td>
 <td>Unique identifier for the component in callbacks</td>
 <td><code class="language-py3 highlight"><span class="nb">str</span></code> or a dictionary with structure <code class="language-py3 highlight"><span class="p">{</span><span class="s1">'type'</span> <span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s1">'index'</span> <span class="p">:</span> <span class="o">...</span><span class="p">}</span></code></td>
 </tr>
 <tr>
-<td>className</td>
+<td><code>className</code></td>
 <td>CSS class name used to style the component via CSS stylesheets</td>
 <td><code class="language-py3 highlight"><span class="nb">str</span></code></td>
 </tr>
 <tr>
-<td>dropAnimation</td>
+<td><code>dropAnimation</code></td>
 <td>Dictionary with keys <code class="language-py3 highlight"><span class="n">duration</span></code> and <code class="language-py3 highlight"><span class="n">easing</span></code> where <code class="language-py3 highlight"><span class="n">duration</span></code> is the length of the animation in millisecond and <code class="language-py3 highlight"><span class="n">easing</span></code> is a CSS easing function. This is applied by default to all <a href="sortable_item.html"><code>SortableItem</code></a> children.</td>
 <td><code class="language-py3 highlight"><span class="p">{</span><span class="s1">'duration'</span> <span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s1">'easing'</span> <span class="p">:</span> <span class="o">...</span><span class="p">}</span></code></td>
 </tr>
 <tr>
-<td>showClone</td>
+<td><code>showClone</code></td>
 <td>Whether a clone should be shown in the list when dragging the component or not. This is applied by default to all <a href="sortable_item.html"><code>SortableItem</code></a> children.</td>
 <td><code class="language-py3 highlight"><span class="nb">bool</span></code></td>
 </tr>
 <tr>
-<td>style</td>
+<td><code>style</code></td>
 <td>CSS style to apply to this component</td>
 <td><code class="language-py3 highlight"><span class="nb">dict</span></code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="values-accessible-via-callbacks">Values accessible via callbacks</h2>
+<p>The arguments below can be used to trigger callbacks or can be updated in callbacks.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th style="text-align: center;">Trigger ?</th>
+<th style="text-align: center;">Updatable ?</th>
+<th>Information</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dropAnimation</code></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td>The new <code>dropAnimation</code> does not take effect immediately but during the next drop operation.</td>
+</tr>
+<tr>
+<td><code>showClone</code></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td>The new <code>showClone</code> does not take effect immediately but during the next drag operation.</td>
+</tr>
+<tr>
+<td><code>sortedIds</code></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td>Can be used to trigger actions depending on the order of the items. Setting <code>sortedIds</code> will not update the visual order unless the children are drawn again in the new order.</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td>The new <code>style</code> takes effect immediately.</td>
 </tr>
 </tbody>
 </table>
@@ -1007,7 +1056,7 @@
 </thead>
 <tbody>
 <tr>
-<td>sortable-group</td>
+<td><code>sortable-group</code></td>
 <td>Div HTML element containing the <a href="sortable_item.html"><code>SortableItem</code></a> children</td>
 </tr>
 </tbody>

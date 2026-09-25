@@ -620,10 +620,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#custom-styling-when-dragging" class="md-nav__link">
+  <a href="#customizing-the-transition-animation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Custom styling when dragging
+        Customizing the transition animation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-dynamic-styling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom dynamic styling
       
     </span>
   </a>
@@ -965,7 +976,7 @@
   <h1>Styling options</h1>
 
 <h2 id="showing-a-clone-in-the-sortable-list">Showing a clone in the sortable list</h2>
-<p>It is possible to show a clone of the dragged component inside the list by providing <code class="language-py3 highlight"><span class="n">showClone</span> <span class="o">=</span> <span class="kc">True</span></code> to <a href="../API/sortable_group.html"><code>SortableGroup</code></a>. The clone cannot be styled directly but it is possible to override its default style using CSS stylesheets since it holds the <code class="language-css highlight"><span class="nt">data-dnd-placeholder</span><span class="o">=</span><span class="s2">"clone"</span></code> attribute. For instance, in the example below the background of all the clones of <a href="../API/sortable_item.html"><code>SortableItem</code></a> components with the <code>item</code> class name is set to green, and the background of the specific component with ID <code>mycustomitem</code> is set to red:</p>
+<p>It is possible to show a clone of the dragged component inside the list by providing <code class="language-py3 highlight"><span class="n">showClone</span> <span class="o">=</span> <span class="kc">True</span></code> to <a href="../API/sortable_group.html"><code>SortableGroup</code></a>. The clone cannot be styled directly but it is possible to override its default style using CSS stylesheets since it holds the <code class="language-css highlight"><span class="nt">data-dnd-placeholder</span><span class="o">=</span><span class="s2">"clone"</span></code> attribute. For instance, in the example below the background of all the clones of <a href="../API/sortable_item.html"><code>SortableItem</code></a> components with the <code class="language-py3 highlight"><span class="s1">'item'</span></code> class name is set to green, and the background of the component with ID <code class="language-py3 highlight"><span class="s1">'mycustomitem'</span></code> is set to red:</p>
 <div class="language-css highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">.</span><span class="nc">item</span><span class="o">[</span><span class="nt">data-dnd-placeholder</span><span class="o">=</span><span class="s2">"clone"</span><span class="o">]</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">background-color</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">green</span><span class="w"> </span><span class="cp">!important</span><span class="p">;</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">}</span>
@@ -975,7 +986,7 @@
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">}</span>
 </span></code></pre></div>
 <h2 id="customizing-the-drop-animation">Customizing the drop animation</h2>
-<p>When a dragged item is released, it is brought to its final position. By default, no animation is shown but it is possible to define one by providing a couple properties in <a href="../API/sortable_group.html"><code>SortableGroup</code></a> as follows</p>
+<p>When a dragged item is released, it is brought to its final position. By default, no animation is shown but it is possible to define one by providing <code>dropAnimation</code> as an argument of <a href="../API/sortable_group.html"><code>SortableGroup</code></a> as follows:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">SortableGroup</span><span class="p">(</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="o">...</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">dropAnimation</span> <span class="o">=</span> <span class="p">{</span>
@@ -985,14 +996,30 @@
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="o">...</span>
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">)</span>
 </span></code></pre></div>
-<p>where <code class="language-py3 highlight"><span class="s1">'duration'</span></code> is the length of the animation in millisecond and <code class="language-py3 highlight"><span class="s1">'easing'</span></code> is a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Easing_functions">CSS easing function</a>.</p>
-<h2 id="custom-styling-when-dragging">Custom styling when dragging</h2>
-<p>For each <a href="../API/sortable_item.html"><code>SortableItem</code></a>, one can provide <code>styles_drag</code> as an argument which is used specifically to style the component when it is being dragged</p>
-<p>It is a dictionary with the following structure <code class="language-py3 highlight"><span class="p">{</span><span class="s1">'div'</span> <span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s1">'handle'</span> <span class="p">:</span> <span class="o">...</span><span class="p">}</span></code> where <code class="language-py3 highlight"><span class="s1">'div'</span></code> styles the parent Div HTML element and <code class="language-py3 highlight"><span class="s1">'handle'</span></code> styles the handle, if provided.</p>
-<p>Alternatively, it is also possible to style the dragged component via CSS stylesheets as follows</p>
-<div class="language-css highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">.</span><span class="nc">item</span><span class="o">[</span><span class="nt">data-dnd-dragging</span><span class="o">=</span><span class="s2">"true"</span><span class="o">]</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="err">...</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">}</span>
+<p>If provided and not <code>None</code>, <code>dropAnimation</code> must contain two keys: <code class="language-py3 highlight"><span class="s1">'duration'</span></code> and <code class="language-py3 highlight"><span class="s1">'easing'</span></code>. The former corresponds to the length of the animation in millisecond and the latter specifies a <a href="https://developer.mozilla.org/fr/docs/Web/CSS/Reference/Values/easing-function">CSS easing function</a>.</p>
+<h2 id="customizing-the-transition-animation">Customizing the transition animation</h2>
+<p>Similarly to the drop animation, it is possible to customize the animation played when an item moves from one position to another in the list when dragging occurs. This is set in <a href="../API/sortable_item.html"><code>SortableItem</code></a> using the <code>transitionAnimation</code> argument as follows:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">SortableItem</span><span class="p">(</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="o">...</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">transitionAnimation</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="s1">'duration'</span> <span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="s1">'easing'</span>   <span class="p">:</span> <span class="s1">'ease-in-out'</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="p">}</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="o">...</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="custom-dynamic-styling">Custom dynamic styling</h2>
+<p>For each <a href="../API/sortable_item.html"><code>SortableItem</code></a>, it is possible to provide CSS stylesheets that are applied when the item is being dragged or dropped without using callbacks. The three following style dictionaries can be provided:</p>
+<ul>
+<li><code>'styles'</code> which corresponds to the default style</li>
+<li><code>'styles_drag'</code> which is applied on top of '<code>styles'</code> when the item is being dragged</li>
+<li><code>'styles_drop'</code> which is applied on top of '<code>styles'</code> when the item is being dropped</li>
+</ul>
+<p>Each is a dictionary with the following structure <code class="language-py3 highlight"><span class="p">{</span><span class="s1">'div'</span> <span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s1">'handle'</span> <span class="p">:</span> <span class="o">...</span><span class="p">}</span></code> where <code class="language-py3 highlight"><span class="s1">'div'</span></code> styles the parent Div HTML element and <code class="language-py3 highlight"><span class="s1">'handle'</span></code> styles the handle, if provided.</p>
+<p>Alternatively, it is also possible to style a dragged component with class name <code class="language-py3 highlight"><span class="s1">'item'</span></code> via CSS stylesheets as follows:</p>
+<div class="language-css highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">.</span><span class="nc">item</span><span class="o">[</span><span class="nt">data-dnd-dragging</span><span class="o">=</span><span class="s2">"true"</span><span class="o">]</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="err">...</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">}</span>
 </span></code></pre></div>
 
 

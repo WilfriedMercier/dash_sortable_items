@@ -1,7 +1,24 @@
 # Dash Sortable Items
 A set of Dash components built with React that provide an interface to generate sortable items within a group.
 
+## Installation
+<details open>
+
+<summary>Expand/collapse</summary>
+
+To install the package, simply run in your environment
+
+```bash
+pip install dash-sortable-items
+```
+
+</details>
+
+
 ## Manual installation
+
+<details>
+<summary>Expand/collapse</summary>
 
 ### Building the package
 
@@ -56,3 +73,5 @@ You can install manually this python library in your current environment by exec
 ```bash
 pip install -e ./
 ```
+
+</details>

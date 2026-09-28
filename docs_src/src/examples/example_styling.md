@@ -61,4 +61,3 @@ Alternatively, it is also possible to style a dragged component with class name 
     ...
 }
 ```
-

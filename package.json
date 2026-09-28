@@ -1,6 +1,6 @@
 {
   "name": "dash_sortable_items",
-  "version": "0.6.0",
+  "version": "0.7.1",
   "description": "A set of Dash components built with React that provide an interface to generate sortable items within a group.",
   "main": "index.ts",
   "repository": {
@@ -10,7 +10,9 @@
   "bugs": {
     "url": "https://github.com/WilfriedMercier/dash_sortable_items/issues"
   },
-  "homepage": "https://wilfriedmercier.github.io/dash_sortable_items/index.html",
+  "homepage" : "https://github.com/WilfriedMercier/dash_sortable_items",
+  "docpage": "https://wilfriedmercier.github.io/dash_sortable_items/index.html",
+  "issuespage" : "https://github.com/WilfriedMercier/dash_sortable_items/issues",
   "scripts": {
     "build:js::dev": "webpack --mode development",
     "build:js": "webpack",

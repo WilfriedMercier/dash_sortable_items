@@ -2,7 +2,11 @@ Dash sortable items is a third party extension that wraps [dnd-kit](https://dndk
 
 ## Installation
 
-XXX
+To install the package, simply run
+
+```bash
+pip install dash-sortable-items
+```
 
 ## Basic usage
 

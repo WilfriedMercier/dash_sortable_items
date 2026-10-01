@@ -20,7 +20,7 @@ export interface DefaultComponentProps {
 };
 
 /**A React element with a key property. This is a typical signature of Dash components.*/
-interface ReactElementWithKey extends ReactElement {
+export interface ReactElementWithKey extends ReactElement {
 
     /**Key provided by Dash. This corresponds to the ID the user has provided.*/
     key : string;
@@ -48,7 +48,7 @@ export interface SortableItemProps extends Omit<DefaultComponentProps, 'style' |
     id : string;
 
     /**Initial position of the item in the sortable list.*/
-    index : number;
+    index ?: number;
 
     /**
      * Whether to restrict items to vertical or horizontal motions only.

@@ -1,8 +1,7 @@
 import React, { 
-    CSSProperties, 
-    useState, 
+    CSSProperties,
     useRef, 
-    useEffect 
+    useEffect
 }  from "react";
 
 import { Feedback } from "@dnd-kit/dom";
@@ -14,7 +13,10 @@ import {
     DragStartEvent
 } from "@dnd-kit/react";
 
-import { SortableGroupProps } from "types";
+import { 
+    SortableGroupProps, 
+    ReactElementWithKey 
+} from "types";
 
 /**A sortable group that allows its children to be sorted.*/
 export default function _SortableGroup( { 
@@ -27,14 +29,45 @@ export default function _SortableGroup( {
         setProps
     } : SortableGroupProps) {
 
-    // Store keys to order children
-    const [itemIds, setItemIds] = useState<string[]>(children.map(child => child.key));
+    // Make sure children is an array
+    children = Array.isArray(children) ? children : [children];
+    children = children.map((child, index) => {
+        return React.cloneElement(child, {index : index}) as ReactElementWithKey
+    });
 
-    const originalIdsRef = useRef<string[] | null>(null);
-    //useEffect( () => {originalIdsRef.current = itemIds}, [itemIds]);
+    const sortedChildrenRef = useRef<(ReactElementWithKey | undefined)[]>(children);
+    const itemIdsRef        = useRef<string[]>(children.map(child => child.key));
+    const isDraggingRef     = useRef<boolean>(false);
+    const cancelRef         = useRef<boolean>(false);
+
+    // Ref used to revert back the order if the action is canceled
+    const originalIdsRef    = useRef<string[] | null>(null);
+
+    // When children changes via a callback, we update the itemIds and set the sortedIds
+    useEffect(() => {
+
+        console.log('hasCanceled', cancelRef.current);
+        if (!isDraggingRef.current && !cancelRef.current) {
+
+            console.log('children');
+
+            sortedChildrenRef.current = children;
+
+            // Save new order for the IDs
+            itemIdsRef.current = children.map(child => child.key);
+            
+            setProps({ sortedIds: itemIdsRef.current });
+            
+        }
+
+        cancelRef.current = false;
+
+    }, [children]);
 
     const handleDragStart = (_: DragStartEvent) => {
-        originalIdsRef.current = itemIds;
+        originalIdsRef.current = itemIdsRef.current;
+        isDraggingRef.current  = true;
+        cancelRef.current      = false;
     };
 
     // Reorder children IDs when dragging
@@ -42,38 +75,35 @@ export default function _SortableGroup( {
 
         const { source, target } = event.operation;
         if (!source || !target || source.id === target.id) return;
+
+        itemIdsRef.current = move(itemIdsRef.current, event);
         
-        setItemIds( items => {
-            const next = move(items, event);
-            setProps({ sortedIds : next });
-            return next;
-        });
+        setProps({ sortedIds : itemIdsRef.current });
+
+        sortedChildrenRef.current = itemIdsRef.current.map(id => 
+            children.find(child => child.key === id)
+        );
     };
 
     // Commit or rollback when the drag finishes
     const handleDragEnd = (event: DragEndEvent) => {
         
-        const { target } = event.operation;
+        const { target, canceled } = event.operation;
 
         // Released with no droppable underneath (e.g. mouse drifted away
         // vertically), or drag was aborted (Esc) -> restore original order
-        if (event.canceled || !target) {
-            originalIdsRef.current !== null ? setItemIds(originalIdsRef.current) : null;
+        if ((canceled || !target) && (originalIdsRef.current != null)) {
+
+            itemIdsRef.current = originalIdsRef.current;
             setProps( {sortedIds : originalIdsRef.current} );
-            return;
+
+            originalIdsRef.current = null;
+            cancelRef.current      = true;
+
         }
 
-        setItemIds(items => {
-            const next = move(items, event);
-            setProps({ sortedIds: next });   // always send the NEW array
-            return next;
-        });
+        isDraggingRef.current = false;    
     };
-
-    // Sort children based on the ordered keys
-    const sortedChildren = itemIds.map(id => 
-        children.find(child => child.key === id)
-    );
 
     return <DragDropProvider 
             onDragStart = {handleDragStart}
@@ -92,7 +122,7 @@ export default function _SortableGroup( {
             className = {`sortable-group ${className || ''}`}
             style     = {{...default_styles.div, ...style}}
         >
-            {sortedChildren}
+            {sortedChildrenRef.current}
         </div>
     </DragDropProvider>
 };

@@ -1,8 +1,3 @@
-r'''
-This file defines a placeholder that users must use to create sortable items. When creating a SortableGroup component,
-the class below is converted into a _SortableItem which maps to the React component.
-'''
-
 import typing
 from   .types import (
     DashId, 
@@ -12,7 +7,9 @@ from   .types import (
     AnimationOptions
 )
 
-class SortableItem:
+from ._SortableItem import _SortableItem
+
+class SortableItem(_SortableItem):
     r"""
     A sortable item used as a wrapper around any Dash component. 
     This item must be placed within a SortableGroup to make it draggable and sortable.
@@ -42,19 +39,24 @@ class SortableItem:
         styles              : stylesType              = {},
         styles_drag         : stylesType              = {},
         styles_drop         : stylesType              = {},
-        transitionAnimation : AnimationOptions | None = {'duration' : 250, 'easing' : 'ease'},
+        transitionAnimation : AnimationOptions | None = {'duration' : 250, 'easing' : 'ease'}
     ):
 
-        self.id                  = id
-        self.children            = children
-        self.className           = className
-        self.handle              = handle
-        self.handlePos           = handlePos
-        self.lock                = lock
-        self.restrict            = restrict
-        self.styles              = styles
-        self.styles_drag         = styles_drag
-        self.styles_drop         = styles_drop
-        self.transitionAnimation = transitionAnimation
+        self._args = {
+            'children'            : children,
+            'className'           : className,
+            'handlePos'           : handlePos,
+            'lock'                : lock,
+            'restrict'            : restrict,
+            'styles'              : styles,
+            'styles_drag'         : styles_drag,
+            'styles_drop'         : styles_drop,
+            'transitionAnimation' : transitionAnimation
+        }
+
+        if handle is not None: self._args['handle'] = handle
+        if id     is not None: self._args['id']     = id
+
+        super().__init__(**self._args)
 
         return

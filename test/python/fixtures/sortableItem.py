@@ -108,3 +108,42 @@ def app_drag_style__item() -> dash.Dash:
     app.layout = dash.html.Div(group, style={'display' : 'flex'})
 
     return app
+
+@pytest.fixture
+def app_drop_style__item() -> dash.Dash:
+    '''Fixture that creates a Dash app with items whose style changes when being dropped.'''
+
+    app = dash.Dash(__name__)
+
+    item1 = SortableItem(
+        id        = 'item1',
+        children  = [dash.html.Label('First row')],
+        handle    = dash.html.Label('☃'),
+        handlePos = 'start',
+        styles    = {
+            'handle' : {'backgroundColor' : 'red'},
+            'div'    : {'backgroundColor' : 'yellow'}
+        },
+        styles_drop = {
+            'handle' : {'backgroundColor' : 'green'},
+            'div'    : {'backgroundColor' : 'blue', 'rotate' : '180deg'}
+        },
+        className = 'row'
+    )
+    
+    item2 = SortableItem(
+        id        = 'item2',
+        children  = [dash.html.Label('Second row')],
+        className = 'row',
+    )
+
+    group = SortableGroup(
+        id            = 'group',
+        className     = 'group',
+        items         = [item1, item2],
+        dropAnimation = {'duration' : 3000, 'easing' : 'ease'}
+    )
+
+    app.layout = dash.html.Div(group, style={'display' : 'flex'})
+
+    return app

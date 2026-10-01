@@ -11,20 +11,39 @@ The following arguments must always be provided when creating a new `SortableIte
 
 | Name | Description | Type |
 | ---- | ----------- | ---- |
-| id   | Unique identifier for the component in callbacks and to identify uniquely the component within the [`SortableGroup`](./sortable_group.md) list | `#!py3 str` or a dictionary with structure `#!py3 {'type' : ..., 'index' : ...}` |
+| `id`   | Unique identifier for the component in callbacks and to identify uniquely the component within the [`SortableGroup`](./sortable_group.md) list | `#!py3 str` or a dictionary with structure `#!py3 {'type' : ..., 'index' : ...}` |
 
 
 ## Keyword arguments
 
 | Name | Description | Type |
 | ---- | ----------- | ---- |
-| className | CSS class name used to style the component via CSS stylesheets | `#!py3 str` |
-| handle    | Dash component used as handle. If `#!py3 None`, the entire item is used as handle | `#!py3 dict` or `#!py3 None` |
-| handlePos | Position of the handle in the parent HTML Div component. Default value is `#!py3 'start'` | `#!py3 'start'`, `#!py3 'end'`, or `#!py3 None` |
-| lock | Whether to lock the item or not. Default is `#!py3 False` | `#!py3 bool` |
-| restrict | Whether to restrict the item to vertical or horizontal movement only. Default is no restriction. | `#!py3 'vertical'`, `#!py3 'horizontal'`, or `#!py3 None` |
-| styles | Dictionary used to style inner components. Each key identifies a component and each value is a dictionary with camel cased CSS properties. Allowed keys are `#!py3 'div'` to style the parent Div HTML element and `#!py3 'handle'` to style the Div HTML element wrapping the handle, if provided | `#!py3 {'div' : {...}, 'handle' : {...}}` |
-| styles_drag | Same as `style` but used when the component is being dragged | `#!py3 {'div' : {...}, 'handle' : {...}}` |
+| `className` | CSS class name used to style the component via CSS stylesheets | `#!py3 str` |
+| `handle`    | Dash component used as handle. If `#!py3 None`, the entire item is used as handle | `#!py3 dict` or `#!py3 None` |
+| `handlePos` | Position of the handle in the parent HTML Div component. Default value is `#!py3 'start'` | `#!py3 'start'`, `#!py3 'end'`, or `#!py3 None` |
+| `lock` | Whether to lock the item or not. Default is `#!py3 False` | `#!py3 bool` |
+| `restrict` | Whether to restrict the item to vertical or horizontal movement only. Default is no restriction. | `#!py3 'vertical'`, `#!py3 'horizontal'`, or `#!py3 None` |
+| `styles` | Dictionary used to style inner components. Each key identifies a component and each value is a dictionary with camel cased CSS properties. Allowed keys are `#!py3 'div'` to style the parent Div HTML element and `#!py3 'handle'` to style the Div HTML element wrapping the handle, if provided | `#!py3 {'div' : {...}, 'handle' : {...}}` |
+| `styles_drag` | Same as `style` but used when the component is being dragged | `#!py3 {'div' : {...}, 'handle' : {...}}` |
+| `styles_drop` | Same as `style` but used when the component is dropped | `#!py3 {'div' : {...}, 'handle' : {...}}` |
+| `transitionAnimation` | Dictionary used to customize the animation used when an item transitions from one position to another. `#!py3 None` means there is no transition. If not `#!py3 None`, the following keys are mandatory: `#!py3 'duration'` which indicates how long the transition lasts in millisecond and `#!py3 'easing'` which specifies which CSS easing function to use. | `#!py3 {'duration' : {...}, 'easing' : {...}}` |
+
+## Values accessible via callbacks
+
+The arguments below can be used to trigger callbacks or can be updated in callbacks.
+
+| Name | Trigger ? | Updatable ? | Information |
+| ---  | :-------: | :---------: | ------  |
+| `handle` | :white_check_mark: | :white_check_mark: | Can be used to update the handle's icon dynamically when an item is dragged. |
+| `handlePos` | :white_check_mark: | :white_check_mark: | Can be used to update the position of the handle dynamically when an item is dragged. |
+| `isDragging` | :white_check_mark: | :x: | Boolean flag specifying whether the item is currently being dragged or not. |
+| `isDropping` | :white_check_mark: | :x: | Boolean flag specifying whether the item is currently being dropped or not. Note that the drop animation set in [`SortableGroup`](../API/sortable_group.md) may need to be long enough for it to trigger. |
+| `lock` | :white_check_mark: | :white_check_mark: | Can be used to lock/unlock items when pressing a button or to trigger a suite of actions when an item unlocks. |
+| `styles` | :white_check_mark: | :x: | If `styles` is updated in a callback, the new styles will not be rendered. |
+| `styles_drag` | :white_check_mark: | :x: | Same as `styles`. |
+| `styles_drop` | :white_check_mark: | :x: | Same as `styles`. |
+| `transitionAnimation` | :white_check_mark: | :white_check_mark: | Can be used to update the animation depending on the order of the items |
+
 
 ## Styles
 
@@ -32,12 +51,12 @@ The following classes are avaible to style the component in a CSS stylesheet:
 
 | CSS selector  | Description |
 | ----          | ----------- |
-| sortable-item        | Div HTML element containing the children Dash components |
-| sortable-item-handle | Div HTML element wrapping the handle |
+| `sortable-item`        | Div HTML element containing the children Dash components |
+| `sortable-item-handle` | Div HTML element wrapping the handle |
 
-## Dynamic styling
+## Dynamic styling with CSS stylesheets
 
-It is possible to style differently a `SortableItem` via CSS stylesheets while it is being dragged because when a component is dragged it gets a `#!css data-dnd-dragging="true"` attribute. Additionally, one can also style the clone rendered within the list (if visible) since it gets a `#!css data-dnd-placeholder="clone"` attribute. For instance, see below an example where the background of the dragged component is styled with the color `blue` and the clone with the color `green`:
+It is possible to style differently a `SortableItem` via CSS stylesheets while it is being dragged because a dragged component gets a `#!css data-dnd-dragging="true"` attribute. Additionally, one can also style the clone rendered within the list (if visible) since it gets a `#!css data-dnd-placeholder="clone"` attribute. For instance, see below an example where the background of the dragged component is styled with the color `blue` and the clone with the color `green`:
 
 
 as follows

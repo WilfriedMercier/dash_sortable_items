@@ -33,9 +33,9 @@ See the example below for a grid layout.
         items  = [item1, item2, item3],
         className = 'group',
         style     = {
-            'display'               : 'grid',
-            'grid-template-columns' : 'repeat(2, 1fr)',
-            'grid-gap'              : '50px'
+            'display'             : 'grid',
+            'gridTemplateColumns' : 'repeat(2, 1fr)',
+            'gridGap'             : '50px'
         }
     )
 

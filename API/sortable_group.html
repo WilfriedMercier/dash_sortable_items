@@ -964,12 +964,6 @@
 
   <h1>SortableGroup</h1>
 
-<div class="admonition note">
-<p class="admonition-title">Note:</p>
-<p><code>SortableGroup</code> is technically a placeholder for <code>_SortableGroup</code>. For type checkers, one may therefore use as type hint</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dash_sortable_items._SortableGroup</span><span class="w"> </span><span class="kn">import</span> <span class="n">_SortableGroup</span>
-</span></code></pre></div>
-</div>
 <h2 id="keyword-arguments">Keyword arguments</h2>
 <table>
 <thead>
@@ -984,6 +978,11 @@
 <td><code>id</code></td>
 <td>Unique identifier for the component in callbacks</td>
 <td><code class="language-py3 highlight"><span class="nb">str</span></code> or a dictionary with structure <code class="language-py3 highlight"><span class="p">{</span><span class="s1">'type'</span> <span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s1">'index'</span> <span class="p">:</span> <span class="o">...</span><span class="p">}</span></code></td>
+</tr>
+<tr>
+<td><code>children</code></td>
+<td><a href="sortable_item.html"><code>SortableItem</code></a> children drawn in the list</td>
+<td><a href="sortable_item.html"><code>SortableItem</code></a></td>
 </tr>
 <tr>
 <td><code>className</code></td>

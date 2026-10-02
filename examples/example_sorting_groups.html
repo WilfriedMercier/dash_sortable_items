@@ -891,7 +891,11 @@
 
   <h1>Sorting sortable lists</h1>
 
-<p>Because <code>SortableGroup</code> is a Dash component, it is possible to wrap it around a <code>SortableItem</code>, itself within a parent <code>SortableGroup</code>. This allows to have multiple levels of sortable lists, for instance sections or categories with sortable items inside that are themselves sortable.</p>
+<div class="admonition important">
+<p class="admonition-title">Note:</p>
+<p>As illustrated in the "Example" tab, items cannot be moved from one group to another at the moment.</p>
+</div>
+<p>Because <a href="../API/sortable_group.html"><code>SortableGroup</code></a> is a Dash component, it is possible to wrap it around a <a href="../API/sortable_group.html"><code>SortableItem</code></a>, itself within a parent <a href="../API/sortable_group.html"><code>SortableGroup</code></a>. This allows to have multiple levels of sortable lists, for instance sections or categories with sortable items inside that are themselves sortable.</p>
 <p>The example below shows how this works:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Dash layout</label><label for="__tabbed_1_2">CSS stylesheet</label><label for="__tabbed_1_3">Example</label></div>
 <div class="tabbed-content">
@@ -921,7 +925,7 @@
 </span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="n">dash</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">H3</span><span class="p">(</span><span class="s1">'First sortable group'</span><span class="p">),</span>
 </span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        <span class="n">SortableGroup</span><span class="p">(</span>
 </span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>            <span class="nb">id</span>        <span class="o">=</span> <span class="s1">'group1'</span><span class="p">,</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>            <span class="n">items</span>     <span class="o">=</span> <span class="n">generate_items</span><span class="p">(</span><span class="s1">'First group'</span><span class="p">),</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>            <span class="n">children</span>  <span class="o">=</span> <span class="n">generate_items</span><span class="p">(</span><span class="s1">'First group'</span><span class="p">),</span>
 </span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>            <span class="n">className</span> <span class="o">=</span> <span class="s1">'group'</span>
 </span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        <span class="p">)</span>
 </span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    <span class="p">],</span>
@@ -934,7 +938,7 @@
 </span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>        <span class="n">dash</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">H3</span><span class="p">(</span><span class="s1">'Second sortable group'</span><span class="p">),</span>
 </span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        <span class="n">SortableGroup</span><span class="p">(</span>
 </span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>            <span class="nb">id</span>        <span class="o">=</span> <span class="s1">'group2'</span><span class="p">,</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>            <span class="n">items</span>     <span class="o">=</span> <span class="n">generate_items</span><span class="p">(</span><span class="s1">'Second group'</span><span class="p">),</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>            <span class="n">children</span>  <span class="o">=</span> <span class="n">generate_items</span><span class="p">(</span><span class="s1">'Second group'</span><span class="p">),</span>
 </span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>            <span class="n">className</span> <span class="o">=</span> <span class="s1">'group'</span>
 </span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        <span class="p">)</span>
 </span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    <span class="p">],</span>
@@ -997,11 +1001,7 @@
 </div>
 </div>
 </div>
-<p>In the example above, we use <code class="language-py3 highlight"><span class="n">generate_items</span><span class="p">()</span></code> to generate a list of sortable items with unique IDs and then create two groups <code>group1</code> and <code>group2</code>. For styling purposes, the groups are wrapped with a h3 HTML element to better identify the rows inside a <code>SortableItem</code>. Then, each <code>SortableItem</code> is placed inside a <code>SortableGroup</code>. This creates three <code>SortableGroup</code> components, one sitting at the top and acting as a group of groups and two inner groups that can be sorted. Each inner group also contains items that can be sorted within their parent group.</p>
-<div class="admonition important">
-<p class="admonition-title">Note:</p>
-<p>As illustrated in the "Example" tab, items cannot be moved from one group to another at the moment.</p>
-</div>
+<p>In the example above, we use <code class="language-py3 highlight"><span class="n">generate_items</span><span class="p">()</span></code> to generate a list of sortable items with unique IDs and then create two groups <code>group1</code> and <code>group2</code>. For styling purposes, the groups are wrapped with a h3 HTML element to better identify the rows inside a <a href="../API/sortable_item.html"><code>SortableItem</code></a>. Then, each <a href="../API/sortable_item.html"><code>SortableItem</code></a> is placed inside a <a href="../API/sortable_group.html"><code>SortableGroup</code></a>. This creates three <a href="../API/sortable_group.html"><code>SortableGroup</code></a> components, one sitting at the top and acting as a group of groups and two inner groups that can be sorted. Each inner group also contains items that can be sorted within their parent group.</p>
 
 
 

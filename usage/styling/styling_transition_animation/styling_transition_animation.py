@@ -29,7 +29,7 @@ item3 = SortableItem(
 )
 
 group = SortableGroup(
-    [item1, item2, item3],
+    children  = [item1, item2, item3],
     id        = 'group',
     className = 'group'
 )

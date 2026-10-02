@@ -23,7 +23,7 @@ group1 = SortableItem(
         dash.html.H3('First sortable group'),
         SortableGroup(
             id        = 'group1',
-            items     = generate_items('First group'),
+            children  = generate_items('First group'),
             className = 'group'
         )
     ],
@@ -36,7 +36,7 @@ group2 = SortableItem(
         dash.html.H3('Second sortable group'),
         SortableGroup(
             id        = 'group2',
-            items     = generate_items('Second group'),
+            children  = generate_items('Second group'),
             className = 'group'
         )
     ],
@@ -44,6 +44,6 @@ group2 = SortableItem(
     id        = 'group2-item'
 )
 
-app.layout = SortableGroup(items = [group1, group2], id='')
+app.layout = SortableGroup(children = [group1, group2], id='outer-group')
 
 app.run(debug=True)

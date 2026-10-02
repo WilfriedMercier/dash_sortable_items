@@ -5,10 +5,12 @@ import typing
 from   dash.testing.composite                  import DashComposite
 from   selenium.webdriver.common.by            import By
 from   selenium.webdriver.common.action_chains import ActionChains
+from   dash_sortable_items                     import SortableItem
 
 from   .fixtures.sortableGroup import (
     app_button__group,
     app_label__group,
+    app_label_and_button__group,
     app_label_with_restrictions__group
 )
 
@@ -113,7 +115,7 @@ class Test_SortableGroup:
         label = dash_duo.find_element('label', attribute='ID')
 
         # Check that label is empty at first
-        assert label.text == '', 'Label not empty at startup.'
+        assert label.text == 'item1/item2', f'Wrong label at startup ({label.text}).'
 
         # Check that item1 cannot change position with item2 because of its horizontal movement restriction
         actions.click_and_hold(item1).pause(pause).move_to_element(item2).release().perform()
@@ -122,6 +124,146 @@ class Test_SortableGroup:
         # Check that item2 can change position with item1 because it has no constraints on movement
         actions.click_and_hold(item2).pause(pause).move_to_element(item1).release().perform()
         assert label.text == 'item2/item1', 'Items\' order should have changed when moving item2 to item1\' position.'
+
+        return
+
+    def test_update_children_items(self, dash_duo: DashComposite, app_label_and_button__group: dash.Dash) -> None:
+        r'''Test that the children prop can be updated via a callback.'''
+
+        @app_label_and_button__group.callback(
+            dash.Output('label', 'children'),
+            dash.Input('group', 'sortedIds'),
+            prevent_initial_callback = True
+        )
+        def update_label(sortedIds: list) -> str:
+
+            if sortedIds is None: raise dash.exceptions.PreventUpdate
+
+            return '/'.join(sortedIds)
+
+        @app_label_and_button__group.callback(
+            dash.Output('group', 'children'),
+            dash.Input('button', 'n_clicks'),
+            prevent_initial_callback = True
+        )
+        def update_children(n_clicks: int | None) -> list[SortableItem]:
+
+            if n_clicks is None: raise dash.exceptions.PreventUpdate
+
+            if n_clicks%2 == 1:
+
+                item1 = SortableItem(
+                    id        = 'new-item1',
+                    restrict  = None,
+                    children  = [dash.html.Label('New first row')],
+                    className = 'row'
+                )
+
+                item2 = SortableItem(
+                    id        = 'new-item2',
+                    children  = [dash.html.Label('New second row')],
+                    className = 'row',
+                )
+
+                item3 = SortableItem(
+                    id        = 'new-item3',
+                    children  = [dash.html.Label('New third row')],
+                    className = 'row',
+                )
+
+                items = [item1, item2, item3]
+
+            else:
+                
+                item1 = SortableItem(
+                    id        = 'item1',
+                    restrict  = None,
+                    children  = [dash.html.Label('First row')],
+                    className = 'row'
+                )
+
+                item2 = SortableItem(
+                    id        = 'item2',
+                    children  = [dash.html.Label('Second row')],
+                    className = 'row',
+                )
+
+                items = [item1, item2]
+
+            return items
+
+        dash_duo.start_server(app_label_and_button__group)
+        actions = ActionChains(dash_duo.driver)
+
+        button = dash_duo.find_element('button', attribute='ID')
+        label  = dash_duo.find_element('label', attribute='ID')
+
+        # Check that the initial children are ok
+        group    = dash_duo.find_element('group', attribute='ID')
+        children = group.find_elements(By.XPATH, "./child::*")
+
+        assert len(children) == 2, 'Wrong number of initial children for the SortableGroup.'
+        assert (
+            (children[0].text == 'First row') and 
+            (children[1].text == 'Second row')
+        ), 'Wrong initial children for the SortableGroup.'
+        assert label.text == 'item1/item2', 'Wrong initial label.'
+
+        # Check that re-ordering works before the callback is triggered
+        actions.click_and_hold(children[0]).pause(0.5).move_to_element(children[1]).release().perform()
+
+        children = group.find_elements(By.XPATH, "./child::*")
+        assert (
+            (children[0].text == 'Second row') and 
+            (children[1].text == 'First row')
+        ), 'Reordering does not work before callback is called.'
+        assert label.text == 'item2/item1', 'Wrong label after reordering.'
+
+        # Check that the children are ok after the first callback
+        actions.click(button).pause(0.5).perform()
+
+        children = group.find_elements(By.XPATH, "./child::*")
+
+        assert len(children) == 3, 'Wrong number of children for the SortableGroup after first click.'
+        assert (
+            (children[0].text == 'New first row') and 
+            (children[1].text == 'New second row') and
+            (children[2].text == 'New third row')
+        ), 'Wrong children for the SortableGroup after first click.'
+        assert label.text == 'new-item1/new-item2/new-item3', 'Wrong label after first click.'
+
+        # Check that re-ordering works after the first callback
+        actions.click_and_hold(children[0]).pause(0.5).move_to_element(children[2]).release().perform()
+
+        children = group.find_elements(By.XPATH, "./child::*")
+        assert (
+            (children[0].text == 'New second row') and 
+            (children[1].text == 'New third row') and
+            (children[2].text == 'New first row')
+        ), 'Reordering does not work after first callback trigger.'
+        assert label.text == 'new-item2/new-item3/new-item1', 'Wrong label after reordering after first click.'
+
+        # Check that the children are ok after the second callback
+        actions.click(button).pause(0.5).perform()
+
+        children = group.find_elements(By.XPATH, "./child::*")
+
+        assert len(children) == 2, 'Wrong number of children for the SortableGroup after second click.'
+        assert (
+            (children[0].text == 'First row') and 
+            (children[1].text == 'Second row')
+        ), 'Wrong children for the SortableGroup after second click.'
+        assert label.text == 'item1/item2', 'Wrong label after second click.'
+
+        # Check that re-ordering works before the second callback is triggered
+        actions.click_and_hold(children[0]).pause(0.5).move_to_element(children[1]).release().perform()
+
+        children = group.find_elements(By.XPATH, "./child::*")
+        assert (
+            (children[0].text == 'Second row') and 
+            (children[1].text == 'First row')
+        ), 'Reordering does not work after second callback trigger.'
+        assert label.text == 'item2/item1', 'Wrong label after second click after reordering.'
 
         return
 

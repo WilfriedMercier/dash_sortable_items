@@ -31,7 +31,7 @@ def app_button__item() -> dash.Dash:
     group = SortableGroup(
         id        = 'group',
         className = 'group',
-        items     = [item1, item2]
+        children  = [item1, item2]
     )
 
     button = dash.dcc.Button('Click me !', id = 'button')
@@ -62,7 +62,7 @@ def app_button_no_handle__item() -> dash.Dash:
     group = SortableGroup(
         id        = 'group',
         className = 'group',
-        items     = [item1, item2]
+        children  = [item1, item2]
     )
 
     button = dash.dcc.Button('Click me !', id = 'button')
@@ -102,7 +102,7 @@ def app_drag_style__item() -> dash.Dash:
     group = SortableGroup(
         id        = 'group',
         className = 'group',
-        items     = [item1, item2]
+        children  = [item1, item2]
     )
 
     app.layout = dash.html.Div(group, style={'display' : 'flex'})
@@ -140,7 +140,7 @@ def app_drop_style__item() -> dash.Dash:
     group = SortableGroup(
         id            = 'group',
         className     = 'group',
-        items         = [item1, item2],
+        children      = [item1, item2],
         dropAnimation = {'duration' : 3000, 'easing' : 'ease'}
     )
 

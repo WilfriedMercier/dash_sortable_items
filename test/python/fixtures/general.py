@@ -40,7 +40,7 @@ def app_with_four_items() -> dash.Dash:
     group = SortableGroup(
         id        = 'group',
         className = 'group',
-        items     = [item1, item2, item3, item4]
+        children  = [item1, item2, item3, item4]
     )
 
     app.layout = group
@@ -69,7 +69,7 @@ def app_with_two_items() -> dash.Dash:
     group = SortableGroup(
         id        = 'group',
         className = 'group',
-        items     = [item1, item2]
+        children  = [item1, item2]
     )
 
     app.layout = group
@@ -102,7 +102,7 @@ def app_with_two_handle_positions() -> dash.Dash:
     group = SortableGroup(
         id        = 'group',
         className = 'group',
-        items     = [item1, item2]
+        children  = [item1, item2]
     )
 
     app.layout = group
@@ -139,7 +139,7 @@ def app_with_locked_items() -> dash.Dash:
     group = SortableGroup(
         id        = 'group',
         className = 'group',
-        items     = [item1, item2, item3]
+        children  = [item1, item2, item3]
     )
 
     app.layout = group

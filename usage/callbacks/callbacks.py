@@ -95,13 +95,25 @@ def reset(_) -> list[SortableItem]:
     dash.Output('group', 'children', allow_duplicate=True),
     dash.Input('button2', 'n_clicks'),
     dash.State('group', 'children'),
+    dash.State('group', 'sortedIds'),
     prevent_initial_call = True
 )
-def remove1(_, children: list[SortableItem]) -> list[SortableItem]:
+def remove1(_, children: list[SortableItem], sortedIds: list[str]) -> list[SortableItem]:
     r'''Remove one element in the list whenever button2 is clicked.'''
 
     if _ is None: raise dash.exceptions.PreventUpdate
 
-    return children[:-1] if len(children) > 0 else []
+    last_id = sortedIds[-1]
+
+    # Extract the ids of the chidlren of the group
+    children_ids = [child['props']['id'] for child in children]
+
+    # Find and remove the child with the last id in sortedId
+    if last_id in children_ids:
+        children.pop(children_ids.index(last_id))
+    else: 
+        children = []
+
+    return children
 
 app.run(debug=True)

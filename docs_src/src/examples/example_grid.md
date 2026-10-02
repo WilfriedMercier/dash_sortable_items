@@ -1,4 +1,4 @@
-An alternative layout is a grid which can be achieved by providing `#!py3 style = {'style' : 'grid'}` to `SortableGroup`.
+An alternative layout is a grid which can be achieved by providing `#!py3 style = {'style' : 'grid'}` to [`SortableGroup`](../API/sortable_group.md).
 
 See the example below for a grid layout.
 
@@ -30,7 +30,7 @@ See the example below for a grid layout.
 
     group = SortableGroup(
         id        = 'group',
-        items  = [item1, item2, item3],
+        children  = [item1, item2, item3],
         className = 'group',
         style     = {
             'display'             : 'grid',

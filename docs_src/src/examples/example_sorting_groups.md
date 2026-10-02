@@ -1,4 +1,7 @@
-Because `SortableGroup` is a Dash component, it is possible to wrap it around a `SortableItem`, itself within a parent `SortableGroup`. This allows to have multiple levels of sortable lists, for instance sections or categories with sortable items inside that are themselves sortable.
+!!! important "Note:"
+    As illustrated in the "Example" tab, items cannot be moved from one group to another at the moment.
+
+Because [`SortableGroup`](../API/sortable_group.md) is a Dash component, it is possible to wrap it around a [`SortableItem`](../API/sortable_group.md), itself within a parent [`SortableGroup`](../API/sortable_group.md). This allows to have multiple levels of sortable lists, for instance sections or categories with sortable items inside that are themselves sortable.
 
 The example below shows how this works:
 
@@ -30,7 +33,7 @@ The example below shows how this works:
             dash.html.H3('First sortable group'),
             SortableGroup(
                 id        = 'group1',
-                items     = generate_items('First group'),
+                children  = generate_items('First group'),
                 className = 'group'
             )
         ],
@@ -43,7 +46,7 @@ The example below shows how this works:
             dash.html.H3('Second sortable group'),
             SortableGroup(
                 id        = 'group2',
-                items     = generate_items('Second group'),
+                children  = generate_items('Second group'),
                 className = 'group'
             )
         ],
@@ -107,7 +110,4 @@ The example below shows how this works:
 
     ![A gif showing two sortable lists that can be sorted themselves.](../img/sorting_groups.gif){ loading=lazy }
 
-In the example above, we use `#!py3 generate_items()` to generate a list of sortable items with unique IDs and then create two groups `group1` and `group2`. For styling purposes, the groups are wrapped with a h3 HTML element to better identify the rows inside a `SortableItem`. Then, each `SortableItem` is placed inside a `SortableGroup`. This creates three `SortableGroup` components, one sitting at the top and acting as a group of groups and two inner groups that can be sorted. Each inner group also contains items that can be sorted within their parent group.
-
-!!! important "Note:"
-    As illustrated in the "Example" tab, items cannot be moved from one group to another at the moment.
+In the example above, we use `#!py3 generate_items()` to generate a list of sortable items with unique IDs and then create two groups `group1` and `group2`. For styling purposes, the groups are wrapped with a h3 HTML element to better identify the rows inside a [`SortableItem`](../API/sortable_item.md). Then, each [`SortableItem`](../API/sortable_item.md) is placed inside a [`SortableGroup`](../API/sortable_group.md). This creates three [`SortableGroup`](../API/sortable_group.md) components, one sitting at the top and acting as a group of groups and two inner groups that can be sorted. Each inner group also contains items that can be sorted within their parent group.

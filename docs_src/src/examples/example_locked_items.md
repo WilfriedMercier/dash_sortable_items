@@ -1,4 +1,4 @@
-It is possible to lock an item to prevent it from being draggable by providing `#!py3 lock = True` to `SortableGroup`.
+It is possible to lock an item to prevent it from being draggable by providing `#!py3 lock = True` to [`SortableGroup`](../API/sortable_group.md).
 
 See the example below for a layout with the first item locked.
 
@@ -31,7 +31,7 @@ See the example below for a layout with the first item locked.
 
     group = SortableGroup(
         id        = 'group',
-        items     = [item1, item2, item3],
+        children  = [item1, item2, item3],
         className = 'group'
     )
 

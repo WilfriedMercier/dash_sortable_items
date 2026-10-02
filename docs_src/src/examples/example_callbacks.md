@@ -1,20 +1,20 @@
-At the moment, there is no direct way to re-order items of a `SortableGroup` components via a callback. While it is possible to change the `sortedIds` props, this will not affect the interface.
-
-The trick to re-order items programmatically is to wrap the `SortableGroup` within a parent element and draw again the `SortableGroup` child with its `SortableItem` children in a different order. In the example below, the `SortableGroup` component is wrapped within a Div HTML element with ID `group-container`. When the button is clicked, the `re_order` callback is called which creates a new `SortableGroup` component with the initial order for its children.
+Adding or removing the items from a [`SortableGroup`](../API/sortable_group.md) or updating the order of the items can be done via callbacks by passing the `children` props as output. Thus, this requires to redraw the [`SortableItem`](../API/sortable_item.md) children. Note that the `sortedIds` props is automatically updated when the children change.
 
 !!! note "Note:"
-    Do not forget to also update the `sortedIds` props. Otherwise, the visible order will not match the internal order which may trigger glitches upon reordering.
+    Updating `sortedIds` in a callback will not draw again the chidren in a different order
+
+The `children` props is not sorted. To get the right child in a callback based on its position, use `sortedIds` in combination with `children` (see the example below).
 
 === "Dash layout"
 
-    ```python hl_lines="70 71 72 73 74 75 76 77 78 79"
+    ```python hl_lines="83 84 85 86 87 88 89 90 91 92 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117"
     import dash
     from   dash_iconify        import DashIconify
     from   dash_sortable_items import SortableGroup, SortableItem
 
     app = dash.Dash(__name__, assets_folder='./')
 
-    def draw_items():
+    def draw_items() -> list[SortableItem]:
 
         item1 = SortableItem(
             id        = 'ducky',
@@ -34,61 +34,99 @@ The trick to re-order items programmatically is to wrap the `SortableGroup` with
             className = 'item'
         )
 
-        group = SortableGroup(
-            id        = 'group',
-            items     = [item1, item2, item3],
-            className = 'group'
-        )
+        return [item1, item2, item3]
 
-        return group
+    group = SortableGroup(
+        id        = 'group',
+        children  = draw_items(),
+        className = 'group'
+    )
 
-    group           = draw_items()
     group_container = dash.html.Div(group, id='group-container', className='group-container')
 
-    button = dash.dcc.Button(
-        'Click me to reset the list',
-        style     = {'maxWidth' : '150px'},
-        id        = 'button',
+    button1 = dash.dcc.Button(
+        'Reset',
+        id        = 'button1',
         className = 'button'
+    )
+
+    button2 = dash.dcc.Button(
+        'Remove last item',
+        id        = 'button2',
+        className = 'button'
+    )
+
+    button_row = dash.html.Div(
+        [button1, button2],
+        style = {
+            'display'        : 'flex', 
+            'flexDirection'  : 'row',
+            'justifyContent' : 'space-between'
+        }
     )
 
     label = dash.html.Label('Order:', id='label')
 
     app.layout = dash.html.Div([
             dash.html.Div(
-                [group_container, button], 
+                [group_container, button_row], 
                 style = {
-                    'display'       : 'flex', 
-                    'flexDirection' : 'row',
+                    'display'       : 'flex',   
+                    'flexDirection' : 'column',
                     'gap'           : '20px'
             }), 
             label
         ], 
-        className='container'
-    )
+        className='container')
 
     @app.callback(
         dash.Output('label', 'children'),
         dash.Input('group', 'sortedIds')
     )
     def _(sortedIds: list[str] | None) -> str: 
+        r'''Update the label every time the sortedIds props changes.'''
 
         if sortedIds is None: raise dash.exceptions.PreventUpdate
 
         return '/'.join(sortedIds)
 
     @app.callback(
-        dash.Output('group-container', 'children'),
-        dash.Output('group', 'sortedIds'),
-        dash.Input('button', 'n_clicks')
+        dash.Output('group', 'children'),
+        dash.Input('button1', 'n_clicks')
     )
-    def re_order(_) -> tuple[SortableGroup, list[str]]:
+    def reset(_) -> list[SortableItem]:
+        r'''Reset the list when button1 is clicked.'''
 
         if _ is None: raise dash.exceptions.PreventUpdate
 
-        return draw_items(), ['ducky', 'doggo', 'rosie']
+        return draw_items()
 
-    app.run(debug=True)
+    @app.callback(
+        dash.Output('group', 'children', allow_duplicate=True),
+        dash.Input('button2', 'n_clicks'),
+        dash.State('group', 'children'),
+        dash.State('group', 'sortedIds'),
+        prevent_initial_call = True
+    )
+    def remove1(_, children: list[SortableItem], sortedIds: list[str]) -> list[SortableItem]:
+        r'''Remove one element in the list whenever button2 is clicked.'''
+
+        if _ is None: raise dash.exceptions.PreventUpdate
+
+        last_id = sortedIds[-1]
+
+        # Extract the ids of the chidlren of the group
+        children_ids = [child['props']['id'] for child in children]
+
+        # Find and remove the child with the last id in sortedId
+        if last_id in children_ids:
+            children.pop(children_ids.index(last_id))
+        else: 
+            children = []
+
+        return children
+
+        app.run(debug=True)
     ```
 
 === "CSS stylesheet"

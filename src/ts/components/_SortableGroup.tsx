@@ -46,10 +46,7 @@ export default function _SortableGroup( {
     // When children changes via a callback, we update the itemIds and set the sortedIds
     useEffect(() => {
 
-        console.log('hasCanceled', cancelRef.current);
         if (!isDraggingRef.current && !cancelRef.current) {
-
-            console.log('children');
 
             sortedChildrenRef.current = children;
 

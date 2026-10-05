@@ -17,8 +17,8 @@ export default function _SortableItem( {
         id, 
         className,
         styles,
-        styles_drag,
-        styles_drop,
+        stylesDrag,
+        stylesDrop,
         handle,
         restrict,
         index               = 0,
@@ -71,9 +71,9 @@ export default function _SortableItem( {
 
         const handle_style = (
             isDragging ?
-            {...lock_styles.handle, ...styles_drag?.handle} : (
+            {...lock_styles.handle, ...stylesDrag?.handle} : (
                 isDropping ?
-                {...lock_styles.handle, ...styles_drop?.handle} :
+                {...lock_styles.handle, ...stylesDrop?.handle} :
                 {...lock_styles.handle, ...styles?.handle}
             )
         )
@@ -92,9 +92,9 @@ export default function _SortableItem( {
     // Final div style applied to the div
     const div_style = (
         isDragging ?
-        {...default_styles.div, ...default_drag_styles.div, ...lock_styles.div, ...styles_drag?.div} : (
+        {...default_styles.div, ...default_drag_styles.div, ...lock_styles.div, ...stylesDrag?.div} : (
             isDropping ?
-            {...default_styles.div, ...default_drop_styles.div, ...lock_styles.div, ...styles_drop?.div} :
+            {...default_styles.div, ...default_drop_styles.div, ...lock_styles.div, ...stylesDrop?.div} :
             {...default_styles.div, ...lock_styles.div, ...styles?.div}
         )
     );

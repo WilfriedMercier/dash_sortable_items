@@ -1,15 +1,18 @@
 import typing
 
 class DashComplexId(typing.TypedDict):
-    type  : str
-    index : str | int
-
-class AnimationOptions(typing.TypedDict):
-    duration : int
-    easing   : str
+    type  : typing.Required[str]
+    index : typing.Required[str | int]
 
 type DashId   = str | DashComplexId | None
 handlePosType = typing.Literal['start', 'end']
 restrictType  = typing.Literal['vertical', 'horizontal'] | None
 CSSDict       = dict[str, typing.Any]
-stylesType    = dict[str, CSSDict]
+
+class AnimationOptions(typing.TypedDict):
+    duration : typing.ReadOnly[typing.NotRequired[int]]
+    easing   : typing.ReadOnly[typing.NotRequired[str]]
+
+class stylesType(typing.TypedDict):
+    div    : typing.ReadOnly[typing.NotRequired[CSSDict]]
+    handle : typing.ReadOnly[typing.NotRequired[CSSDict]]

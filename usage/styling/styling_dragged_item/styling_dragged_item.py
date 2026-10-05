@@ -17,11 +17,11 @@ item2 = SortableItem(
 )
 
 item3 = SortableItem(
-    id        = 'item3',
-    children  = [dash.html.Label('Row #3')],
-    handle    = DashIconify(icon='iconmind:drag-handle-duotone-bold', width=30, height=30),
-    className = 'item',
-    styles_drag = {
+    id         = 'item3',
+    children   = [dash.html.Label('Row #3')],
+    handle     = DashIconify(icon='iconmind:drag-handle-duotone-bold', width=30, height=30),
+    className  = 'item',
+    stylesDrag = {
         'div' : {
             'border'  : '3px solid darkgreen',
             'opacity' : 1,

@@ -22,8 +22,8 @@ class SortableItem(_SortableItem):
     :param lock: Whether to lock the item (i.e. make it not moveable) or not.
     :param restrict: Whether to restrict items to vertical or horizontal motions only. None means there is no restriction.
     :param styles: CSS styles to apply. This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
-    :param styles_drag: CSS styles to apply when the item is being draggeds. This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
-    :param styles_drop: CSS styles to apply when the item is being dropped. This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
+    :param stylesDrag: CSS styles to apply when the item is being draggeds. This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
+    :param stylesDrop: CSS styles to apply when the item is being dropped. This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
     :param transitionAnimation: Dictionary with properties to style the animation when an item moves from one position to another. None disables the animation.
     """
 
@@ -37,8 +37,8 @@ class SortableItem(_SortableItem):
         lock                : bool                    = False,
         restrict            : restrictType            = None,
         styles              : stylesType              = {},
-        styles_drag         : stylesType              = {},
-        styles_drop         : stylesType              = {},
+        stylesDrag          : stylesType              = {},
+        stylesDrop          : stylesType              = {},
         transitionAnimation : AnimationOptions | None = {'duration' : 250, 'easing' : 'ease'}
     ):
 
@@ -49,8 +49,8 @@ class SortableItem(_SortableItem):
             'lock'                : lock,
             'restrict'            : restrict,
             'styles'              : styles,
-            'styles_drag'         : styles_drag,
-            'styles_drop'         : styles_drop,
+            'stylesDrag'          : stylesDrag,
+            'stylesDrop'          : stylesDrop,
             'transitionAnimation' : transitionAnimation
         }
 

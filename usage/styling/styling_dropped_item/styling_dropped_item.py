@@ -21,6 +21,9 @@ item3 = SortableItem(
     children   = [dash.html.Label('Row #3')],
     handle     = DashIconify(icon='iconmind:drag-handle-duotone-bold', width=30, height=30),
     className  = 'item',
+    dynamicHandle = {
+        'drop' : DashIconify(icon='ant-design:fall-outlined', width=30, height=30)
+    },    
     stylesDrop = {
         'div' : {
             'border'  : '3px solid darkgreen',

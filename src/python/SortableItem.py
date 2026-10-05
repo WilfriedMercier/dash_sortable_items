@@ -3,6 +3,7 @@ from   .types import (
     DashId, 
     handlePosType, 
     restrictType, 
+    handleDynamicType,
     stylesType,
     AnimationOptions
 )
@@ -22,8 +23,9 @@ class SortableItem(_SortableItem):
     :param lock: Whether to lock the item (i.e. make it not moveable) or not.
     :param restrict: Whether to restrict items to vertical or horizontal motions only. None means there is no restriction.
     :param styles: CSS styles to apply. This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
-    :param stylesDrag: CSS styles to apply when the item is being draggeds. This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
-    :param stylesDrop: CSS styles to apply when the item is being dropped. This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
+    :param stylesDrag: CSS styles to apply when the item is being draggeds. See styles.
+    :param stylesDrop: CSS styles to apply when the item is being dropped. See styles.
+    :param stylesLock: CSS styles to apply when the item is locked. See styles.
     :param transitionAnimation: Dictionary with properties to style the animation when an item moves from one position to another. None disables the animation.
     """
 
@@ -32,6 +34,7 @@ class SortableItem(_SortableItem):
         id                  : DashId,
         children            : typing.Any              = None,
         className           : str                     = '',
+        dynamicHandle       : handleDynamicType       = {},
         handle              : typing.Any              = None,
         handlePos           : handlePosType           = 'start',
         lock                : bool                    = False,
@@ -39,6 +42,7 @@ class SortableItem(_SortableItem):
         styles              : stylesType              = {},
         stylesDrag          : stylesType              = {},
         stylesDrop          : stylesType              = {},
+        stylesLock          : stylesType              = {},
         transitionAnimation : AnimationOptions | None = {'duration' : 250, 'easing' : 'ease'}
     ):
 
@@ -51,11 +55,13 @@ class SortableItem(_SortableItem):
             'styles'              : styles,
             'stylesDrag'          : stylesDrag,
             'stylesDrop'          : stylesDrop,
+            'stylesLock'          : stylesLock,
             'transitionAnimation' : transitionAnimation
         }
 
-        if handle is not None: self._args['handle'] = handle
-        if id     is not None: self._args['id']     = id
+        if handle is not None        : self._args['handle'] = handle
+        if dynamicHandle is not None : self._args['dynamicHandle'] = dynamicHandle
+        if id     is not None        : self._args['id']     = id
 
         super().__init__(**self._args)
 

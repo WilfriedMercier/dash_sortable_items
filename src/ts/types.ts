@@ -62,6 +62,12 @@ export interface SortableItemProps extends Omit<DefaultComponentProps, 'style' |
     */
     handle    ?: ReactNode;
 
+    dynamicHandle ?: null | {
+        'drag' ?: ReactNode;
+        'drop' ?: ReactNode;
+        'lock' ?: ReactNode;
+    };
+
     /**Whether to lock the item (i.e. make it not moveable) or not.*/
     lock      ?: boolean;
 
@@ -98,6 +104,15 @@ export interface SortableItemProps extends Omit<DefaultComponentProps, 'style' |
      * This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
     */
     stylesDrop ?: {
+        div    ?: any;
+        handle ?: any;
+    }
+
+    /**
+     * CSS styles to apply when the item is locked. 
+     * This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
+    */
+    stylesLock ?: {
         div    ?: any;
         handle ?: any;
     }

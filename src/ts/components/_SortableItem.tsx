@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactElement, useEffect } from "react";
+import React, { CSSProperties, ReactElement, useEffect, ReactNode } from "react";
 
 import { useSortable }       from "@dnd-kit/react/sortable";
 import { shapeIntersection } from '@dnd-kit/collision';
@@ -19,8 +19,10 @@ export default function _SortableItem( {
         styles,
         stylesDrag,
         stylesDrop,
+        stylesLock,
         handle,
         restrict,
+        dynamicHandle,
         index               = 0,
         lock                = false,
         handlePos           = 'start',
@@ -58,46 +60,63 @@ export default function _SortableItem( {
         })
     }, [isDropping]);
 
-    // Style used when the item is locked
-    let lock_styles = {
-        handle : {cursor : lock ? 'default' : 'grab'},
-        div    : {cursor : !lock && handle === undefined ? 'grab' : 'default'}
-    } as Record<string, CSSProperties>;
-
     // Handle item defined by the user but wrapped with a forward ref to assign the handleRef
     let new_handle: ReactElement<typeof HandleWrapper> | null;
 
     if (handle !== undefined) {
 
-        const handle_style = (
-            isDragging ?
-            {...lock_styles.handle, ...stylesDrag?.handle} : (
-                isDropping ?
-                {...lock_styles.handle, ...stylesDrop?.handle} :
-                {...lock_styles.handle, ...styles?.handle}
-            )
-        )
+        // Dynamic style used for the handle if there is one
+        let handle_style = default_styles?.handle;
+        let handle_dynamic : ReactNode;
+
+        if (isDragging) {
+            handle_style   = {...handle_style, ...default_drag_styles?.handle, ...stylesDrag?.handle};
+            handle_dynamic = dynamicHandle?.drag || handle;
+        }
+        else if (isDropping) {
+            handle_style   = {...handle_style, ...default_drop_styles?.handle, ...stylesDrop?.handle};
+            handle_dynamic = dynamicHandle?.drop || handle;
+        }
+        else if (lock) {
+            handle_style   = {...handle_style, ...default_lock_styles?.handle, ...stylesLock?.handle};
+            handle_dynamic = dynamicHandle?.lock || handle;
+        }
+        else {
+            handle_style   = {...handle_style, ...styles?.handle};
+            handle_dynamic = handle;
+        }
 
         new_handle = <HandleWrapper 
             ref       = {handleRef} 
             className = 'sortable-item-handle'
             style     = {handle_style}
-            child     = {handle} 
+            child     = {handle_dynamic} 
         />
 
     } else {
-        new_handle = null
+        new_handle = null;
     };
 
-    // Final div style applied to the div
-    const div_style = (
-        isDragging ?
-        {...default_styles.div, ...default_drag_styles.div, ...lock_styles.div, ...stylesDrag?.div} : (
-            isDropping ?
-            {...default_styles.div, ...default_drop_styles.div, ...lock_styles.div, ...stylesDrop?.div} :
-            {...default_styles.div, ...lock_styles.div, ...styles?.div}
-        )
-    );
+    // Dynamic style applied to the div element
+    // If handle is provided, the cursor is set to default
+    // Other dynamic styles are handled below
+    let div_style = {
+        ...default_styles?.div, 
+        ...(handle !== undefined ? {cursor : 'default'} : {})
+    };
+
+    if (isDragging) {
+        div_style = {...div_style, ...default_drag_styles?.div, ...stylesDrag?.div};
+    }
+    else if (isDropping) {
+        div_style = {...div_style, ...default_drop_styles?.div, ...stylesDrop?.div};
+    }
+    else if (lock) {
+        div_style = {...div_style, ...default_lock_styles?.div, ...stylesLock?.div};
+    }
+    else {
+        div_style = {...div_style, ...styles?.div};
+    }
 
     return <div 
             id        = {id}
@@ -125,6 +144,10 @@ const default_styles: Record<string, React.CSSProperties> = {
         flex            : 1,
         alignItems      : 'center',
         gap             : '20px',
+        cursor          : 'grab'
+    },
+    handle : {
+        cursor : 'grab'
     }
 };
 
@@ -139,5 +162,16 @@ const default_drag_styles: Record<string, React.CSSProperties> = {
 const default_drop_styles: Record<string, React.CSSProperties> = {
     div : {
         opacity : 0.5,
+    }
+};
+
+// Default style applied on top of the default styles when the item is locked
+const default_lock_styles:  Record<string, CSSProperties> = {
+    div : {
+        cursor  : 'not-allowed',
+        opacity : 0.5
+    },
+    handle : {
+        cursor : 'not-allowed'
     }
 };

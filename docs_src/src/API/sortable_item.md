@@ -18,8 +18,8 @@ The following arguments must always be provided when creating a new `SortableIte
 | `lock` | Whether to lock the item or not. Default is `#!py3 False` | `#!py3 bool` |
 | `restrict` | Whether to restrict the item to vertical or horizontal movement only. Default is no restriction. | `#!py3 'vertical'`, `#!py3 'horizontal'`, or `#!py3 None` |
 | `styles` | Dictionary used to style inner components. Each key identifies a component and each value is a dictionary with camel cased CSS properties. Allowed keys are `#!py3 'div'` to style the parent Div HTML element and `#!py3 'handle'` to style the Div HTML element wrapping the handle, if provided | `#!py3 {'div' : {...}, 'handle' : {...}}` |
-| `styles_drag` | Same as `style` but used when the component is being dragged | `#!py3 {'div' : {...}, 'handle' : {...}}` |
-| `styles_drop` | Same as `style` but used when the component is dropped | `#!py3 {'div' : {...}, 'handle' : {...}}` |
+| `stylesDrag` | Same as `style` but used when the component is being dragged | `#!py3 {'div' : {...}, 'handle' : {...}}` |
+| `stylesDrop` | Same as `style` but used when the component is dropped | `#!py3 {'div' : {...}, 'handle' : {...}}` |
 | `transitionAnimation` | Dictionary used to customize the animation used when an item transitions from one position to another. `#!py3 None` means there is no transition. If not `#!py3 None`, the following keys are mandatory: `#!py3 'duration'` which indicates how long the transition lasts in millisecond and `#!py3 'easing'` which specifies which CSS easing function to use. | `#!py3 {'duration' : {...}, 'easing' : {...}}` |
 
 ## Values accessible via callbacks
@@ -34,8 +34,8 @@ The arguments below can be used to trigger callbacks or can be updated in callba
 | `isDropping` | :white_check_mark: | :x: | Boolean flag specifying whether the item is currently being dropped or not. Note that the drop animation set in [`SortableGroup`](../API/sortable_group.md) may need to be long enough for it to trigger. |
 | `lock` | :white_check_mark: | :white_check_mark: | Can be used to lock/unlock items when pressing a button or to trigger a suite of actions when an item unlocks. |
 | `styles` | :white_check_mark: | :x: | If `styles` is updated in a callback, the new styles will not be rendered. |
-| `styles_drag` | :white_check_mark: | :x: | Same as `styles`. |
-| `styles_drop` | :white_check_mark: | :x: | Same as `styles`. |
+| `stylesDrag` | :white_check_mark: | :x: | Same as `styles`. |
+| `stylesDrop` | :white_check_mark: | :x: | Same as `styles`. |
 | `transitionAnimation` | :white_check_mark: | :white_check_mark: | Can be used to update the animation depending on the order of the items |
 
 

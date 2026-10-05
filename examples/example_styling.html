@@ -1012,8 +1012,8 @@
 <p>For each <a href="../API/sortable_item.html"><code>SortableItem</code></a>, it is possible to provide CSS stylesheets that are applied when the item is being dragged or dropped without using callbacks. The three following style dictionaries can be provided:</p>
 <ul>
 <li><code>'styles'</code> which corresponds to the default style</li>
-<li><code>'styles_drag'</code> which is applied on top of '<code>styles'</code> when the item is being dragged</li>
-<li><code>'styles_drop'</code> which is applied on top of '<code>styles'</code> when the item is being dropped</li>
+<li><code>'stylesDrag'</code> which is applied on top of '<code>styles'</code> when the item is being dragged</li>
+<li><code>'stylesDrop'</code> which is applied on top of '<code>styles'</code> when the item is being dropped</li>
 </ul>
 <p>Each is a dictionary with the following structure <code class="language-py3 highlight"><span class="p">{</span><span class="s1">'div'</span> <span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s1">'handle'</span> <span class="p">:</span> <span class="o">...</span><span class="p">}</span></code> where <code class="language-py3 highlight"><span class="s1">'div'</span></code> styles the parent Div HTML element and <code class="language-py3 highlight"><span class="s1">'handle'</span></code> styles the handle, if provided.</p>
 <p>Alternatively, it is also possible to style a dragged component with class name <code class="language-py3 highlight"><span class="s1">'item'</span></code> via CSS stylesheets as follows:</p>

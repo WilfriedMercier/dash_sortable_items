@@ -86,7 +86,7 @@ def app_drag_style__item() -> dash.Dash:
             'handle' : {'backgroundColor' : 'red'},
             'div'    : {'backgroundColor' : 'yellow'}
         },
-        styles_drag = {
+        stylesDrag = {
             'handle' : {'backgroundColor' : 'green'},
             'div'    : {'backgroundColor' : 'blue', 'rotate' : '180deg'}
         },
@@ -124,7 +124,7 @@ def app_drop_style__item() -> dash.Dash:
             'handle' : {'backgroundColor' : 'red'},
             'div'    : {'backgroundColor' : 'yellow'}
         },
-        styles_drop = {
+        stylesDrop = {
             'handle' : {'backgroundColor' : 'green'},
             'div'    : {'backgroundColor' : 'blue', 'rotate' : '180deg'}
         },

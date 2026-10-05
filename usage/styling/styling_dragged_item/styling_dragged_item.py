@@ -21,7 +21,7 @@ item3 = SortableItem(
     children  = [dash.html.Label('Row #3')],
     handle    = DashIconify(icon='iconmind:drag-handle-duotone-bold', width=30, height=30),
     className = 'item',
-    styles_drag = {
+    stylesDrag = {
         'div' : {
             'border'  : '3px solid darkgreen',
             'opacity' : 1,

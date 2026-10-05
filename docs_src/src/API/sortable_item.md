@@ -1,10 +1,3 @@
-!!! note "Note:"
-    `SortableItem` is technically a placeholder for `_SortableItem`. For type checkers, one may therefore use as type hint
-
-    ```python
-    from dash_sortable_items._SortableItem import _SortableItem
-    ```
-
 ## Mandatory arguments
 
 The following arguments must always be provided when creating a new `SortableItem` component:
@@ -18,6 +11,7 @@ The following arguments must always be provided when creating a new `SortableIte
 
 | Name | Description | Type |
 | ---- | ----------- | ---- |
+| `children` | Dash components passed as children | |
 | `className` | CSS class name used to style the component via CSS stylesheets | `#!py3 str` |
 | `handle`    | Dash component used as handle. If `#!py3 None`, the entire item is used as handle | `#!py3 dict` or `#!py3 None` |
 | `handlePos` | Position of the handle in the parent HTML Div component. Default value is `#!py3 'start'` | `#!py3 'start'`, `#!py3 'end'`, or `#!py3 None` |

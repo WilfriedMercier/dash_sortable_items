@@ -1,15 +1,9 @@
-!!! note "Note:"
-    `SortableGroup` is technically a placeholder for `_SortableGroup`. For type checkers, one may therefore use as type hint
-
-    ```python
-    from dash_sortable_items._SortableGroup import _SortableGroup
-    ```
-
 ## Keyword arguments
 
 | Name | Description | Type |
 | ---- | ----------- | ---- |
 | `id`   | Unique identifier for the component in callbacks | `#!py3 str` or a dictionary with structure `#!py3 {'type' : ..., 'index' : ...}` |
+| `children` | [`SortableItem`](./sortable_item.md) children drawn in the list | [`SortableItem`](./sortable_item.md) |
 | `className` | CSS class name used to style the component via CSS stylesheets | `#!py3 str` |
 | `dropAnimation` | Dictionary with keys `#!py3 duration` and `#!py3 easing` where `#!py3 duration` is the length of the animation in millisecond and `#!py3 easing` is a CSS easing function. This is applied by default to all [`SortableItem`](./sortable_item.md) children. | `#!py3 {'duration' : ..., 'easing' : ...}` |
 | `showClone` | Whether a clone should be shown in the list when dragging the component or not. This is applied by default to all [`SortableItem`](./sortable_item.md) children. | `#!py3 bool` |

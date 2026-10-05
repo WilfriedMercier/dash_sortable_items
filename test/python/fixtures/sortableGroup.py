@@ -26,7 +26,7 @@ def app_button__group() -> dash.Dash:
     group = SortableGroup(
         id        = 'group',
         className = 'group',
-        items     = [item1, item2],
+        children  = [item1, item2],
         style     = {'display' : 'flex', 'flexDirection' : 'column', 'backgroundColor' : 'red'}
     )
 
@@ -57,12 +57,43 @@ def app_label__group() -> dash.Dash:
     group = SortableGroup(
         id        = 'group',
         className = 'group',
-        items     = [item1, item2],
+        children  = [item1, item2],
     )
 
     label  = dash.html.Label('', id='label')
 
     app.layout = dash.html.Div([group, label], style={'display' : 'flex'})
+
+    return app
+
+@pytest.fixture
+def app_label_and_button__group() -> dash.Dash:
+    '''Fixture that creates a Dash app with a single group, a label, and a button.'''
+
+    app = dash.Dash(__name__)
+
+    item1 = SortableItem(
+        id        = 'item1',
+        children  = [dash.html.Label('First row')],
+        className = 'row'
+    )
+    
+    item2 = SortableItem(
+        id        = 'item2',
+        children  = [dash.html.Label('Second row')],
+        className = 'row',
+    )
+
+    group = SortableGroup(
+        id        = 'group',
+        className = 'group',
+        children  = [item1, item2],
+    )
+
+    label  = dash.html.Label('', id='label')
+    button = dash.dcc.Button('Click me !', id = 'button')
+
+    app.layout = dash.html.Div([group, button, label], style={'display' : 'flex'})
 
     return app
 
@@ -89,7 +120,7 @@ def app_label_with_restrictions__group() -> dash.Dash:
     group = SortableGroup(
         id        = 'group',
         className = 'group',
-        items     = [item1, item2],
+        children  = [item1, item2],
     )
 
     label  = dash.html.Label('', id='label')
@@ -119,7 +150,7 @@ def app_with_clones__group() -> dash.Dash:
     group = SortableGroup(
         id        = 'group',
         className = 'group',
-        items     = [item1, item2],
+        children  = [item1, item2],
         showClone = True
     )
 

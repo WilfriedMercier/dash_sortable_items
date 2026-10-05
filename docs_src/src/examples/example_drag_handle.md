@@ -1,8 +1,8 @@
-Instead of having the entire row draggable, it is possible to provide to `SortableItem` a drag handle with `#!py3 handle = ...` followed by a Dash component that will be used as the handle. Usually, one uses an icon which can be provided by [Dash iconify](https://pypi.org/project/dash-iconify/) but any Dash component works.
+Instead of having the entire row draggable, it is possible to provide to [`SortableItem`](../API/sortable_item.md) a drag handle with `#!py3 handle = ...` followed by a Dash component that will be used as the handle. Usually, one uses an icon which can be provided by [Dash iconify](https://pypi.org/project/dash-iconify/) but any Dash component works.
 
 The handle can be positioned at the beginning of the div parent element with `#!py3 handle = 'start'` or at the end with `#!py3 handle = 'end'`.
 
-To customize the div parent element and/or the handle, one can provide to `SortableItem` a dictionary with `#!py3 styles = ...` containing two optional dictionaries with CSS stylesheet properties as key-value pairs:
+To customize the div parent element and/or the handle, one can provide to [`SortableItem`](../API/sortable_item.md) a dictionary with `#!py3 styles = ...` containing two optional dictionaries with CSS stylesheet properties as key-value pairs:
 
 - one named `#!py3 'div'` which styles the div parent element
 - another one named `#!py3 'handle'` which styles specifically the handle
@@ -45,7 +45,7 @@ For instance, in the example below, the div parent element is styled with `#!py3
 
     group = SortableGroup(
         id        = 'group',
-        items     = [item1, item2, item3],
+        children  = [item1, item2, item3],
         className = 'group'
     )
 

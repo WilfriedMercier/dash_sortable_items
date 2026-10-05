@@ -49,8 +49,8 @@ SortableItem(
 For each [`SortableItem`](../API/sortable_item.md), it is possible to provide CSS stylesheets that are applied when the item is being dragged or dropped without using callbacks. The three following style dictionaries can be provided:
 
 - `'styles'` which corresponds to the default style
-- `'styles_drag'` which is applied on top of '`styles'` when the item is being dragged
-- `'styles_drop'` which is applied on top of '`styles'` when the item is being dropped
+- `'stylesDrag'` which is applied on top of '`styles'` when the item is being dragged
+- `'stylesDrop'` which is applied on top of '`styles'` when the item is being dropped
 
 Each is a dictionary with the following structure `#!py3 {'div' : ..., 'handle' : ...}` where `#!py3 'div'` styles the parent Div HTML element and `#!py3 'handle'` styles the handle, if provided.
 

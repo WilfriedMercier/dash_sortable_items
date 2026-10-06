@@ -41,6 +41,8 @@ export interface SortableGroupProps extends Omit<DefaultComponentProps, 'childre
     };
 };
 
+export type handlePosType = "start" | "end";
+
 /**Props for the SortableItem component.*/
 export interface SortableItemProps extends Omit<DefaultComponentProps, 'style' | 'id'> {
 
@@ -62,6 +64,18 @@ export interface SortableItemProps extends Omit<DefaultComponentProps, 'style' |
     */
     handle    ?: ReactNode;
 
+    dynamicHandle ?: null | {
+        'drag' ?: ReactNode;
+        'drop' ?: ReactNode;
+        'lock' ?: ReactNode;
+    };
+
+    dynamicHandlePos ?: null | {
+        'drag' ?: handlePosType;
+        'drop' ?: handlePosType;
+        'lock' ?: handlePosType;
+    };
+
     /**Whether to lock the item (i.e. make it not moveable) or not.*/
     lock      ?: boolean;
 
@@ -73,7 +87,7 @@ export interface SortableItemProps extends Omit<DefaultComponentProps, 'style' |
     };
 
     /**Position of the handle either at the start or at the end of the row.*/
-    handlePos ?: 'start' | 'end';
+    handlePos ?: handlePosType;
 
     /**
      * CSS styles to apply. 
@@ -98,6 +112,15 @@ export interface SortableItemProps extends Omit<DefaultComponentProps, 'style' |
      * This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
     */
     stylesDrop ?: {
+        div    ?: any;
+        handle ?: any;
+    }
+
+    /**
+     * CSS styles to apply when the item is locked. 
+     * This is a dictionary with keys 'div' and 'handle', each taking a dictionary with CSS properties.
+    */
+    stylesLock ?: {
         div    ?: any;
         handle ?: any;
     }

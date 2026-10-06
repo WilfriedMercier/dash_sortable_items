@@ -16,3 +16,13 @@ class AnimationOptions(typing.TypedDict):
 class stylesType(typing.TypedDict):
     div    : typing.ReadOnly[typing.NotRequired[CSSDict]]
     handle : typing.ReadOnly[typing.NotRequired[CSSDict]]
+
+class dynamicHandleType(typing.TypedDict):
+    drag : typing.ReadOnly[typing.NotRequired[typing.Any]]
+    drop : typing.ReadOnly[typing.NotRequired[typing.Any]]
+    lock : typing.ReadOnly[typing.NotRequired[typing.Any]]
+
+class dynamicHandlePosType(typing.TypedDict):
+    drag : typing.ReadOnly[typing.NotRequired[handlePosType]]
+    drop : typing.ReadOnly[typing.NotRequired[handlePosType]]
+    lock : typing.ReadOnly[typing.NotRequired[handlePosType]]

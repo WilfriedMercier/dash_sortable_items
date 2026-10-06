@@ -20,7 +20,14 @@ item3 = SortableItem(
     id         = 'item3',
     children   = [dash.html.Label('Row #3')],
     handle     = DashIconify(icon='iconmind:drag-handle-duotone-bold', width=30, height=30),
+    handlePos  = 'start',
     className  = 'item',
+    dynamicHandle = {
+        'drop' : DashIconify(icon='ant-design:fall-outlined', width=30, height=30)
+    },
+    dynamicHandlePos = {
+        'drop' : 'end'
+    },
     stylesDrop = {
         'div' : {
             'border'  : '3px solid darkgreen',

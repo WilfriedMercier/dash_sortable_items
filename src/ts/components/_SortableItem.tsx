@@ -8,7 +8,7 @@ import {
     RestrictToHorizontalAxis 
 } from "@dnd-kit/abstract/modifiers";
 
-import { SortableItemProps } from "types";
+import { SortableItemProps, handlePosType } from "types";
 import { HandleWrapper }     from "./HandleWrapper";
    
 /**A sortable item used in a SortableGroup component.*/
@@ -23,6 +23,7 @@ export default function _SortableItem( {
         handle,
         restrict,
         dynamicHandle,
+        dynamicHandlePos,
         index               = 0,
         lock                = false,
         handlePos           = 'start',
@@ -62,28 +63,33 @@ export default function _SortableItem( {
 
     // Handle item defined by the user but wrapped with a forward ref to assign the handleRef
     let new_handle: ReactElement<typeof HandleWrapper> | null;
+    let handle_pos_dynamic = handlePos;
 
     if (handle !== undefined) {
 
         // Dynamic style used for the handle if there is one
         let handle_style = default_styles?.handle;
-        let handle_dynamic : ReactNode;
+        let handle_dynamic     : ReactNode;
 
         if (isDragging) {
-            handle_style   = {...handle_style, ...default_drag_styles?.handle, ...stylesDrag?.handle};
-            handle_dynamic = dynamicHandle?.drag || handle;
+            handle_style       = {...handle_style, ...default_drag_styles?.handle, ...stylesDrag?.handle};
+            handle_dynamic     = dynamicHandle?.drag || handle;
+            handle_pos_dynamic = dynamicHandlePos?.drag || handlePos;
         }
         else if (isDropping) {
-            handle_style   = {...handle_style, ...default_drop_styles?.handle, ...stylesDrop?.handle};
-            handle_dynamic = dynamicHandle?.drop || handle;
+            handle_style       = {...handle_style, ...default_drop_styles?.handle, ...stylesDrop?.handle};
+            handle_dynamic     = dynamicHandle?.drop || handle;
+            handle_pos_dynamic = dynamicHandlePos?.drop || handlePos;
         }
         else if (lock) {
-            handle_style   = {...handle_style, ...default_lock_styles?.handle, ...stylesLock?.handle};
-            handle_dynamic = dynamicHandle?.lock || handle;
+            handle_style       = {...handle_style, ...default_lock_styles?.handle, ...stylesLock?.handle};
+            handle_dynamic     = dynamicHandle?.lock || handle;
+            handle_pos_dynamic = dynamicHandlePos?.lock || handlePos;
         }
         else {
-            handle_style   = {...handle_style, ...styles?.handle};
-            handle_dynamic = handle;
+            handle_style       = {...handle_style, ...styles?.handle};
+            handle_dynamic     = handle;
+            handle_pos_dynamic = handlePos;
         }
 
         new_handle = <HandleWrapper 
@@ -124,9 +130,9 @@ export default function _SortableItem( {
             ref       = {ref} 
             style     = {div_style}
         >
-        {handlePos === 'start' ? new_handle : null}
+        {handle_pos_dynamic === 'start' ? new_handle : null}
         {children}
-        {handlePos === 'end'   ? new_handle : null}
+        {handle_pos_dynamic === 'end'   ? new_handle : null}
     </div>
 };
 

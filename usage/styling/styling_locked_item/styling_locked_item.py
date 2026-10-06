@@ -9,13 +9,17 @@ item1 = SortableItem(
     children   = [dash.html.Label('Row #1')],
     lock       = True,
     handle     = DashIconify(icon='iconmind:drag-handle-duotone-bold', width=30, height=30),
+    handlePos = 'start',
     stylesLock = {
         'div'    : {'borderColor' : 'red'},
         'handle' : {'border' : 'solid 1px'}
     },
     dynamicHandle = {
         'lock' : DashIconify(icon='ant-design:lock-twotone', width=30, height=30)
-    },    
+    },
+    dynamicHandlePos = {
+        'lock' : 'end'
+    },
     className  = 'item'
 )
 

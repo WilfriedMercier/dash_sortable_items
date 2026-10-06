@@ -3,7 +3,8 @@ from   .types import (
     DashId, 
     handlePosType, 
     restrictType, 
-    handleDynamicType,
+    dynamicHandleType,
+    dynamicHandlePosType,
     stylesType,
     AnimationOptions
 )
@@ -18,6 +19,8 @@ class SortableItem(_SortableItem):
     :param id: Unique ID of the component
     :param children: Children of the component.
     :param className: Class name of the component.
+    :param dynamicHandle: Dictionary with keys 'drag', 'drop', and 'lock' whose values are Dash components used as handles during grabbing, dropping, or when locked, respectively. If not provided, handle is used instead.
+    :param dynamicHandlePos: Same as dynamicHandle but for the position of the handle.
     :param handle: Dash component used as handle to grab the row. None means the entire row is draggable.
     :param handlePos: Position of the handle either at the start or at the end of the row.
     :param lock: Whether to lock the item (i.e. make it not moveable) or not.
@@ -34,7 +37,8 @@ class SortableItem(_SortableItem):
         id                  : DashId,
         children            : typing.Any              = None,
         className           : str                     = '',
-        dynamicHandle       : handleDynamicType       = {},
+        dynamicHandle       : dynamicHandleType       = {},
+        dynamicHandlePos    : dynamicHandlePosType    = {},
         handle              : typing.Any              = None,
         handlePos           : handlePosType           = 'start',
         lock                : bool                    = False,
@@ -59,9 +63,10 @@ class SortableItem(_SortableItem):
             'transitionAnimation' : transitionAnimation
         }
 
-        if handle is not None        : self._args['handle'] = handle
-        if dynamicHandle is not None : self._args['dynamicHandle'] = dynamicHandle
-        if id     is not None        : self._args['id']     = id
+        if handle is not None           : self._args['handle'] = handle
+        if dynamicHandle is not None    : self._args['dynamicHandle'] = dynamicHandle
+        if dynamicHandlePos is not None : self._args['dynamicHandlePos'] = dynamicHandlePos
+        if id     is not None           : self._args['id']     = id
 
         super().__init__(**self._args)
 

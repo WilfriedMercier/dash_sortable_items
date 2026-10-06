@@ -90,7 +90,9 @@ def app_drag_style__item() -> dash.Dash:
             'handle' : {'backgroundColor' : 'green'},
             'div'    : {'backgroundColor' : 'blue', 'rotate' : '180deg'}
         },
-        className = 'row'
+        dynamicHandle    = {'drag' : dash.html.Label('🚀')},
+        dynamicHandlePos = {'drag' : 'end'},
+        className        = 'row'
     )
     
     item2 = SortableItem(
@@ -116,10 +118,12 @@ def app_drop_style__item() -> dash.Dash:
     app = dash.Dash(__name__)
 
     item1 = SortableItem(
-        id        = 'item1',
-        children  = [dash.html.Label('First row')],
-        handle    = dash.html.Label('☃'),
-        handlePos = 'start',
+        id               = 'item1',
+        children         = [dash.html.Label('First row')],
+        handle           = dash.html.Label('☃'),
+        handlePos        = 'start',
+        dynamicHandle    = {'drop' : dash.html.Label('🚀')},
+        dynamicHandlePos = {'drop' : 'end'},
         styles    = {
             'handle' : {'backgroundColor' : 'red'},
             'div'    : {'backgroundColor' : 'yellow'}
@@ -145,5 +149,43 @@ def app_drop_style__item() -> dash.Dash:
     )
 
     app.layout = dash.html.Div(group, style={'display' : 'flex'})
+
+    return app
+
+@pytest.fixture
+def app_lock_style__item() -> dash.Dash:
+    '''Fixture that creates a Dash app with an item whose style changes when locked/unlocked.'''
+
+    app = dash.Dash(__name__)
+
+    item1 = SortableItem(
+        id               = 'item',
+        children         = [dash.html.Label('Row')],
+        lock             = False,
+        handle           = dash.html.Label('☃'),
+        handlePos        = 'start',
+        dynamicHandle    = {'lock' : dash.html.Label('🚀')},
+        dynamicHandlePos = {'lock' : 'end'},
+        styles    = {
+            'handle' : {'backgroundColor' : 'red'},
+            'div'    : {'backgroundColor' : 'yellow'}
+        },
+        stylesLock = {
+            'handle' : {'backgroundColor' : 'green'},
+            'div'    : {'backgroundColor' : 'blue'}
+        },
+        className = 'row'
+    )
+
+    group = SortableGroup(
+        id            = 'group',
+        className     = 'group',
+        children      = [item1],
+        dropAnimation = {'duration' : 3000, 'easing' : 'ease'}
+    )
+
+    button = dash.dcc.Button('Lock/unlock', id='button')
+
+    app.layout = dash.html.Div([group, button], style={'display' : 'flex'})
 
     return app

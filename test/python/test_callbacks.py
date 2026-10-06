@@ -298,6 +298,7 @@ class Test_SortableItem:
         button = dash_duo.find_element('button', attribute='ID')
 
         actions.click(button).pause(0.5).perform()
+        actions.pause(0.5).perform()
 
         style_div = {
             k.strip(): v.strip()

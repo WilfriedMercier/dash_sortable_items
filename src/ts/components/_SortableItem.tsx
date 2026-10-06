@@ -69,20 +69,20 @@ export default function _SortableItem( {
 
         // Dynamic style used for the handle if there is one
         let handle_style = default_styles?.handle;
-        let handle_dynamic     : ReactNode;
+        let handle_dynamic : ReactNode;
 
         if (isDragging) {
-            handle_style       = {...handle_style, ...default_drag_styles?.handle, ...stylesDrag?.handle};
+            handle_style       = {...handle_style, ...default_drag_styles?.handle, ...styles?.handle, ...stylesDrag?.handle};
             handle_dynamic     = dynamicHandle?.drag || handle;
             handle_pos_dynamic = dynamicHandlePos?.drag || handlePos;
         }
         else if (isDropping) {
-            handle_style       = {...handle_style, ...default_drop_styles?.handle, ...stylesDrop?.handle};
+            handle_style       = {...handle_style, ...default_drop_styles?.handle, ...styles?.handle, ...stylesDrop?.handle};
             handle_dynamic     = dynamicHandle?.drop || handle;
             handle_pos_dynamic = dynamicHandlePos?.drop || handlePos;
         }
         else if (lock) {
-            handle_style       = {...handle_style, ...default_lock_styles?.handle, ...stylesLock?.handle};
+            handle_style       = {...handle_style, ...default_lock_styles?.handle, ...styles?.handle, ...stylesLock?.handle};
             handle_dynamic     = dynamicHandle?.lock || handle;
             handle_pos_dynamic = dynamicHandlePos?.lock || handlePos;
         }
@@ -112,13 +112,13 @@ export default function _SortableItem( {
     };
 
     if (isDragging) {
-        div_style = {...div_style, ...default_drag_styles?.div, ...stylesDrag?.div};
+        div_style = {...div_style, ...default_drag_styles?.div, ...styles?.div, ...stylesDrag?.div};
     }
     else if (isDropping) {
-        div_style = {...div_style, ...default_drop_styles?.div, ...stylesDrop?.div};
+        div_style = {...div_style, ...default_drop_styles?.div, ...styles?.div, ...stylesDrop?.div};
     }
     else if (lock) {
-        div_style = {...div_style, ...default_lock_styles?.div, ...stylesLock?.div};
+        div_style = {...div_style, ...default_lock_styles?.div, ...styles?.div, ...stylesLock?.div};
     }
     else {
         div_style = {...div_style, ...styles?.div};

@@ -44,20 +44,80 @@ SortableItem(
 )
 ```
 
-## Custom dynamic styling
+## Dynamically style items
 
 For each [`SortableItem`](../API/sortable_item.md), it is possible to provide CSS stylesheets that are applied when the item is being dragged or dropped without using callbacks. The three following style dictionaries can be provided:
 
-- `'styles'` which corresponds to the default style
-- `'stylesDrag'` which is applied on top of '`styles'` when the item is being dragged
-- `'stylesDrop'` which is applied on top of '`styles'` when the item is being dropped
+- `#!py3 'styles'` which corresponds to the default style
+- `#!py3 'stylesDrag'` which is applied on top of `#!py3  'styles'` when the item is being dragged
+- `#!py3 'stylesDrop'` which is applied on top of `#!py3  'styles'` when the item is being dropped
+- `#!py3 'styleLock'` which is applied on top of `#!py3  'styles'` when the item is locked
 
-Each is a dictionary with the following structure `#!py3 {'div' : ..., 'handle' : ...}` where `#!py3 'div'` styles the parent Div HTML element and `#!py3 'handle'` styles the handle, if provided.
+Each is a dictionary with the following structure: `#!py3 {'div' : CSSDict, 'handle' : CSSDict}`, where `#!py3 'div'` styles the parent Div HTML element and `#!py3 'handle'` styles the handle, if provided. It is also possible to style dynamically the items with callbacks, though it is recommended to rather use `#!py3 'stylesDrag'`, `#!py3 'stylesDrop'`, and `#!py3 'styleLock'`.
 
-Alternatively, it is also possible to style a dragged component with class name `#!py3 'item'` via CSS stylesheets as follows:
+Alternatively, a dragged component (e.g. with class name `#!py3 'item'`) can be customized via CSS stylesheets as follows:
 
 ```css
 .item[data-dnd-dragging="true"] {
     ...
 }
+```
+
+## Dynamically update the handle
+
+It is possible to update the Dash component used as handle and its position when dragging, dropping, or locking it by passing the arguments `#!py3 dynamicHandle`' and `#!py3 dynamicHandlePos` to [`SortableItem`](../API/sortable_item.md). Both are dictionaries with the following keys:
+
+- `#!py3 'drag'` applied when the item is being dragged
+- `#!py3 'drop'` applied when the item is being dropped
+- `#!py3 'lock'` applied when the item is locked
+
+For `#!py3 dynamicHandle`, the values associated to the keys must be Dash components, whereas for `#!py3 dynamicHandlePos` they must be either `#!py3 'start'` or `#!py3 'end'`. Alternatively, one can update `#!py3 handle` and `#!py3 handlePos` in a callback using the `#!py3 'isDragging'`, `#!py3 'isDropping'`, and `#!py3 'lock'` properties as inputs, though it is recommended to rather use `#!py3 dynamicHandle`' and `#!py3 dynamicHandlePos`.
+
+In the example below, different icons are used depending on the item's state and its position changes from `#!py3 'start'`' to `#!py3 'end'`' when locked and dragged:
+
+```python
+import dash
+from   dash_iconify        import DashIconify
+from   dash_sortable_items import SortableGroup, SortableItem
+
+app = dash.Dash(__name__)
+
+item = SortableItem(
+    id        = 'item',
+    children  = 'This is a row with a dynamic handle',
+    handle    = DashIconify(icon='majesticons:hand-pointer-line', width=50, height=50), # Default handle when idle
+    handlePos = 'start', # Default position when idle
+    dynamicHandle    = {
+        'drag' : DashIconify(icon='majesticons:hand-pointer-event-line', width=50, height=50), # Handle when dragging
+        'drop' : DashIconify(icon='majesticons:arrows-collapse-full',    width=50, height=50), # Handle when dropping
+        'lock' : DashIconify(icon='majesticons:lock',                    width=50, height=50)  # Handle when locked
+    },
+    dynamicHandlePos = {
+        'drag' : 'end',   # Handle's position when dragging
+        'drop' : 'start', # Handle's position when dropping
+        'lock' : 'end'    # Handle's position when locked
+    }
+)
+
+button = dash.html.Button('Lock/Unlock', id='button')
+
+group = SortableGroup(
+    id            = 'group', 
+    children      = [item], 
+    dropAnimation = {'duration' : 2000}
+)
+
+app.layout = dash.html.Div([group, button])
+
+@app.callback(
+    dash.Output('item', 'lock'),
+    dash.Input('button', 'n_clicks'),
+)
+def lock(n_clicks: int | None) -> bool:
+
+    if n_clicks is None: raise dash.exceptions.PreventUpdate
+
+    return n_clicks % 2 == 1
+
+app.run(debug=True)
 ```

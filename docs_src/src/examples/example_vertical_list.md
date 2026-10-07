@@ -1,4 +1,4 @@
-By default, the Dash sortable items extension generates a vertical list. It is also possible to make it explicitely vertical by providing `#!py3 style = {'flexDirection' : 'column'}` to `SortableGroup`.
+By default, the Dash sortable items extension generates a vertical list. It is also possible to make it explicitely vertical by providing `#!py3 style = {'flexDirection' : 'column'}` to [`SortableGroup`](../API/sortable_group.md).
 
 See the example below for a vertical list.
 

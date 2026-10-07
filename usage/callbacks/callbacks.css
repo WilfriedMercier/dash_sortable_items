@@ -17,6 +17,12 @@
     border           : 1px solid black;
 }
 
+.item-bis {
+    box-shadow       : rgb(38, 57, 77) 0px 20px 30px -10px;
+    transition       : all 0.2s ease-in-out;
+    justify-content  : space-between;
+}
+
 .item {
     background-color : #a6b1e1 !important;
     box-shadow       : rgb(38, 57, 77) 0px 20px 30px -10px;

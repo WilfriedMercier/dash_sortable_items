@@ -1,4 +1,4 @@
-To make the list horizontal instead of vertical, one can pass `#!py3 style = {'flexDirection' : 'row'}` to `SortableGroup`.
+To make the list horizontal instead of vertical, one can pass `#!py3 style = {'flexDirection' : 'row'}` to [`SortableGroup`](../API/sortable_group.md).
 
 Using the same example as the [vertical list](./example_vertical_list.md), this gives
 

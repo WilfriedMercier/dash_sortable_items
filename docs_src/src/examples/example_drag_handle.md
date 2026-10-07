@@ -2,7 +2,7 @@ Instead of having the entire row draggable, it is possible to provide to [`Sorta
 
 The handle can be positioned at the beginning of the div parent element with `#!py3 handle = 'start'` or at the end with `#!py3 handle = 'end'`.
 
-To customize the div parent element and/or the handle, one can provide to [`SortableItem`](../API/sortable_item.md) a dictionary with `#!py3 styles = ...` containing two optional dictionaries with CSS stylesheet properties as key-value pairs:
+To customize the div parent element and/or the handle, one can provide to [`SortableItem`](../API/sortable_item.md) a dictionary with `#!py3 styles = {'div' : CSSDict, 'handle' : CSSDict}` containing two optional dictionaries with CSS stylesheet properties as key-value pairs:
 
 - one named `#!py3 'div'` which styles the div parent element
 - another one named `#!py3 'handle'` which styles specifically the handle

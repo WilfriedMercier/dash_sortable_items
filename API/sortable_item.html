@@ -1025,14 +1025,24 @@
 <td><code class="language-py3 highlight"><span class="nb">str</span></code></td>
 </tr>
 <tr>
+<td><code>dynamicHandle</code></td>
+<td>Use <code>handle</code> to provide a default handle and then <code>dynamicHandle</code> to update it dynamically when the item is dragged, dropped, or locked. <code>dynamicHandle</code> is a dictionary with keys <code class="language-py3 highlight"><span class="s1">'drag'</span></code>, <code class="language-py3 highlight"><span class="s1">'drop'</span></code>, and <code class="language-py3 highlight"><span class="s1">'lock'</span></code> with each value a Dash component. If <code>None</code>, <code>handle</code> is used all the time, if provided.</td>
+<td><code class="language-py3 highlight"><span class="p">{</span><span class="s1">'drag'</span> <span class="p">:</span> <span class="n">DashComponent</span><span class="p">,</span> <span class="s1">'drop'</span> <span class="p">:</span> <span class="n">DashComponent</span> <span class="s1">'lock'</span> <span class="p">:</span> <span class="n">DashComponent</span><span class="p">}</span></code> or <code>None</code></td>
+</tr>
+<tr>
+<td><code>dynamicHandlePos</code></td>
+<td>Use <code>handlePos</code> to provide the default position of the handle and then <code>dynamicHandlePos</code> to update it dynamically when the item is dragged, dropped, or locked. <code>dynamicHandlePos</code> is a dictionary with keys <code class="language-py3 highlight"><span class="s1">'drag'</span></code>, <code class="language-py3 highlight"><span class="s1">'drop'</span></code>, and <code class="language-py3 highlight"><span class="s1">'lock'</span></code> with each value a boolean flag. If <code>None</code>, <code>handlePos</code> is used all the time.</td>
+<td><code class="language-py3 highlight"><span class="p">{</span><span class="s1">'drag'</span> <span class="p">:</span> <span class="nb">bool</span> <span class="s1">'drop'</span> <span class="p">:</span> <span class="nb">bool</span> <span class="s1">'lock'</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">}</span></code> or <code>None</code></td>
+</tr>
+<tr>
 <td><code>handle</code></td>
 <td>Dash component used as handle. If <code class="language-py3 highlight"><span class="kc">None</span></code>, the entire item is used as handle</td>
-<td><code class="language-py3 highlight"><span class="nb">dict</span></code> or <code class="language-py3 highlight"><span class="kc">None</span></code></td>
+<td><code>DashComponent</code> or <code class="language-py3 highlight"><span class="kc">None</span></code></td>
 </tr>
 <tr>
 <td><code>handlePos</code></td>
 <td>Position of the handle in the parent HTML Div component. Default value is <code class="language-py3 highlight"><span class="s1">'start'</span></code></td>
-<td><code class="language-py3 highlight"><span class="s1">'start'</span></code>, <code class="language-py3 highlight"><span class="s1">'end'</span></code>, or <code class="language-py3 highlight"><span class="kc">None</span></code></td>
+<td><code class="language-py3 highlight"><span class="s1">'start'</span></code> or <code class="language-py3 highlight"><span class="s1">'end'</span></code></td>
 </tr>
 <tr>
 <td><code>lock</code></td>
@@ -1042,27 +1052,32 @@
 <tr>
 <td><code>restrict</code></td>
 <td>Whether to restrict the item to vertical or horizontal movement only. Default is no restriction.</td>
-<td><code class="language-py3 highlight"><span class="s1">'vertical'</span></code>, <code class="language-py3 highlight"><span class="s1">'horizontal'</span></code>, or <code class="language-py3 highlight"><span class="kc">None</span></code></td>
+<td><code class="language-py3 highlight"><span class="s1">'vertical'</span></code> or <code class="language-py3 highlight"><span class="s1">'horizontal'</span></code></td>
 </tr>
 <tr>
 <td><code>styles</code></td>
 <td>Dictionary used to style inner components. Each key identifies a component and each value is a dictionary with camel cased CSS properties. Allowed keys are <code class="language-py3 highlight"><span class="s1">'div'</span></code> to style the parent Div HTML element and <code class="language-py3 highlight"><span class="s1">'handle'</span></code> to style the Div HTML element wrapping the handle, if provided</td>
-<td><code class="language-py3 highlight"><span class="p">{</span><span class="s1">'div'</span> <span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span> <span class="s1">'handle'</span> <span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">}}</span></code></td>
+<td><code class="language-py3 highlight"><span class="p">{</span><span class="s1">'div'</span> <span class="p">:</span> <span class="n">CSSDict</span><span class="p">,</span> <span class="s1">'handle'</span> <span class="p">:</span> <span class="n">CSSDict</span><span class="p">}</span></code></td>
 </tr>
 <tr>
 <td><code>stylesDrag</code></td>
 <td>Same as <code>style</code> but used when the component is being dragged</td>
-<td><code class="language-py3 highlight"><span class="p">{</span><span class="s1">'div'</span> <span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span> <span class="s1">'handle'</span> <span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">}}</span></code></td>
+<td><code class="language-py3 highlight"><span class="p">{</span><span class="s1">'div'</span> <span class="p">:</span> <span class="n">CSSDict</span><span class="p">,</span> <span class="s1">'handle'</span> <span class="p">:</span> <span class="n">CSSDict</span><span class="p">}</span></code></td>
 </tr>
 <tr>
 <td><code>stylesDrop</code></td>
 <td>Same as <code>style</code> but used when the component is dropped</td>
-<td><code class="language-py3 highlight"><span class="p">{</span><span class="s1">'div'</span> <span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span> <span class="s1">'handle'</span> <span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">}}</span></code></td>
+<td><code class="language-py3 highlight"><span class="p">{</span><span class="s1">'div'</span> <span class="p">:</span> <span class="n">CSSDict</span><span class="p">,</span> <span class="s1">'handle'</span> <span class="p">:</span> <span class="n">CSSDict</span><span class="p">}</span></code></td>
+</tr>
+<tr>
+<td><code>stylesLock</code></td>
+<td>Same as <code>style</code> but used when the component is locked</td>
+<td><code class="language-py3 highlight"><span class="p">{</span><span class="s1">'div'</span> <span class="p">:</span> <span class="n">CSSDict</span><span class="p">,</span> <span class="s1">'handle'</span> <span class="p">:</span> <span class="n">CSSDict</span><span class="p">}</span></code></td>
 </tr>
 <tr>
 <td><code>transitionAnimation</code></td>
 <td>Dictionary used to customize the animation used when an item transitions from one position to another. <code class="language-py3 highlight"><span class="kc">None</span></code> means there is no transition. If not <code class="language-py3 highlight"><span class="kc">None</span></code>, the following keys are mandatory: <code class="language-py3 highlight"><span class="s1">'duration'</span></code> which indicates how long the transition lasts in millisecond and <code class="language-py3 highlight"><span class="s1">'easing'</span></code> which specifies which CSS easing function to use.</td>
-<td><code class="language-py3 highlight"><span class="p">{</span><span class="s1">'duration'</span> <span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">},</span> <span class="s1">'easing'</span> <span class="p">:</span> <span class="p">{</span><span class="o">...</span><span class="p">}}</span></code></td>
+<td><code class="language-py3 highlight"><span class="p">{</span><span class="s1">'duration'</span> <span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s1">'easing'</span> <span class="p">:</span> <span class="nb">str</span><span class="p">}</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -1074,21 +1089,33 @@
 <th>Name</th>
 <th style="text-align: center;">Trigger ?</th>
 <th style="text-align: center;">Updatable ?</th>
-<th>Information</th>
+<th>Comment</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td><code>dynamicHandle</code></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td>For advanced usage when the dynamic styles needs to be updated in a callback.</td>
+</tr>
+<tr>
+<td><code>dynamicHandlePos</code></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td>For advanced usage when the dynamic position of the handle needs to be updated in a callback.</td>
+</tr>
+<tr>
 <td><code>handle</code></td>
 <td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
 <td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
-<td>Can be used to update the handle's icon dynamically when an item is dragged.</td>
+<td>To update the handle when the item is dragged, dropped, or locked, use instead <code>dynamicHandle</code> when creating the item.</td>
 </tr>
 <tr>
 <td><code>handlePos</code></td>
 <td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
 <td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
-<td>Can be used to update the position of the handle dynamically when an item is dragged.</td>
+<td>To update the position of the handle when the item is dragged, dropped, or locked, use instead <code>dynamicHandlePos</code> when creating the item.</td>
 </tr>
 <tr>
 <td><code>isDragging</code></td>
@@ -1106,25 +1133,31 @@
 <td><code>lock</code></td>
 <td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
 <td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
-<td>Can be used to lock/unlock items when pressing a button or to trigger a suite of actions when an item unlocks.</td>
+<td>Can be used to lock/unlock items when pressing a button.</td>
 </tr>
 <tr>
 <td><code>styles</code></td>
 <td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
-<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" title=":x:" /></td>
-<td>If <code>styles</code> is updated in a callback, the new styles will not be rendered.</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td>If used as ouput, the styles are updated immediately.</td>
 </tr>
 <tr>
 <td><code>stylesDrag</code></td>
 <td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
-<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" title=":x:" /></td>
-<td>Same as <code>styles</code>.</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td>If used as ouput, the styles are updated as soon as the item is dragged.</td>
 </tr>
 <tr>
 <td><code>stylesDrop</code></td>
 <td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
-<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" title=":x:" /></td>
-<td>Same as <code>styles</code>.</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td>If used as ouput, the styles are updated as soon as the item is dropped.</td>
+</tr>
+<tr>
+<td><code>stylesLock</code></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td>If used as ouput, the styles are updated immediately if the item is locked.</td>
 </tr>
 <tr>
 <td><code>transitionAnimation</code></td>
